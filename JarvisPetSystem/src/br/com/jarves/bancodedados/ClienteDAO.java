@@ -56,6 +56,12 @@ public class ClienteDAO {
         //JOptionPane.showMessageDialog(null, user.getNomeUsuario());
         return cliente;
     }
+    
+    /**
+     * Insere um cliente no banco de dados
+     * @param cliente dados do cliente
+     * @return Mensagem
+     */
     public String insereCliente(Cliente cliente){
         String msg = null;
         ConexaoOracle co = new ConexaoOracle();
@@ -63,7 +69,7 @@ public class ClienteDAO {
         try {
             
             Connection con = ConexaoOracle.abreConexao();
-            CallableStatement cs = con.prepareCall("{call insere_cliente(?,?,?,?,?,?,?,?)}");
+            CallableStatement cs = con.prepareCall("{call insere_cliente(?,?,?,?,?,?,?,?,?,?,?,?)}");
             cs.setString(1, cliente.getNomeCliente());
             cs.setString(2, cliente.getCpf());
             cs.setString(3, cliente.getRg());
@@ -72,12 +78,17 @@ public class ClienteDAO {
             cs.setString(6, cliente.getEndereco().getNumero());
             cs.setString(7, cliente.getEndereco().getComplemento());
             cs.setInt(8, cliente.getEndereco().getIdLogradouro());
+            cs.setString(9, cliente.getContato().getEmail());
+            cs.setString(10, cliente.getContato().getTelefone());
+            cs.setString(11, cliente.getContato().getCelular());
+            cs.setString(12, cliente.getContato().getObs());
             cs.execute();
             cs.close();
             con.close();
-            msg = "UIPI";
+            msg = "Cliente Cadastrado com Sucesso";
             
         } catch (SQLException ex) {
+            msg = "Erro"+ex;
             JOptionPane.showMessageDialog(null,"Erro: " + ex);
             
         }

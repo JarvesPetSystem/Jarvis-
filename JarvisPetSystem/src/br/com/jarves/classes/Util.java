@@ -1,6 +1,7 @@
 package br.com.jarves.classes;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -37,11 +38,23 @@ public class Util {
         return pri+"."+seg+"."+ter+"-"+qua;
     
     }
-    public Date data(Date data){
-        DateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
-        return date;
+    public Date data(Date data) throws ParseException{
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String dataa = formato.format(data);
+        
+        data = new java.sql.Date(formato.parse(dataa).getTime());
+        
+        //DateFormat formata = new SimpleDateFormat("dd/MM/yyyy");
+        //date = (Date)formata.parse(data);
+        return data;
     }
+    
+    
+    /**
+     * Método que verifica se o cpf é válido
+     * @param CPF String cpf
+     * @return true se for um cpf válido
+     */
     public boolean isCPF(String CPF) { 
     // considera-se erro CPF's formados por uma sequencia de numeros iguais
     if (CPF.equals("00000000000") || CPF.equals("11111111111") ||
@@ -91,6 +104,21 @@ public class Util {
         return(false);
     }
   }
+  
+   public String formataTelefone(String telefone){
+        String pri = telefone.substring(0,4);
+        String seg = telefone.substring(5,9);
+        
+        return pri+seg;
+    
+    }
+   public String formataCelular(String celular){
+        String pri = celular.substring(0,5);
+        String seg = celular.substring(6,10);
+        
+        return pri+seg;
+    
+    }
 }
 
 

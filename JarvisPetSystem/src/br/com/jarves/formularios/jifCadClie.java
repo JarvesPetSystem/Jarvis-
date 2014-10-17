@@ -9,11 +9,16 @@ package br.com.jarves.formularios;
 import br.com.jarves.bancodedados.ClienteDAO;
 import br.com.jarves.bancodedados.EnderecoDAO;
 import br.com.jarves.classes.Cliente;
+import br.com.jarves.classes.Contato;
 import br.com.jarves.classes.Logradouro;
 import br.com.jarves.classes.Util;
 
 import java.awt.Dimension;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,8 +55,8 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jbtPesEnd = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
+        jtbPainel = new javax.swing.JTabbedPane();
+        jpnEndereco = new javax.swing.JPanel();
         jftCep = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -139,7 +144,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jPanel2.add(jButton1);
         jButton1.setBounds(460, 120, 110, 40);
 
-        jPanel3.setLayout(null);
+        jpnEndereco.setLayout(null);
 
         try {
             jftCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
@@ -157,58 +162,58 @@ public class jifCadClie extends javax.swing.JInternalFrame {
                 jftCepKeyReleased(evt);
             }
         });
-        jPanel3.add(jftCep);
+        jpnEndereco.add(jftCep);
         jftCep.setBounds(70, 10, 90, 30);
 
         jLabel5.setText("Estado:");
-        jPanel3.add(jLabel5);
+        jpnEndereco.add(jLabel5);
         jLabel5.setBounds(330, 130, 50, 30);
 
         jLabel4.setText("Cidade:");
-        jPanel3.add(jLabel4);
+        jpnEndereco.add(jLabel4);
         jLabel4.setBounds(20, 134, 50, 30);
 
         jtfCidade.setEditable(false);
-        jPanel3.add(jtfCidade);
+        jpnEndereco.add(jtfCidade);
         jtfCidade.setBounds(70, 130, 240, 30);
 
         jtfBairro.setEditable(false);
-        jPanel3.add(jtfBairro);
+        jpnEndereco.add(jtfBairro);
         jtfBairro.setBounds(70, 90, 240, 30);
 
         jtfRua.setEditable(false);
-        jPanel3.add(jtfRua);
+        jpnEndereco.add(jtfRua);
         jtfRua.setBounds(70, 50, 240, 30);
 
         jLabel2.setText("Endereço:");
-        jPanel3.add(jLabel2);
+        jpnEndereco.add(jLabel2);
         jLabel2.setBounds(10, 50, 50, 30);
 
         jLabel3.setText("Bairro:");
-        jPanel3.add(jLabel3);
+        jpnEndereco.add(jLabel3);
         jLabel3.setBounds(20, 90, 50, 30);
 
         jLabel6.setText("CEP:");
-        jPanel3.add(jLabel6);
+        jpnEndereco.add(jLabel6);
         jLabel6.setBounds(30, 10, 80, 30);
 
         jtfEstado.setEditable(false);
-        jPanel3.add(jtfEstado);
+        jpnEndereco.add(jtfEstado);
         jtfEstado.setBounds(380, 130, 100, 30);
-        jPanel3.add(jtfNumero);
+        jpnEndereco.add(jtfNumero);
         jtfNumero.setBounds(380, 50, 90, 30);
 
         jLabel14.setText("N °:");
-        jPanel3.add(jLabel14);
+        jpnEndereco.add(jLabel14);
         jLabel14.setBounds(350, 50, 40, 30);
-        jPanel3.add(jtfComplemento);
+        jpnEndereco.add(jtfComplemento);
         jtfComplemento.setBounds(380, 90, 150, 30);
 
         jLabel16.setText("Comp:");
-        jPanel3.add(jLabel16);
+        jpnEndereco.add(jLabel16);
         jLabel16.setBounds(340, 90, 40, 30);
 
-        jTabbedPane1.addTab("Endereço", jPanel3);
+        jtbPainel.addTab("Endereço", jpnEndereco);
 
         jPanel4.setLayout(null);
 
@@ -248,15 +253,15 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jPanel4.add(jtfObs);
         jtfObs.setBounds(90, 140, 370, 30);
 
-        jTabbedPane1.addTab("Contato", jPanel4);
+        jtbPainel.addTab("Contato", jPanel4);
 
-        jPanel2.add(jTabbedPane1);
-        jTabbedPane1.setBounds(20, 260, 550, 220);
-        jTabbedPane1.getAccessibleContext().setAccessibleName("Contato");
+        jPanel2.add(jtbPainel);
+        jtbPainel.setBounds(20, 260, 550, 220);
+        jtbPainel.getAccessibleContext().setAccessibleName("Contato");
 
         jLabel7.setText("RG:");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(270, 40, 80, 30);
+        jLabel7.setBounds(250, 40, 80, 30);
 
         jLabel8.setText("Nome:");
         jPanel2.add(jLabel8);
@@ -299,7 +304,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jPanel2.add(jdcNasc);
         jdcNasc.setBounds(110, 140, 160, 30);
         jPanel2.add(jtfRg);
-        jtfRg.setBounds(320, 40, 80, 30);
+        jtfRg.setBounds(280, 40, 120, 30);
 
         jLabel15.setText("CPF:");
         jPanel2.add(jLabel15);
@@ -320,9 +325,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         
         Cliente c = new Cliente();
         ClienteDAO cd = new ClienteDAO();
-        
- 
-             
+                    
         if(cd.getCliente(c)!= null){
         JOptionPane.showMessageDialog(null, ""+cd.getCliente(c).getIdCliente()+"\n"+cd.getCliente(c).getNomeCliente()+"\n"+
                 cd.getCliente(c).getEndereco().getNomeRua()+"\n"+cd.getCliente(c).getEndereco().getBairro());
@@ -399,6 +402,8 @@ public class jifCadClie extends javax.swing.JInternalFrame {
     private void jbtInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtInserirActionPerformed
        Util u = new Util();
        Cliente cliente = new Cliente();
+       ClienteDAO clientedao = new ClienteDAO();
+       Contato contato = new Contato();
        if(!u.isCPF(u.formataCpf(jftCpf.getText()))){
            JOptionPane.showMessageDialog(null,"CPF Inválido");
        }else if(jtfNome.getText().trim().equalsIgnoreCase("")){
@@ -417,20 +422,52 @@ public class jifCadClie extends javax.swing.JInternalFrame {
            cliente.setNomeCliente(jtfNome.getText().toLowerCase().trim());
            cliente.setCpf(u.formataCpf(jftCpf.getText().trim()));
            cliente.setRg(jtfRg.getText().trim());
-           cliente.setDtNasc(u.data(jdcNasc.getDate()));
-           cliente.setSexo(jcbSexo.getSelectedItem().toString());
+           try {
+               cliente.setDtNasc(u.data(jdcNasc.getDate()));
+           } catch (ParseException ex) {
+               Logger.getLogger(jifCadClie.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           cliente.setSexo(jcbSexo.getSelectedItem().toString().toLowerCase());
            end.setNumero(jtfNumero.getText().trim());
            end.setComplemento(jtfComplemento.getText().trim());
-           //cliente.getEndereco().setNumero(jtfNumero.getText().trim());
-           //cliente.getEndereco().setComplemento(jtfComplemento.getText().trim());
            cliente.setEndereco(end);
-           System.out.println(cliente.getEndereco().getIdLogradouro()+ "\n"+cliente.getDtNasc());
-           JOptionPane.showMessageDialog(null,"Dados Inseridos com Sucesso");
+           contato.setEmail(jtfEmail.getText().toLowerCase().trim());
+           contato.setTelefone(u.formataTelefone(jftTelefone.getText()));
+           contato.setCelular(u.formataCelular(jftCelular.getText()));
+           contato.setObs(jtfObs.getText().trim());
+           cliente.setContato(contato);
+           clientedao.insereCliente(cliente);
+           JOptionPane.showMessageDialog(null,clientedao.insereCliente(cliente));
+           limparCampos();
+           
        }
-       
+        
        
     }//GEN-LAST:event_jbtInserirActionPerformed
 
+    public void limparCampos(){
+        jftCpf.setText("");
+        jtfNome.setText("");
+        jtfRg.setText("");
+        jdcNasc.setDate(null);
+        jcbSexo.setSelectedIndex(0);
+        jftCep.setText("");
+        jtfRua.setText("");
+        jtfBairro.setText("");
+        jtfNumero.setText("");
+        jtfComplemento.setText("");
+        jtfCidade.setText("");
+        jtfEstado.setText("");
+        jftTelefone.setText("");
+        jftCelular.setText("");
+        jtfEmail.setText("");
+        jtfObs.setText("");
+        jtbPainel.setSelectedIndex(0);
+        jftCpf.grabFocus();
+    
+    }
+    
+    
     private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
         this.dispose();
     }//GEN-LAST:event_jbtVoltarActionPerformed
@@ -457,10 +494,8 @@ public class jifCadClie extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton jbtInserir;
     private javax.swing.JButton jbtPesEnd;
     private javax.swing.JButton jbtVoltar;
@@ -470,6 +505,8 @@ public class jifCadClie extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField jftCep;
     private javax.swing.JFormattedTextField jftCpf;
     private javax.swing.JFormattedTextField jftTelefone;
+    private javax.swing.JPanel jpnEndereco;
+    private javax.swing.JTabbedPane jtbPainel;
     private javax.swing.JTextField jtfBairro;
     private javax.swing.JTextField jtfCidade;
     private javax.swing.JTextField jtfComplemento;

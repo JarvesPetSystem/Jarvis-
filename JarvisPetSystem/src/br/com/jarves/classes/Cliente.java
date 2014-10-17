@@ -11,6 +11,7 @@ public class Cliente {
     private Date dtNasc;
     private String sexo;
     private Logradouro endereco;
+    private Contato contato;
 
     public int getIdCliente() {
         return idCliente;
@@ -67,5 +68,13 @@ public class Cliente {
 
     public void setDtNasc(Date dtNasc) {
         this.dtNasc = dtNasc;
+    }
+
+    public Contato getContato() {
+        return contato;
+    }
+
+    public void setContato(Contato contato) {
+        this.contato = contato;
     }
 }
