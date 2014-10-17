@@ -37,7 +37,7 @@ public class Util {
         return pri+"."+seg+"."+ter+"-"+qua;
     
     }
-    public Date data(){
+    public Date data(Date data){
         DateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         return date;

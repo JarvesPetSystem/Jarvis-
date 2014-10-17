@@ -110,12 +110,12 @@ public class jifConEnd extends javax.swing.JInternalFrame {
 
     private void jtfEnderecoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfEnderecoKeyReleased
         if(jtfEndereco.getText().length()>4)
-        jtbEndereco.setModel(DbUtils.resultSetToTableModel(EnderecoDAO.pesquisarEnderecos(jtfEndereco.getText().trim().toLowerCase())));
+        jtbEndereco.setModel(DbUtils.resultSetToTableModel(EnderecoDAO.pesquisarEnderecos(jtfEndereco.getText().trim().toLowerCase()+"%")));
     }//GEN-LAST:event_jtfEnderecoKeyReleased
 
     private void jbtPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPesquisarActionPerformed
          if(jtfEndereco.getText().length()>4)
-        jtbEndereco.setModel(DbUtils.resultSetToTableModel(EnderecoDAO.pesquisarEnderecos(jtfEndereco.getText().trim().toLowerCase())));
+        jtbEndereco.setModel(DbUtils.resultSetToTableModel(EnderecoDAO.pesquisarEnderecos(jtfEndereco.getText().trim().toLowerCase()+"%")));
     }//GEN-LAST:event_jbtPesquisarActionPerformed
 
 

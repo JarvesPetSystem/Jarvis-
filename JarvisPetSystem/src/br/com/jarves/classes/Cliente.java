@@ -1,8 +1,15 @@
 package br.com.jarves.classes;
+
+import java.util.Date;
+
 public class Cliente {
     private int idCliente;
-    private int idLogradouro;
+    
     private String nomeCliente;
+    private String cpf;
+    private String rg;
+    private Date dtNasc;
+    private String sexo;
     private Logradouro endereco;
 
     public int getIdCliente() {
@@ -11,14 +18,6 @@ public class Cliente {
 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
-    }
-
-    public int getIdLogradouro() {
-        return idLogradouro;
-    }
-
-    public void setIdLogradouro(int idLogradouro) {
-        this.idLogradouro = idLogradouro;
     }
 
     public String getNomeCliente() {
@@ -35,5 +34,38 @@ public class Cliente {
 
     public void setEndereco(Logradouro endereco) {
         this.endereco = endereco;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+  
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public Date getDtNasc() {
+        return dtNasc;
+    }
+
+    public void setDtNasc(Date dtNasc) {
+        this.dtNasc = dtNasc;
     }
 }

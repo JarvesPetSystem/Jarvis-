@@ -1,7 +1,9 @@
 package br.com.jarves.bancodedados;
 
 import br.com.jarves.classes.*;
+import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,6 +58,30 @@ public class ClienteDAO {
     }
     public String insereCliente(Cliente cliente){
         String msg = null;
+        ConexaoOracle co = new ConexaoOracle();
+        
+        try {
+            
+            Connection con = ConexaoOracle.abreConexao();
+            CallableStatement cs = con.prepareCall("{call insere_cliente(?,?,?,?,?,?,?,?)}");
+            cs.setString(1, cliente.getNomeCliente());
+            cs.setString(2, cliente.getCpf());
+            cs.setString(3, cliente.getRg());
+            cs.setDate(4, (Date) cliente.getDtNasc());
+            cs.setString(5, cliente.getSexo());
+            cs.setString(6, cliente.getEndereco().getNumero());
+            cs.setString(7, cliente.getEndereco().getComplemento());
+            cs.setInt(8, cliente.getEndereco().getIdLogradouro());
+            cs.execute();
+            cs.close();
+            con.close();
+            msg = "UIPI";
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro: " + ex);
+            
+        }
+
         return msg;
     }
 

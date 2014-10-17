@@ -42,7 +42,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jmiConsCli = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Jarves Pet System");
+        setTitle("Jarvis Pet System");
 
         jdpPrincipal.setBackground(new java.awt.Color(255, 255, 255));
 

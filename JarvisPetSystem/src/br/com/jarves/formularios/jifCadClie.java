@@ -64,6 +64,8 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jtfEstado = new javax.swing.JTextField();
         jtfNumero = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        jtfComplemento = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jftTelefone = new javax.swing.JFormattedTextField();
@@ -81,6 +83,8 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jbtVoltar = new javax.swing.JButton();
         jdcNasc = new com.toedter.calendar.JDateChooser();
+        jtfRg = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setForeground(java.awt.Color.red);
@@ -158,7 +162,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Estado:");
         jPanel3.add(jLabel5);
-        jLabel5.setBounds(350, 130, 50, 30);
+        jLabel5.setBounds(330, 130, 50, 30);
 
         jLabel4.setText("Cidade:");
         jPanel3.add(jLabel4);
@@ -190,13 +194,19 @@ public class jifCadClie extends javax.swing.JInternalFrame {
 
         jtfEstado.setEditable(false);
         jPanel3.add(jtfEstado);
-        jtfEstado.setBounds(410, 130, 100, 30);
+        jtfEstado.setBounds(380, 130, 100, 30);
         jPanel3.add(jtfNumero);
-        jtfNumero.setBounds(410, 50, 90, 30);
+        jtfNumero.setBounds(380, 50, 90, 30);
 
         jLabel14.setText("N °:");
         jPanel3.add(jLabel14);
-        jLabel14.setBounds(370, 50, 40, 30);
+        jLabel14.setBounds(350, 50, 40, 30);
+        jPanel3.add(jtfComplemento);
+        jtfComplemento.setBounds(380, 90, 150, 30);
+
+        jLabel16.setText("Comp:");
+        jPanel3.add(jLabel16);
+        jLabel16.setBounds(340, 90, 40, 30);
 
         jTabbedPane1.addTab("Endereço", jPanel3);
 
@@ -244,9 +254,9 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jTabbedPane1.setBounds(20, 260, 550, 220);
         jTabbedPane1.getAccessibleContext().setAccessibleName("Contato");
 
-        jLabel7.setText("CPF:");
+        jLabel7.setText("RG:");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(70, 40, 80, 30);
+        jLabel7.setBounds(270, 40, 80, 30);
 
         jLabel8.setText("Nome:");
         jPanel2.add(jLabel8);
@@ -288,6 +298,12 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         });
         jPanel2.add(jdcNasc);
         jdcNasc.setBounds(110, 140, 160, 30);
+        jPanel2.add(jtfRg);
+        jtfRg.setBounds(320, 40, 80, 30);
+
+        jLabel15.setText("CPF:");
+        jPanel2.add(jLabel15);
+        jLabel15.setBounds(70, 40, 80, 30);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 10, 620, 490);
@@ -360,12 +376,12 @@ public class jifCadClie extends javax.swing.JInternalFrame {
     private void jftCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jftCepActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jftCepActionPerformed
-
+    Logradouro end = new Logradouro();
+    EnderecoDAO endereco = new EnderecoDAO();
     private void jftCepKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jftCepKeyReleased
         if(jftCep.getText().trim().length()>8){
             Util u = new Util();
-            Logradouro end = new Logradouro();
-            EnderecoDAO endereco = new EnderecoDAO();
+            
             String cep = u.formataCep(jftCep.getText().trim());
             end.setCep(cep);
             endereco.getEndereco(end);
@@ -382,7 +398,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
 
     private void jbtInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtInserirActionPerformed
        Util u = new Util();
-       
+       Cliente cliente = new Cliente();
        if(!u.isCPF(u.formataCpf(jftCpf.getText()))){
            JOptionPane.showMessageDialog(null,"CPF Inválido");
        }else if(jtfNome.getText().trim().equalsIgnoreCase("")){
@@ -398,6 +414,17 @@ public class jifCadClie extends javax.swing.JInternalFrame {
        }else if (jtfNumero.getText().trim().equalsIgnoreCase("")){
            JOptionPane.showMessageDialog(null,"Por Favor Informe o Número");
        }else{
+           cliente.setNomeCliente(jtfNome.getText().toLowerCase().trim());
+           cliente.setCpf(u.formataCpf(jftCpf.getText().trim()));
+           cliente.setRg(jtfRg.getText().trim());
+           cliente.setDtNasc(u.data(jdcNasc.getDate()));
+           cliente.setSexo(jcbSexo.getSelectedItem().toString());
+           end.setNumero(jtfNumero.getText().trim());
+           end.setComplemento(jtfComplemento.getText().trim());
+           //cliente.getEndereco().setNumero(jtfNumero.getText().trim());
+           //cliente.getEndereco().setComplemento(jtfComplemento.getText().trim());
+           cliente.setEndereco(end);
+           System.out.println(cliente.getEndereco().getIdLogradouro()+ "\n"+cliente.getDtNasc());
            JOptionPane.showMessageDialog(null,"Dados Inseridos com Sucesso");
        }
        
@@ -418,6 +445,8 @@ public class jifCadClie extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -443,11 +472,13 @@ public class jifCadClie extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField jftTelefone;
     private javax.swing.JTextField jtfBairro;
     private javax.swing.JTextField jtfCidade;
+    private javax.swing.JTextField jtfComplemento;
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfEstado;
     private javax.swing.JTextField jtfNome;
     private javax.swing.JTextField jtfNumero;
     private javax.swing.JTextField jtfObs;
+    private javax.swing.JTextField jtfRg;
     private javax.swing.JTextField jtfRua;
     // End of variables declaration//GEN-END:variables
     public void setPosicao() {  

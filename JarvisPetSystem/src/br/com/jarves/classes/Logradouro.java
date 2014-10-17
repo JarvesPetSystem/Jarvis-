@@ -7,6 +7,8 @@ public class Logradouro {
     private String bairro;
     private String cidade;
     private String estado;
+    private String numero;
+    private String complemento;
 
 
 
@@ -56,6 +58,22 @@ public class Logradouro {
 
     public void setIdLogradouro(int idLogradouro) {
         this.idLogradouro = idLogradouro;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
     
 }
