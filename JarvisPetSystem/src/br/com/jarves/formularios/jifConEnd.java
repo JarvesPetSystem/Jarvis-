@@ -157,6 +157,7 @@ public class jifConEnd extends javax.swing.JInternalFrame {
                        
         }
         
+        
     }
     public void filtraLista(){
         Util u = new Util();
