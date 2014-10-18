@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ClienteDAO {
@@ -89,11 +90,44 @@ public class ClienteDAO {
             
         } catch (SQLException ex) {
             msg = "Erro"+ex;
-            JOptionPane.showMessageDialog(null,"Erro: " + ex);
-            
         }
 
         return msg;
+    }
+    
+    public ArrayList<Cliente> pesquisarCliente(String cpf,String nome){
+       
+        ArrayList<Cliente> lista = new ArrayList<Cliente>();
+        ConexaoOracle co = new ConexaoOracle();
+        try {
+            Connection con = co.abreConexao();
+            String sql = "SELECT id_cliente,initcap(nome_cliente)nome,cpf_cliente cpf,rg_cliente rg, dtnasc_cliente nasc,initcap(sexo_cliente)sexo,"+
+                          "dtcad_cliente dtcad FROM tab_cliente tc INNER JOIN tab_endereco te ON "+ 
+                          "tc.id_cliente IN te.id_cliente_fk INNER JOIN tab_logradouro tl ON "+
+                          "te.id_logradouro_fk IN tl.id_logradouro WHERE tc.nome_cliente LIKE ? or tc.cpf_cliente like ?;";
+            System.out.println(sql);
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, Integer.parseInt(cpf));
+            stmt.setString(2, nome);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                Cliente cliente =  new Cliente();
+                
+                cliente.setIdCliente(rs.getInt("id_cliente"));
+                cliente.setNomeCliente(rs.getString("nome"));
+                cliente.setRg(rs.getString("rg"));
+                cliente.setDtNasc(rs.getDate("nasc"));
+                cliente.setSexo(rs.getString("sexo"));
+                
+                lista.add(cliente);
+            }
+            co.fecharConexao(rs, stmt, con);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro: " + ex);
+        }
+        
+        return lista;
+         
     }
 
 }
