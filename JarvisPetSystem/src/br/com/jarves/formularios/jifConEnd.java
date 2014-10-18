@@ -6,8 +6,14 @@
 package br.com.jarves.formularios;
 
 import br.com.jarves.bancodedados.EnderecoDAO;
+import br.com.jarves.classes.Logradouro;
+import br.com.jarves.classes.TableFormat;
+import br.com.jarves.classes.Util;
+import java.awt.Color;
 import java.awt.Dimension;
-import net.proteanit.sql.DbUtils;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+//import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -20,8 +26,9 @@ public class jifConEnd extends javax.swing.JInternalFrame {
      */
     public jifConEnd() {
         initComponents();
+        carregaLista();
         
-        jtbEndereco.setModel(DbUtils.resultSetToTableModel(EnderecoDAO.listarEnderecos()));
+        //jtbEndereco.setModel(DbUtils.resultSetToTableModel(EnderecoDAO.listarEnderecos()));
     }
    
 
@@ -41,7 +48,6 @@ public class jifConEnd extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbEndereco = new javax.swing.JTable();
         jbtVoltar = new javax.swing.JButton();
-        jbtPesquisar = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setTitle("Consulta de Endereços");
@@ -62,7 +68,7 @@ public class jifConEnd extends javax.swing.JInternalFrame {
         jPanel2.add(jtfEndereco);
         jtfEndereco.setBounds(100, 70, 410, 30);
         jPanel2.add(jSeparator1);
-        jSeparator1.setBounds(10, 130, 680, 20);
+        jSeparator1.setBounds(10, 130, 760, 20);
 
         jtbEndereco.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,10 +81,11 @@ public class jifConEnd extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtbEndereco.setToolTipText("Lista de Endereços");
         jScrollPane1.setViewportView(jtbEndereco);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 160, 680, 160);
+        jScrollPane1.setBounds(10, 160, 760, 170);
 
         jbtVoltar.setText("Voltar");
         jbtVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,21 +94,12 @@ public class jifConEnd extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jbtVoltar);
-        jbtVoltar.setBounds(580, 30, 100, 40);
-
-        jbtPesquisar.setText("Pesquisar");
-        jbtPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtPesquisarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jbtPesquisar);
-        jbtPesquisar.setBounds(580, 80, 100, 40);
+        jbtVoltar.setBounds(650, 30, 100, 40);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 0, 700, 340);
+        jPanel2.setBounds(0, 0, 780, 340);
 
-        setBounds(0, 0, 711, 386);
+        setBounds(0, 0, 791, 386);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
@@ -109,14 +107,11 @@ public class jifConEnd extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbtVoltarActionPerformed
 
     private void jtfEnderecoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfEnderecoKeyReleased
-        if(jtfEndereco.getText().length()>4)
-        jtbEndereco.setModel(DbUtils.resultSetToTableModel(EnderecoDAO.pesquisarEnderecos(jtfEndereco.getText().trim().toLowerCase()+"%")));
+       
+    if(jtfEndereco.getText().length()>4)
+        filtraLista();
+    //jtbEndereco.setModel(DbUtils.resultSetToTableModel(EnderecoDAO.pesquisarEnderecos(jtfEndereco.getText().trim().toLowerCase()+"%")));
     }//GEN-LAST:event_jtfEnderecoKeyReleased
-
-    private void jbtPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPesquisarActionPerformed
-         if(jtfEndereco.getText().length()>4)
-        jtbEndereco.setModel(DbUtils.resultSetToTableModel(EnderecoDAO.pesquisarEnderecos(jtfEndereco.getText().trim().toLowerCase()+"%")));
-    }//GEN-LAST:event_jbtPesquisarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -124,15 +119,52 @@ public class jifConEnd extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JButton jbtPesquisar;
     private javax.swing.JButton jbtVoltar;
     private javax.swing.JTable jtbEndereco;
     private javax.swing.JTextField jtfEndereco;
     // End of variables declaration//GEN-END:variables
 
- public void setPosicao() {  
+    /**
+     * Método para alinhar o internal frame no meio da tela
+     */
+    public void setPosicao() {  
         Dimension d = this.getDesktopPane().getSize();  
         this.setLocation((d.width - this.getSize().width) / 2, 0);
     }
+    
+    public void carregaLista(){
+        Util u = new Util();
+        String titulo[] = {"Endereço","Bairro","CEP","Cidade"};
+        Object dados [][]={};
+        DefaultTableModel modelo = new DefaultTableModel(dados,titulo);
+        jtbEndereco.setDefaultRenderer(Object.class,new TableFormat());
+        jtbEndereco.setModel(modelo);
+        ArrayList<Logradouro> lista = new EnderecoDAO().listarEnderecos();
+        
+        for(int i = 0;i<lista.size();i++){
+            modelo.addRow(new String[]{lista.get(i).getNomeRua(),lista.get(i).getBairro(),
+            u.reformataCep(lista.get(i).getCep()),lista.get(i).getCidade()});
+                       
+        }
+        
+    }
+    public void filtraLista(){
+        Util u = new Util();
+        String titulo[] = {"Endereço","Bairro","CEP","Cidade"};
+        Object dados [][]={};
+        DefaultTableModel modelo = new DefaultTableModel(dados,titulo);
+        jtbEndereco.setDefaultRenderer(Object.class,new TableFormat());
+        jtbEndereco.setModel(modelo);
+        ArrayList<Logradouro> lista = new EnderecoDAO().pesquisarEnderecos(jtfEndereco.getText().trim().toLowerCase()+"%");
+        
+        for(int i = 0;i<lista.size();i++){
+            modelo.addRow(new String[]{lista.get(i).getNomeRua(),lista.get(i).getBairro(),
+            u.reformataCep(lista.get(i).getCep()),lista.get(i).getCidade()});
+                       
+        }
+        
+    }
+    
+    
 }
 

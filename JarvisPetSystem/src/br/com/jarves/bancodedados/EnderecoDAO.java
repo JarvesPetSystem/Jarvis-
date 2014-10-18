@@ -2,6 +2,7 @@
 package br.com.jarves.bancodedados;
 import br.com.jarves.classes.Logradouro;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
@@ -40,40 +41,67 @@ public class EnderecoDAO {
         
         return logradouro;
     }
-     public static ResultSet listarEnderecos(){
-        ResultSet rs = null;
+    
+    
+     public ArrayList<Logradouro> listarEnderecos(){
+        ArrayList<Logradouro> lista = new ArrayList<Logradouro>();
         ConexaoOracle co = new ConexaoOracle();
         try {
-            
             Connection con = ConexaoOracle.abreConexao();
-            String sql = "SELECT initcap(tl.nome_logradouro) endereço,initcap(tb.nome_bairro)bairro,tl.cep_logradouro cep,initcap(tm.nome_municipio)municipio FROM tab_logradouro tl INNER JOIN tab_bairro tb ON tl.id_bairro IN tb.id_bairro INNER JOIN tab_municipio tm ON tb.id_municipio IN tm.id_municipio ";
-            System.out.println(sql);
+            String sql = "SELECT initcap(tl.nome_logradouro) endereço,initcap(tb.nome_bairro)bairro,tl.cep_logradouro cep, "+
+                         "initcap(tm.nome_municipio)municipio FROM tab_logradouro tl INNER JOIN tab_bairro tb ON tl.id_bairro "+
+                         " IN tb.id_bairro INNER JOIN tab_municipio tm ON tb.id_municipio IN tm.id_municipio  WHERE ROWNUM <=100 AND tm.nome_municipio IN 'são paulo' " +
+                         "ORDER BY endereço";
             PreparedStatement stmt = con.prepareStatement(sql);
-            rs = stmt.executeQuery();
-            //co.fecharConexao(rs, stmt, con);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                Logradouro logradouro = new Logradouro();
+                logradouro.setNomeRua(rs.getString("endereço"));
+                logradouro.setBairro(rs.getString("bairro"));
+                logradouro.setCep(rs.getString("cep"));
+                logradouro.setCidade(rs.getString("municipio"));
+                lista.add(logradouro);
+            }
+            co.fecharConexao(rs, stmt, con);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro: " + ex);
         }
         
-        return rs;
+        return lista;
     }
-      public static ResultSet pesquisarEnderecos(String rua){
-        ResultSet rs = null;
+    
+    /**
+     * Métedo que consulta endereço
+     * @param rua String com o nome da rua
+     * @return 
+     */
+    public ArrayList<Logradouro> pesquisarEnderecos(String rua){
+       
+        ArrayList<Logradouro> lista = new ArrayList<Logradouro>();
         ConexaoOracle co = new ConexaoOracle();
         try {
-            
             Connection con = ConexaoOracle.abreConexao();
-            String sql = "SELECT initcap(tl.nome_logradouro) endereco,initcap(tb.nome_bairro)bairro,tl.cep_logradouro cep,initcap(tm.nome_municipio)municipio, upper(te.sigla_estado)estado FROM tab_logradouro tl INNER JOIN tab_bairro tb ON tl.id_bairro IN tb.id_bairro INNER JOIN tab_municipio tm ON tb.id_municipio IN tm.id_municipio INNER JOIN tab_estado te ON tm.id_estado IN te.id_estado where tl.nome_logradouro like ?";
+            String sql = "SELECT initcap(tl.nome_logradouro) endereço,initcap(tb.nome_bairro)bairro,tl.cep_logradouro cep,"+
+                        "initcap(tm.nome_municipio)municipio, upper(te.sigla_estado)estado FROM tab_logradouro tl INNER JOIN "+
+                        "tab_bairro tb ON tl.id_bairro IN tb.id_bairro INNER JOIN tab_municipio tm ON tb.id_municipio IN tm.id_municipio INNER JOIN tab_estado te ON tm.id_estado IN te.id_estado where tl.nome_logradouro like ?";
             System.out.println(sql);
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, rua);
-            rs = stmt.executeQuery();
-            
-            //co.fecharConexao(rs, stmt, con);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                Logradouro logradouro = new Logradouro();
+                logradouro.setNomeRua(rs.getString("endereço"));
+                logradouro.setBairro(rs.getString("bairro"));
+                logradouro.setCep(rs.getString("cep"));
+                logradouro.setCidade(rs.getString("municipio"));
+                lista.add(logradouro);
+            }
+            co.fecharConexao(rs, stmt, con);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro: " + ex);
         }
         
-        return rs;
+        return lista;
+         
     }
 }
