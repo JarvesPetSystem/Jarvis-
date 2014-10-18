@@ -13,7 +13,7 @@ public class UsuarioDAO {
         ConexaoOracle co = new ConexaoOracle();
         try {
             
-            Connection con = ConexaoOracle.abreConexao();
+            Connection con = co.abreConexao();
             String sql = "SELECT * FROM tab_usuario";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();

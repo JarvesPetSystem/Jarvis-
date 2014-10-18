@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ConexaoOracle {
-    public static Connection abreConexao(){
+    public Connection abreConexao(){
         Connection con = null;
         try {
             //Carrega Driver JDBC

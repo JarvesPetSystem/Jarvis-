@@ -12,7 +12,7 @@ public class EnderecoDAO {
         ConexaoOracle co = new ConexaoOracle();
         try {
             
-            Connection con = ConexaoOracle.abreConexao();
+            Connection con = co.abreConexao();
             String sql = "SELECT tl.id_logradouro,initcap(tl.nome_logradouro) rua,initcap(tb.nome_bairro)bairro,initcap(tm.nome_municipio)municipio, " +
                         "INITCAP(te.nome_estado)estado FROM " +
                         "tab_logradouro tl INNER JOIN tab_bairro tb ON " +
@@ -47,7 +47,7 @@ public class EnderecoDAO {
         ArrayList<Logradouro> lista = new ArrayList<Logradouro>();
         ConexaoOracle co = new ConexaoOracle();
         try {
-            Connection con = ConexaoOracle.abreConexao();
+            Connection con = co.abreConexao();
             String sql = "SELECT initcap(tl.nome_logradouro) endereço,initcap(tb.nome_bairro)bairro,tl.cep_logradouro cep, "+
                          "initcap(tm.nome_municipio)municipio FROM tab_logradouro tl INNER JOIN tab_bairro tb ON tl.id_bairro "+
                          " IN tb.id_bairro INNER JOIN tab_municipio tm ON tb.id_municipio IN tm.id_municipio  WHERE ROWNUM <=100 AND tm.nome_municipio IN 'são paulo' " +
@@ -80,7 +80,7 @@ public class EnderecoDAO {
         ArrayList<Logradouro> lista = new ArrayList<Logradouro>();
         ConexaoOracle co = new ConexaoOracle();
         try {
-            Connection con = ConexaoOracle.abreConexao();
+            Connection con = co.abreConexao();
             String sql = "SELECT initcap(tl.nome_logradouro) endereço,initcap(tb.nome_bairro)bairro,tl.cep_logradouro cep,"+
                         "initcap(tm.nome_municipio)municipio, upper(te.sigla_estado)estado FROM tab_logradouro tl INNER JOIN "+
                         "tab_bairro tb ON tl.id_bairro IN tb.id_bairro INNER JOIN tab_municipio tm ON tb.id_municipio IN tm.id_municipio INNER JOIN tab_estado te ON tm.id_estado IN te.id_estado where tl.nome_logradouro like ?";

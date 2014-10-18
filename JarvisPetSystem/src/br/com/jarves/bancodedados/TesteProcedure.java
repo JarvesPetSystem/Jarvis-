@@ -18,7 +18,7 @@ public class TesteProcedure {
         ConexaoOracle co = new ConexaoOracle();
         try {
             
-            Connection con = ConexaoOracle.abreConexao();
+            Connection con = co.abreConexao();
             CallableStatement cs = con.prepareCall("{call tes(?)}");
             cs.setInt(1, 16);
             cs.execute();

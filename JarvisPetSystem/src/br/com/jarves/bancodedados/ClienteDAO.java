@@ -18,7 +18,7 @@ public class ClienteDAO {
         Logradouro endereco = new Logradouro();
         try {
             
-            Connection con = ConexaoOracle.abreConexao();
+            Connection con = co.abreConexao();
             String sql = "SELECT c.id_cliente, initcap(c.nome_cliente)nome_cliente"+
                     " ,l.id_logradouro,l.nome_logradouro, l.cep_logradouro, "+
                     "b.nome_bairro, m.nome_municipio,e.nome_estado "+
@@ -68,7 +68,7 @@ public class ClienteDAO {
         
         try {
             
-            Connection con = ConexaoOracle.abreConexao();
+            Connection con = co.abreConexao();
             CallableStatement cs = con.prepareCall("{call insere_cliente(?,?,?,?,?,?,?,?,?,?,?,?)}");
             cs.setString(1, cliente.getNomeCliente());
             cs.setString(2, cliente.getCpf());
