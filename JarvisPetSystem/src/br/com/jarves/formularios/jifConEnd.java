@@ -60,6 +60,11 @@ public class jifConEnd extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel1);
         jLabel1.setBounds(30, 80, 80, 20);
 
+        jtfEndereco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfEnderecoActionPerformed(evt);
+            }
+        });
         jtfEndereco.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtfEnderecoKeyReleased(evt);
@@ -94,12 +99,12 @@ public class jifConEnd extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jbtVoltar);
-        jbtVoltar.setBounds(650, 30, 100, 40);
+        jbtVoltar.setBounds(530, 60, 100, 40);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 780, 340);
 
-        setBounds(0, 0, 791, 386);
+        setBounds(0, 0, 791, 377);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
@@ -110,8 +115,13 @@ public class jifConEnd extends javax.swing.JInternalFrame {
        
     if(jtfEndereco.getText().length()>4)
         filtraLista();
-    //jtbEndereco.setModel(DbUtils.resultSetToTableModel(EnderecoDAO.pesquisarEnderecos(jtfEndereco.getText().trim().toLowerCase()+"%")));
+    else
+        carregaLista();
     }//GEN-LAST:event_jtfEnderecoKeyReleased
+
+    private void jtfEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfEnderecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfEnderecoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

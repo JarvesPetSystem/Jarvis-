@@ -105,7 +105,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
 
     private void jmiCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadClienteActionPerformed
        jifCadClie jic = new jifCadClie();
-       jdpPrincipal.add(jic);
+        getJdpPrincipal().add(jic);
        ((BasicInternalFrameUI)jic.getUI()).setNorthPane(null);
        //jic.setBorder(null); insere bordas no formulário
        jic.setPosicao();
@@ -115,9 +115,8 @@ public class jfrPrincipal extends javax.swing.JFrame {
 
     private void jmiConsCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsCliActionPerformed
         jifConEnd jie = new jifConEnd();
-        jdpPrincipal.add(jie);
-        
-        
+        getJdpPrincipal().add(jie);
+               
         //jifCadCli jic = new jifCadCli();
        //jdpPrincipal.add(jic);
        ((BasicInternalFrameUI)jie.getUI()).setNorthPane(null);
@@ -177,4 +176,12 @@ public class jfrPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmnCadastro;
     private javax.swing.JMenu jmnConsulta;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JDesktopPane getJdpPrincipal() {
+        return jdpPrincipal;
+    }
+
+    public void setJdpPrincipal(javax.swing.JDesktopPane jdpPrincipal) {
+        this.jdpPrincipal = jdpPrincipal;
+    }
 }

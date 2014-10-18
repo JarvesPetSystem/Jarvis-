@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
@@ -53,7 +54,6 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jtfNome = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jbtPesEnd = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jtbPainel = new javax.swing.JTabbedPane();
         jpnEndereco = new javax.swing.JPanel();
@@ -71,6 +71,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jLabel14 = new javax.swing.JLabel();
         jtfComplemento = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+        jbtPesEnd = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jftTelefone = new javax.swing.JFormattedTextField();
@@ -124,15 +125,6 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jLabel1.setText("Dt Nascimento:");
         jPanel2.add(jLabel1);
         jLabel1.setBounds(20, 140, 80, 30);
-
-        jbtPesEnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/search.png"))); // NOI18N
-        jbtPesEnd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtPesEndActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jbtPesEnd);
-        jbtPesEnd.setBounds(460, 70, 110, 40);
 
         jButton1.setText("jButton1");
         jButton1.setFocusable(false);
@@ -212,6 +204,15 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jLabel16.setText("Comp:");
         jpnEndereco.add(jLabel16);
         jLabel16.setBounds(340, 90, 40, 30);
+
+        jbtPesEnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/search.png"))); // NOI18N
+        jbtPesEnd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtPesEndActionPerformed(evt);
+            }
+        });
+        jpnEndereco.add(jbtPesEnd);
+        jbtPesEnd.setBounds(170, 10, 70, 30);
 
         jtbPainel.addTab("Endereço", jpnEndereco);
 
@@ -294,7 +295,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jbtVoltar);
-        jbtVoltar.setBounds(330, 160, 80, 40);
+        jbtVoltar.setBounds(460, 70, 110, 40);
 
         jdcNasc.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -337,28 +338,13 @@ public class jifCadClie extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void jbtPesEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPesEndActionPerformed
-        Util u = new Util();
-        if(u.formataCep(jftCep.getText().trim()) == null){
-            JOptionPane.showMessageDialog(null, "CEP Inválido","Atenção",0);
-            jftCep.grabFocus();
-        }else{
-            
-            EnderecoDAO ed = new EnderecoDAO();
-            Logradouro e = new Logradouro();
-            e.setCep(u.formataCep(jftCep.getText()));
-            ed.getEndereco(e);
-            
-            if (e.getNomeRua()!= null){
-                jtfRua.setText(e.getNomeRua());
-                jtfBairro.setText(e.getBairro());
-                jtfCidade.setText(e.getCidade());
-                jtfEstado.setText(e.getEstado());
-            }else{
-               JOptionPane.showMessageDialog(null, "Endereço não Localizado","Atenção",0);
-               jftCep.grabFocus();
-            }
-        }
-        
+        jifConEnd jie = new jifConEnd();
+               
+        //jdpPrincipal.add(jic);
+       ((BasicInternalFrameUI)jie.getUI()).setNorthPane(null);
+       //jie.setBorder(null); //insere bordas no formulário
+       jie.setPosicao();
+       jie.setVisible(true);
     }//GEN-LAST:event_jbtPesEndActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
