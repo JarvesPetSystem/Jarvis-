@@ -426,7 +426,6 @@ public class jifCadClie extends javax.swing.JInternalFrame {
            contato.setCelular(u.formataCelular(jftCelular.getText()));
            contato.setObs(jtfObs.getText().trim());
            cliente.setContato(contato);
-           clientedao.insereCliente(cliente);
            JOptionPane.showMessageDialog(null,clientedao.insereCliente(cliente));
            limparCampos();
            
