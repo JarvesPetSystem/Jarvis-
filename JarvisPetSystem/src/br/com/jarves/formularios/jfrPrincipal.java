@@ -6,6 +6,7 @@
 
 package br.com.jarves.formularios;
 
+import br.com.jarves.util.Global;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -21,6 +22,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
      
     public jfrPrincipal() {
         initComponents();
+        Global.jdpPrincipal = jdpPrincipal;
     }
 
     /**
@@ -105,7 +107,8 @@ public class jfrPrincipal extends javax.swing.JFrame {
 
     private void jmiCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadClienteActionPerformed
        jifCadClie jic = new jifCadClie();
-        getJdpPrincipal().add(jic);
+       jdpPrincipal.add(jic);
+       
        ((BasicInternalFrameUI)jic.getUI()).setNorthPane(null);
        //jic.setBorder(null); insere bordas no formulário
        jic.setPosicao();
@@ -115,10 +118,8 @@ public class jfrPrincipal extends javax.swing.JFrame {
 
     private void jmiConsCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsCliActionPerformed
         jifConEnd jie = new jifConEnd();
-        getJdpPrincipal().add(jie);
-               
-        //jifCadCli jic = new jifCadCli();
-       //jdpPrincipal.add(jic);
+        jdpPrincipal.add(jie);
+                    
        ((BasicInternalFrameUI)jie.getUI()).setNorthPane(null);
        //jie.setBorder(null); //insere bordas no formulário
        jie.setPosicao();
@@ -177,11 +178,5 @@ public class jfrPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmnConsulta;
     // End of variables declaration//GEN-END:variables
 
-    public javax.swing.JDesktopPane getJdpPrincipal() {
-        return jdpPrincipal;
-    }
 
-    public void setJdpPrincipal(javax.swing.JDesktopPane jdpPrincipal) {
-        this.jdpPrincipal = jdpPrincipal;
-    }
 }

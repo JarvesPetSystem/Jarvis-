@@ -41,7 +41,10 @@ public class EnderecoDAO {
         
         return logradouro;
     }
-    
+    /**
+     * Lista todos os endereços do banco de daos
+     * @return Lista de Endereços
+     */
     
      public ArrayList<Logradouro> listarEnderecos(){
         ArrayList<Logradouro> lista = new ArrayList<Logradouro>();

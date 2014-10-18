@@ -12,8 +12,10 @@ import br.com.jarves.classes.Cliente;
 import br.com.jarves.classes.Contato;
 import br.com.jarves.classes.Logradouro;
 import br.com.jarves.classes.Util;
+import br.com.jarves.util.Global;
 
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -338,13 +340,15 @@ public class jifCadClie extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void jbtPesEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPesEndActionPerformed
+    
         jifConEnd jie = new jifConEnd();
-               
-        //jdpPrincipal.add(jic);
+        Global.jdpPrincipal.add(jie);
+        
        ((BasicInternalFrameUI)jie.getUI()).setNorthPane(null);
-       //jie.setBorder(null); //insere bordas no formulário
-       jie.setPosicao();
-       jie.setVisible(true);
+        jie.setPosicao();
+        jie.setVisible(true);
+                
+        
     }//GEN-LAST:event_jbtPesEndActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -504,6 +508,10 @@ public class jifCadClie extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtfRg;
     private javax.swing.JTextField jtfRua;
     // End of variables declaration//GEN-END:variables
+    
+    /**
+     *Abre a tela no meio do formulário 
+     */
     public void setPosicao() {  
         Dimension d = this.getDesktopPane().getSize();  
         this.setLocation((d.width - this.getSize().width) / 2, 0);

@@ -1,5 +1,6 @@
 package br.com.jarves.formularios;
 
+import br.com.jarves.util.Global;
 import javax.swing.UIManager;
 
 /**
@@ -88,6 +89,7 @@ public class jfrLogin extends javax.swing.JFrame {
     private void jbtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLoginActionPerformed
         jfrPrincipal jp = new jfrPrincipal();
         jp.setVisible(true);
+        Global.principal=jp;
         jp.setExtendedState(jfrPrincipal.MAXIMIZED_BOTH);//chama a tela principal maximizada
         this.dispose();//tira tela de login da memória
         //System.out.println(new String(jpfSenha.getPassword()));
