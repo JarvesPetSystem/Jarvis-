@@ -289,7 +289,7 @@ public class JifConCliente extends javax.swing.JInternalFrame {
     
     
     /**
-     * Método que filtra a lista de endereços
+     * Método que filtra a lista de clientes
      */
     public void filtraLista(){
         Util u = new Util();

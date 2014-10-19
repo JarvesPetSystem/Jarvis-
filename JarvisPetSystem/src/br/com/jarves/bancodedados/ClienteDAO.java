@@ -144,6 +144,55 @@ public class ClienteDAO {
         return lista;
          
     }
+    public Cliente pesquisarClienteCpf(String cpf){
+       
+        
+        ConexaoOracle co = new ConexaoOracle();
+        Cliente cliente =  new Cliente();
+        try {
+            Connection con = co.abreConexao();
+            String sql = "SELECT id_cliente,initcap(nome_cliente)nome,cpf_cliente cpf,rg_cliente rg, dtnasc_cliente nasc,initcap(sexo_cliente)sexo,"+
+                         "dtcad_cliente dtcad,initcap(tl.nome_logradouro)endereco,tl.cep_logradouro cep,te.nr_endereco num, te.comp_endereco,"+
+                         "tcon.email_contato email,tcon.cel_contato celu,tcon.tel_contato tele,tcon.obs_contato "+
+                         "FROM tab_cliente tc INNER JOIN tab_endereco te ON tc.id_cliente IN te.id_cliente_fk INNER JOIN tab_logradouro tl ON "+
+                         "te.id_logradouro_fk IN tl.id_logradouro INNER JOIN tab_contato tcon ON "+
+                         "tc.id_cliente in tcon.id_cliente_fk WHERE tc.cpf_cliente like ?";
+            System.out.println(sql);
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                
+                Logradouro endereco = new Logradouro();
+                Contato contato = new Contato();
+                
+                cliente.setIdCliente(rs.getInt("id_cliente"));
+                cliente.setNomeCliente(rs.getString("nome"));
+                cliente.setCpf(rs.getString("cpf"));
+                cliente.setRg(rs.getString("rg"));
+                cliente.setDtNasc(rs.getDate("nasc"));
+                cliente.setSexo(rs.getString("sexo"));
+                cliente.setDtCad(rs.getDate("dtcad"));
+                endereco.setNomeRua(rs.getString("endereco"));
+                endereco.setNumero(rs.getString("num"));
+                endereco.setComplemento(rs.getString("comp_endereco"));
+                endereco.setCep(rs.getString("cep"));
+                contato.setEmail(rs.getString("email"));
+                contato.setCelular(rs.getString("celu"));
+                contato.setTelefone(rs.getString("tele"));
+                contato.setObs(rs.getString("obs_contato"));
+                cliente.setEndereco(endereco);
+                cliente.setContato(contato);
+                
+            }
+            co.fecharConexao(rs, stmt, con);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro: " + ex);
+        }
+        
+        return cliente;
+         
+    }
     public ArrayList<Cliente> listarCliente(){
        
         ArrayList<Cliente> lista = new ArrayList<Cliente>();
