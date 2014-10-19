@@ -6,9 +6,9 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
 
-public class Limite_digitos extends PlainDocument{
+public class LimiteDigitos extends PlainDocument{
     private int quantidadeMax;
-    public Limite_digitos(int maxLen){
+    public LimiteDigitos(int maxLen){
         super();
         if(maxLen<=0)
             throw new  IllegalArgumentException("Especifique a quantidade");
