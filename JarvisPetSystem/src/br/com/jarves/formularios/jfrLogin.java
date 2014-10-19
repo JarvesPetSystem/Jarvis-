@@ -56,6 +56,12 @@ public class jfrLogin extends javax.swing.JFrame {
         });
         jPanel1.add(jbtCancelar);
         jbtCancelar.setBounds(430, 210, 120, 50);
+
+        jtfUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfUsuarioActionPerformed(evt);
+            }
+        });
         jPanel1.add(jtfUsuario);
         jtfUsuario.setBounds(350, 90, 200, 30);
         jPanel1.add(jpfSenha);
@@ -96,6 +102,10 @@ public class jfrLogin extends javax.swing.JFrame {
         this.dispose();//tira tela de login da memória
         //System.out.println(new String(jpfSenha.getPassword()));
     }//GEN-LAST:event_jbtLoginActionPerformed
+
+    private void jtfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfUsuarioActionPerformed
 
    
     public static void main(String args[]) {

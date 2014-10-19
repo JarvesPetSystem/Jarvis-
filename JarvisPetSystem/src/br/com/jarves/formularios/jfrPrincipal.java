@@ -41,6 +41,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jmiCadCliente = new javax.swing.JMenuItem();
         jmiSair = new javax.swing.JMenuItem();
         jmnConsulta = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jmiConsCli = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,7 +78,16 @@ public class jfrPrincipal extends javax.swing.JFrame {
 
         jmnConsulta.setText("Consultas");
 
-        jmiConsCli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem1.setText("Clientes");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jmnConsulta.add(jMenuItem1);
+
+        jmiConsCli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK));
         jmiConsCli.setText("Endereços");
         jmiConsCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +142,16 @@ public class jfrPrincipal extends javax.swing.JFrame {
       
     }//GEN-LAST:event_jmiSairActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       JifConCliente jie = new JifConCliente();
+       jdpPrincipal.add(jie);
+                    
+       ((BasicInternalFrameUI)jie.getUI()).setNorthPane(null);
+       //jie.setBorder(null); //insere bordas no formulário
+       jie.setPosicao();
+       jie.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -170,6 +190,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JMenuItem jmiCadCliente;
     private javax.swing.JMenuItem jmiConsCli;

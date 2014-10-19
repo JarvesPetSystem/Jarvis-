@@ -89,9 +89,9 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jbtInserir = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jbtVoltar = new javax.swing.JButton();
-        jdcNasc = new com.toedter.calendar.JDateChooser();
         jtfRg = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
+        jdcNasc = new com.toedter.calendar.JDateChooser();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setForeground(java.awt.Color.red);
@@ -302,20 +302,14 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         });
         jPanel2.add(jbtVoltar);
         jbtVoltar.setBounds(460, 70, 110, 40);
-
-        jdcNasc.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jdcNascPropertyChange(evt);
-            }
-        });
-        jPanel2.add(jdcNasc);
-        jdcNasc.setBounds(110, 140, 160, 30);
         jPanel2.add(jtfRg);
         jtfRg.setBounds(280, 40, 120, 30);
 
         jLabel15.setText("CPF:");
         jPanel2.add(jLabel15);
         jLabel15.setBounds(70, 40, 80, 30);
+        jPanel2.add(jdcNasc);
+        jdcNasc.setBounds(110, 140, 130, 20);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 10, 620, 490);
