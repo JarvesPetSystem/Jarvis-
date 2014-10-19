@@ -1,6 +1,7 @@
 package br.com.jarves.formularios;
 
 import br.com.jarves.util.Global;
+import br.com.jarves.util.Limite_digitos;
 import javax.swing.UIManager;
 
 /**
@@ -11,6 +12,7 @@ public class jfrLogin extends javax.swing.JFrame {
 
     public jfrLogin() {
         initComponents();
+        jtfUsuario.setDocument(new Limite_digitos(5));
     }
 
    
