@@ -119,6 +119,15 @@ public class Util {
         return pri+seg;
     
     }
+   
+   public String reformataData(Date date){
+       String data = date.toString();
+       String ano = data.substring(0,4);
+       String mes = data.substring(5,7);
+       String dia = data.substring(8,10);
+       
+       return dia+"/"+mes+"/"+ano;
+   }
 }
 
 

@@ -341,7 +341,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
 
     private void jbtPesEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPesEndActionPerformed
     
-        jifConEnd jie = new jifConEnd();
+        JifConCliente jie = new JifConCliente();
         Global.jdpPrincipal.add(jie);
         
        ((BasicInternalFrameUI)jie.getUI()).setNorthPane(null);
@@ -380,6 +380,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
             endereco.getEndereco(end);
             if(end.getIdLogradouro()==0){
                 JOptionPane.showMessageDialog(null,"Endereço Não Localizado");
+                jftCep.setText("");
             }else{
                 jtfBairro.setText(end.getBairro());
                 jtfCidade.setText(end.getCidade());

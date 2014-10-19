@@ -30,8 +30,9 @@ public class TesteUsuario {
         //e.setCep("69906350");
         //ed.getEndereco(e);
         //JOptionPane.showMessageDialog(null, e.getNomeRua()+e.getBairro()+e.getCidade()+e.getEstado());
-       // Util u = new Util();
-        //System.out.println(u.data());
+        Util u = new Util();
+       //u.reformataData("2000-01-02");
+        //System.out.println(u.reformataData());
       
      
 

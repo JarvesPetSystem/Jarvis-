@@ -12,6 +12,7 @@ public class Cliente {
     private String sexo;
     private Logradouro endereco;
     private Contato contato;
+    private Date dtCad;
 
     public int getIdCliente() {
         return idCliente;
@@ -76,5 +77,13 @@ public class Cliente {
 
     public void setContato(Contato contato) {
         this.contato = contato;
+    }
+
+    public Date getDtCad() {
+        return dtCad;
+    }
+
+    public void setDtCad(Date dtCad) {
+        this.dtCad = dtCad;
     }
 }
