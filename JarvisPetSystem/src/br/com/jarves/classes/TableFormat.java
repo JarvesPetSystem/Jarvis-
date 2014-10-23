@@ -36,16 +36,12 @@ public class TableFormat extends DefaultTableCellRenderer{
         if(isSelected){
             setBackground(Color.decode("#6A5ACD"));
             setForeground(Color.white);
-            setFont(new Font("Arial",Font.BOLD,14));
+            setFont(new Font("Arial",Font.BOLD,16));
             
         }
         table.getColumnModel().getColumn(0).setPreferredWidth(200);
         table.getColumnModel().getColumn(1).setPreferredWidth(100);
-        /*table.getColumnModel().getColumn(1).setMaxWidth(350);
-        table.getColumnModel().getColumn(2).setMaxWidth(100);
-        table.getColumnModel().getColumn(3).setMaxWidth(180);*/
-      
-        
+     
         return this;
     }
     

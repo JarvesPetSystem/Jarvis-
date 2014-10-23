@@ -293,7 +293,7 @@
                     <Component class="javax.swing.JButton" name="jbtPesEnd">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/br/com/jarves/icones/search.png"/>
+                          <Image iconType="3" name="/br/com/jarves/icones/lupa_16x16.png"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -301,7 +301,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="170" y="10" width="70" height="30"/>
+                          <AbsoluteConstraints x="170" y="10" width="30" height="30"/>
                         </Constraint>
                       </Constraints>
                     </Component>

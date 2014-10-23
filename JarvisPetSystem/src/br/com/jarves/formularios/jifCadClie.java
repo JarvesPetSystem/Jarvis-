@@ -211,14 +211,14 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jpnEndereco.add(jLabel16);
         jLabel16.setBounds(340, 90, 40, 30);
 
-        jbtPesEnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/search.png"))); // NOI18N
+        jbtPesEnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/lupa_16x16.png"))); // NOI18N
         jbtPesEnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtPesEndActionPerformed(evt);
             }
         });
         jpnEndereco.add(jbtPesEnd);
-        jbtPesEnd.setBounds(170, 10, 70, 30);
+        jbtPesEnd.setBounds(170, 10, 30, 30);
 
         jtbPainel.addTab("Endereço", jpnEndereco);
 
