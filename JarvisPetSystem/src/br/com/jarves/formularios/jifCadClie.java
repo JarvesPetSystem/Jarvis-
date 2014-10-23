@@ -26,7 +26,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  *
  * @author Humberto
  */
-public class jifCadClie extends javax.swing.JInternalFrame {
+public class jifCadClie extends javax.swing.JInternalFrame  {
 
     /**
      * Creates new form jifCadCli
@@ -313,6 +313,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jPanel2.add(jcbSexo);
         jcbSexo.setBounds(110, 200, 160, 30);
 
+        jbtInserir.setMnemonic('i');
         jbtInserir.setText("Inserir");
         jbtInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
