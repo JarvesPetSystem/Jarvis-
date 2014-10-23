@@ -432,7 +432,9 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         
 
     }//GEN-LAST:event_jbtInserirActionPerformed
-    
+    /**
+     * Método para limpar todos os campos
+     */
     public void limparCampos() {
         jftCpf.setText("");
         jtfNome.setText("");
