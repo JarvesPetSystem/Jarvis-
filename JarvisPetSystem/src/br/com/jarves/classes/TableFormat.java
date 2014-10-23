@@ -27,6 +27,7 @@ public class TableFormat extends DefaultTableCellRenderer{
         
         if(row %2 == 0){
             setBackground(null);
+            setForeground(Color.black);
         }else{
             setBackground(Color.decode("#6495ED"));
             setForeground(Color.white);

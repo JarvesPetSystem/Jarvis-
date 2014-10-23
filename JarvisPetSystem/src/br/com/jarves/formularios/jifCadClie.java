@@ -309,7 +309,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel15);
         jLabel15.setBounds(70, 40, 80, 30);
         jPanel2.add(jdcNasc);
-        jdcNasc.setBounds(110, 140, 130, 20);
+        jdcNasc.setBounds(110, 140, 150, 30);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 10, 620, 490);
@@ -337,7 +337,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
 
     private void jbtPesEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPesEndActionPerformed
         
-        JifConCliente jie = new JifConCliente();
+        jifConEnd jie = new jifConEnd();
         Global.jdpPrincipal.add(jie);
         
         ((BasicInternalFrameUI) jie.getUI()).setNorthPane(null);
@@ -529,27 +529,28 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         
         Util u = new Util();
         ClienteDAO cliente = new ClienteDAO();
-        System.out.println(cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getNomeCliente());
-        if (cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getNomeCliente().equalsIgnoreCase(null));
-        {
-            if (JOptionPane.showConfirmDialog(null, "Cliente já Cadastrado, Deseja Exibir os Dados?", "Pergunta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                jtfNome.setText(cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getNomeCliente());
-                jcbSexo.setSelectedItem(cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getSexo());
-                jdcNasc.setDate(cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getDtNasc());
-                jftCep.setText(cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getEndereco().getCep());
-                jtfRua.setText(cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getEndereco().getNomeRua());
-                jtfBairro.setText(cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getEndereco().getBairro());
-                jtfCidade.setText(cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getEndereco().getCidade());
-                jtfNumero.setText(cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getEndereco().getNumero());
-                
-                jtfEstado.setText(cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getEndereco().getEstado());
-                jftTelefone.setText(cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getContato().getTelefone());
-                jftCelular.setText(cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getContato().getCelular());
-                jtfEmail.setText(cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getContato().getEmail());
-                jtfObs.setText(cliente.pesquisarClienteCpf(u.formataCpf(jftCpf.getText().trim())).getContato().getObs());
-            }
-            
-        }
+        ArrayList<Cliente> lista = new ClienteDAO().pesquisarCliente(u.formataCpf(jftCpf.getText().trim()), null);
         
+        if (lista.size() > 0){
+                if(JOptionPane.showConfirmDialog(null, "Cliente já Cadastrado, Deseja Exibir os Dados?", "Pergunta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    jtfNome.setText(lista.get(0).getNomeCliente());
+                    jtfRg.setText(lista.get(0).getRg());
+                    jdcNasc.setDate(lista.get(0).getDtNasc());
+                    jcbSexo.setSelectedItem(lista.get(0).getSexo());
+                    jftCep.setText(lista.get(0).getEndereco().getCep());
+                    jtfRua.setText(lista.get(0).getEndereco().getNomeRua());
+                    jtfNumero.setText(lista.get(0).getEndereco().getNumero());
+                    jtfBairro.setText(lista.get(0).getEndereco().getBairro());
+                    jtfComplemento.setText(lista.get(0).getEndereco().getComplemento());
+                    jtfCidade.setText(lista.get(0).getEndereco().getCidade());
+                    jtfEstado.setText(lista.get(0).getEndereco().getEstado());
+                    jftTelefone.setText(lista.get(0).getContato().getTelefone());
+                    jftCelular.setText(lista.get(0).getContato().getCelular());
+                    jtfEmail.setText(lista.get(0).getContato().getEmail());
+                    jtfObs.setText(lista.get(0).getContato().getObs());
+                }else {
+                    jftCpf.setText("");
+            }
+        }
     }
 }

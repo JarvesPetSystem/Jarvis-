@@ -101,12 +101,16 @@ public class ClienteDAO {
         ConexaoOracle co = new ConexaoOracle();
         try {
             Connection con = co.abreConexao();
-            String sql = "SELECT id_cliente,initcap(nome_cliente)nome,cpf_cliente cpf,rg_cliente rg, dtnasc_cliente nasc,initcap(sexo_cliente)sexo,"+
-                         "dtcad_cliente dtcad,initcap(tl.nome_logradouro)endereco,tl.cep_logradouro cep,te.nr_endereco num, te.comp_endereco,"+
-                         "tcon.email_contato email,tcon.cel_contato celu,tcon.tel_contato tele,tcon.obs_contato "+
-                         "FROM tab_cliente tc INNER JOIN tab_endereco te ON tc.id_cliente IN te.id_cliente_fk INNER JOIN tab_logradouro tl ON "+
-                         "te.id_logradouro_fk IN tl.id_logradouro INNER JOIN tab_contato tcon ON "+
-                         "tc.id_cliente in tcon.id_cliente_fk WHERE tc.nome_cliente LIKE ? or tc.cpf_cliente like ?";
+            String sql = "SELECT id_cliente,initcap(nome_cliente)nome,cpf_cliente cpf,rg_cliente rg, dtnasc_cliente nasc,initcap(sexo_cliente)sexo," +
+                         "dtcad_cliente dtcad,initcap(tl.nome_logradouro)endereco,tl.cep_logradouro cep,te.nr_endereco num, "+
+                         "te.comp_endereco,tcon.email_contato email,tcon.cel_contato celu,tcon.tel_contato tele,tcon.obs_contato,initcap(tba.nome_bairro)bairro,"+
+                         "initcap(tmu.nome_municipio)cidade,initcap(tes.nome_estado) estado FROM "+
+                         "tab_cliente tc INNER JOIN tab_endereco te ON tc.id_cliente IN te.id_cliente_fk INNER JOIN tab_logradouro tl ON "+
+                         "te.id_logradouro_fk IN tl.id_logradouro INNER JOIN "+
+                         "tab_contato tcon ON tc.id_cliente IN tcon.id_cliente_fk INNER JOIN tab_bairro tba ON "+
+                         "tl.id_bairro IN tba.id_bairro INNER JOIN tab_municipio tmu ON "+
+                         "tba.id_municipio IN tmu.id_municipio INNER JOIN tab_estado tes ON "+
+                         "tmu.id_estado IN tes.id_estado WHERE tc.nome_cliente LIKE ? or tc.cpf_cliente like ?";
             System.out.println(sql + nome + cpf);
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, nome);
@@ -126,6 +130,9 @@ public class ClienteDAO {
                 cliente.setDtCad(rs.getDate("dtcad"));
                 endereco.setNomeRua(rs.getString("endereco"));
                 endereco.setNumero(rs.getString("num"));
+                endereco.setBairro(rs.getString("bairro"));
+                endereco.setCidade(rs.getString("cidade"));
+                endereco.setEstado(rs.getString("estado"));
                 endereco.setComplemento(rs.getString("comp_endereco"));
                 endereco.setCep(rs.getString("cep"));
                 contato.setEmail(rs.getString("email"));
@@ -151,12 +158,16 @@ public class ClienteDAO {
         Cliente cliente =  new Cliente();
         try {
             Connection con = co.abreConexao();
-            String sql = "SELECT id_cliente,initcap(nome_cliente)nome,cpf_cliente cpf,rg_cliente rg, dtnasc_cliente nasc,initcap(sexo_cliente)sexo,"+
-                         "dtcad_cliente dtcad,initcap(tl.nome_logradouro)endereco,tl.cep_logradouro cep,te.nr_endereco num, te.comp_endereco,"+
-                         "tcon.email_contato email,tcon.cel_contato celu,tcon.tel_contato tele,tcon.obs_contato "+
-                         "FROM tab_cliente tc INNER JOIN tab_endereco te ON tc.id_cliente IN te.id_cliente_fk INNER JOIN tab_logradouro tl ON "+
-                         "te.id_logradouro_fk IN tl.id_logradouro INNER JOIN tab_contato tcon ON "+
-                         "tc.id_cliente in tcon.id_cliente_fk WHERE tc.cpf_cliente like ?";
+            String sql = "SELECT id_cliente,initcap(nome_cliente)nome,cpf_cliente cpf,rg_cliente rg, dtnasc_cliente nasc,initcap(sexo_cliente)sexo," +
+                         "dtcad_cliente dtcad,initcap(tl.nome_logradouro)endereco,tl.cep_logradouro cep,te.nr_endereco num, "+
+                         "te.comp_endereco,tcon.email_contato email,tcon.cel_contato celu,tcon.tel_contato tele,tcon.obs_contato,initcap(tba.nome_bairro)bairro,"+
+                         "initcap(tmu.nome_municipio)cidade,initcap(tes.nome_estado) estado FROM "+
+                         "tab_cliente tc INNER JOIN tab_endereco te ON tc.id_cliente IN te.id_cliente_fk INNER JOIN tab_logradouro tl ON "+
+                         "te.id_logradouro_fk IN tl.id_logradouro INNER JOIN "+
+                         "tab_contato tcon ON tc.id_cliente IN tcon.id_cliente_fk INNER JOIN tab_bairro tba ON "+
+                         "tl.id_bairro IN tba.id_bairro INNER JOIN tab_municipio tmu ON "+
+                         "tba.id_municipio IN tmu.id_municipio INNER JOIN tab_estado tes ON "+
+                         "tmu.id_estado IN tes.id_estado WHERE tc.nome_cliente LIKE ? or tc.cpf_cliente like ?";
             System.out.println(sql);
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, cpf);
