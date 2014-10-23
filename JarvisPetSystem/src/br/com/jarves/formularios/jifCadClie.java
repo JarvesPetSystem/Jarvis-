@@ -12,11 +12,13 @@ import br.com.jarves.classes.Contato;
 import br.com.jarves.classes.Logradouro;
 import br.com.jarves.classes.Util;
 import br.com.jarves.util.Global;
+import br.com.jarves.util.LimiteDigitos;
 
 import java.awt.Dimension;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -34,7 +36,12 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
     public jifCadClie() {
         initComponents();
         Global.jtfCep = jftCep;
-        limparCampos();
+        jtfNome.setDocument(new LimiteDigitos(60));
+        jtfRg.setDocument(new LimiteDigitos(15));
+        jtfEmail.setDocument(new LimiteDigitos(60));
+        jtfObs.setDocument(new LimiteDigitos(60));
+        
+        
         
     }
 
@@ -96,9 +103,22 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setForeground(java.awt.Color.red);
         setName(""); // NOI18N
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                formKeyTyped(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPanel1KeyPressed(evt);
+            }
+        });
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -392,6 +412,10 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             String data = formato.format(jdcNasc.getDate());
             System.out.println(data);
+            Date d = new Date();
+            
+            if(jdcNasc.getDate().after(d)){System.out.println("não pode porra");}
+            System.out.println(d + "\n"+ jdcNasc.getDate());
         } else {
             JOptionPane.showMessageDialog(null, "Malucão");
         }
@@ -419,6 +443,7 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
         Cliente cliente = new Cliente();
         ClienteDAO clientedao = new ClienteDAO();
         Contato contato = new Contato();
+        Date d = new Date();
         if (!u.isCPF(u.formataCpf(jftCpf.getText()))) {
             JOptionPane.showMessageDialog(null, "CPF Inválido");
         } else if (jtfNome.getText().trim().equalsIgnoreCase("")) {
@@ -430,10 +455,12 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
         } else if (jftCep.getText().trim().length() < 8) {
             JOptionPane.showMessageDialog(null, "Por Favor Informe o CEP");
         } else if (jftCelular.getText().trim().length() < 2 && jftTelefone.getText().trim().length() < 2 && jtfEmail.getText().trim().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Por Favor Informe ao Menos um contato");
+            JOptionPane.showMessageDialog(null, "Por Favor Informe ao Menos um Contato");
         } else if (jtfNumero.getText().trim().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Por Favor Informe o Número");
-        } else {
+        } else if(jdcNasc.getDate().after(d)){
+            JOptionPane.showMessageDialog(null, "Data de Nascimento Não Pode Ser Superior a Data Atual");
+        }else {
             cliente.setNomeCliente(jtfNome.getText().toLowerCase().trim());
             cliente.setCpf(u.formataCpf(jftCpf.getText().trim()));
             cliente.setRg(jtfRg.getText().trim());
@@ -501,6 +528,18 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
             buscaCep();
         }
     }//GEN-LAST:event_jftCepFocusGained
+
+    private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
+        
+    }//GEN-LAST:event_jPanel1KeyPressed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+      
+    }//GEN-LAST:event_formKeyPressed
+
+    private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
+         
+    }//GEN-LAST:event_formKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
