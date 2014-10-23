@@ -6,7 +6,9 @@
 package br.com.jarves.util;
 
 import javax.swing.JDesktopPane;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 /**
  *
@@ -16,5 +18,5 @@ public class Global {
     
     public static JFrame principal;
     public static JDesktopPane jdpPrincipal;
-    
+    public static JFormattedTextField jtfCep;
 }

@@ -37,6 +37,7 @@ public class TableFormat extends DefaultTableCellRenderer{
             setBackground(Color.decode("#6A5ACD"));
             setForeground(Color.white);
             setFont(new Font("Arial",Font.BOLD,16));
+            table.editingStopped(null);
             
         }
         table.getColumnModel().getColumn(0).setPreferredWidth(200);
@@ -44,6 +45,5 @@ public class TableFormat extends DefaultTableCellRenderer{
      
         return this;
     }
-    
-    
+           
 }

@@ -9,6 +9,7 @@ import br.com.jarves.bancodedados.EnderecoDAO;
 import br.com.jarves.classes.Logradouro;
 import br.com.jarves.classes.TableFormat;
 import br.com.jarves.classes.Util;
+import br.com.jarves.util.Global;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class jifConEnd extends javax.swing.JInternalFrame {
         //jtbEndereco.setModel(DbUtils.resultSetToTableModel(EnderecoDAO.listarEnderecos()));
     }
    
-
+public int flag;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,8 +86,21 @@ public class jifConEnd extends javax.swing.JInternalFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jtbEndereco.setToolTipText("Lista de Endereços");
+        jtbEndereco.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtbEnderecoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtbEndereco);
 
         jPanel2.add(jScrollPane1);
@@ -123,6 +137,22 @@ public class jifConEnd extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfEnderecoActionPerformed
 
+    private void jtbEnderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbEnderecoMouseClicked
+        if(evt.getClickCount()>1){
+            if (flag ==1){
+                int indiceLinha = jtbEndereco.getSelectedRow();
+                Object cep = jtbEndereco.getValueAt(indiceLinha, 2);
+                Global.jtfCep.setText(cep.toString());
+                
+                Global.jtfCep.grabFocus();
+                flag =0;
+                this.dispose();
+            }
+           
+       }
+      
+    }//GEN-LAST:event_jtbEnderecoMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -146,15 +176,20 @@ public class jifConEnd extends javax.swing.JInternalFrame {
         Util u = new Util();
         String titulo[] = {"Endereço","Bairro","CEP","Cidade"};
         Object dados [][]={};
-        DefaultTableModel modelo = new DefaultTableModel(dados,titulo);
+        DefaultTableModel modelo = new DefaultTableModel(dados,titulo){
+            public boolean isCellEditable(int row,int column){
+                return false;
+            }
+        };
         jtbEndereco.setDefaultRenderer(Object.class,new TableFormat());
         jtbEndereco.setModel(modelo);
+        
         ArrayList<Logradouro> lista = new EnderecoDAO().listarEnderecos();
         
         for(int i = 0;i<lista.size();i++){
             modelo.addRow(new String[]{lista.get(i).getNomeRua(),lista.get(i).getBairro(),
             u.reformataCep(lista.get(i).getCep()),lista.get(i).getCidade()});
-                       
+            
         }
         
         
@@ -163,7 +198,11 @@ public class jifConEnd extends javax.swing.JInternalFrame {
         Util u = new Util();
         String titulo[] = {"Endereço","Bairro","CEP","Cidade"};
         Object dados [][]={};
-        DefaultTableModel modelo = new DefaultTableModel(dados,titulo);
+        DefaultTableModel modelo = new DefaultTableModel(dados,titulo){
+            public boolean isCellEditable(int row,int column){
+                return false;
+            }
+        };
         jtbEndereco.setDefaultRenderer(Object.class,new TableFormat());
         jtbEndereco.setModel(modelo);
         ArrayList<Logradouro> lista = new EnderecoDAO().pesquisarEnderecos(jtfEndereco.getText().trim().toLowerCase()+"%");
