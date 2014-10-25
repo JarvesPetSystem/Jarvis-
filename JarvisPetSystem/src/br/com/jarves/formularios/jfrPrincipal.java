@@ -28,6 +28,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         Global.jdpPrincipal = jdpPrincipal;
         
        //Muda o icone da Aplicação... 
+       //Muda o icone da Aplicação... 
        URL url = this.getClass().getResource("/br/com/jarves/icones/iconPet.png");    
        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);    
        this.setIconImage(iconeTitulo);  
