@@ -333,6 +333,7 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
         jPanel2.add(jcbSexo);
         jcbSexo.setBounds(110, 200, 160, 30);
 
+        jbtInserir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/inserir.png.png"))); // NOI18N
         jbtInserir.setMnemonic('i');
         jbtInserir.setText("Inserir");
         jbtInserir.addActionListener(new java.awt.event.ActionListener() {
@@ -345,6 +346,7 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
         jPanel2.add(jSeparator1);
         jSeparator1.setBounds(20, 242, 560, 10);
 
+        jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/voltar.png.jpg"))); // NOI18N
         jbtVoltar.setText("Voltar");
         jbtVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -90,6 +90,7 @@ public class JifConCliente extends javax.swing.JInternalFrame {
         jPanel2.add(jSeparator1);
         jSeparator1.setBounds(10, 130, 760, 20);
 
+        jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/voltar.png.jpg"))); // NOI18N
         jbtVoltar.setText("Voltar");
         jbtVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

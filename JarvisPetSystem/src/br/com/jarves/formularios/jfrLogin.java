@@ -2,18 +2,30 @@ package br.com.jarves.formularios;
 
 import br.com.jarves.util.Global;
 import br.com.jarves.util.LimiteDigitos;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 /**
  *
  * @author Humberto
  */
-public class jfrLogin extends javax.swing.JFrame {
+public class jfrLogin extends javax.swing.JFrame { 
 
     public jfrLogin() {
         initComponents();
         jtfUsuario.setDocument(new LimiteDigitos(5));
+        
+       //Muda o icone da Aplicação...
+       URL url = this.getClass().getResource("/br/com/jarves/icones/iconPet.png");    
+       Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);    
+       this.setIconImage(iconeTitulo);  
+        
+        
     }
+    
 
    
     @SuppressWarnings("unchecked")

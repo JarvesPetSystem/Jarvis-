@@ -7,6 +7,9 @@
 package br.com.jarves.formularios;
 
 import br.com.jarves.util.Global;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -23,6 +26,11 @@ public class jfrPrincipal extends javax.swing.JFrame {
     public jfrPrincipal() {
         initComponents();
         Global.jdpPrincipal = jdpPrincipal;
+        
+       //Muda o icone da Aplicação... 
+       URL url = this.getClass().getResource("/br/com/jarves/icones/iconPet.png");    
+       Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);    
+       this.setIconImage(iconeTitulo);  
     }
 
     /**
@@ -39,10 +47,17 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jmnCadastro = new javax.swing.JMenu();
         jmiCadCliente = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jmiSair = new javax.swing.JMenuItem();
         jmnConsulta = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jmiConsCli = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jarvis Pet System");
@@ -54,9 +69,11 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jdpPrincipal.add(jLabel1);
         jLabel1.setBounds(360, 30, 940, 740);
 
-        jmnCadastro.setText("Cadastro");
+        jmnCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/registro.png.png"))); // NOI18N
+        jmnCadastro.setText("Registros");
 
         jmiCadCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
+        jmiCadCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/cadcli.png.png"))); // NOI18N
         jmiCadCliente.setText("Clientes");
         jmiCadCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +82,18 @@ public class jfrPrincipal extends javax.swing.JFrame {
         });
         jmnCadastro.add(jmiCadCliente);
 
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/forn.png.png"))); // NOI18N
+        jMenuItem4.setText("Fornecedor");
+        jmnCadastro.add(jMenuItem4);
+
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/prod.png.png"))); // NOI18N
+        jMenuItem5.setText("Produtos");
+        jmnCadastro.add(jMenuItem5);
+
         jmiSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        jmiSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/f.png.png"))); // NOI18N
         jmiSair.setText("Sair");
         jmiSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,9 +104,11 @@ public class jfrPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jmnCadastro);
 
+        jmnConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/cons.png.gif"))); // NOI18N
         jmnConsulta.setText("Consultas");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/concli.png.png"))); // NOI18N
         jMenuItem1.setText("Clientes");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +118,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jmnConsulta.add(jMenuItem1);
 
         jmiConsCli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK));
+        jmiConsCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/iconMap.png.png"))); // NOI18N
         jmiConsCli.setText("Endereços");
         jmiConsCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +128,27 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jmnConsulta.add(jmiConsCli);
 
         jMenuBar1.add(jmnConsulta);
+
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/servi.png.jpg"))); // NOI18N
+        jMenu1.setText("Serviços");
+
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/vac.png.png"))); // NOI18N
+        jMenuItem2.setText("Vacinação");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/bt.png.jpg"))); // NOI18N
+        jMenuItem3.setText("Banho e Tosa");
+        jMenu1.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/relat.png.png"))); // NOI18N
+        jMenu2.setText("Relátorios");
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/caixa.png.jpg"))); // NOI18N
+        jMenu3.setText("Caixa");
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -108,7 +160,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+            .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(416, 339));
@@ -189,8 +241,15 @@ public class jfrPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JMenuItem jmiCadCliente;
     private javax.swing.JMenuItem jmiConsCli;
