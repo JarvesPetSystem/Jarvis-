@@ -37,7 +37,7 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
         initComponents();
         Global.jtfCep = jftCep;
         jtfNome.setDocument(new LimiteDigitos(60));
-        jtfRg.setDocument(new LimiteDigitos(15));
+        jtfRg.setDocument(new LimiteDigitos(60));
         jtfEmail.setDocument(new LimiteDigitos(60));
         jtfObs.setDocument(new LimiteDigitos(60));
         
