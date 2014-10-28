@@ -21,6 +21,29 @@ public class Util {
         String seg = cep.substring(5,8);
         return pri + "-"+seg;
     }
+    
+    public String formataCnpj(String cnpj){
+        String pri = cnpj.substring(0,2);
+        String seg = cnpj.substring(3,6);
+        String ter = cnpj.substring(7,10);
+        String qua = cnpj.substring(11,15);
+        String qui = cnpj.substring(16,18);
+        
+        return pri+seg+ter+qua+qui;
+    }
+   
+    public String reformataCnpj(String cnpj){
+        String pri = cnpj.substring(0,2);
+        String seg = cnpj.substring(2,5);
+        String ter = cnpj.substring(5,8);
+        String qua = cnpj.substring(8,12);
+        String qui = cnpj.substring(12,14);
+        
+        return pri+"."+seg+"."+ter+"/"+qua+"-"+qui;
+    
+    }
+    
+    
     public String formataCpf(String cpf){
         String pri = cpf.substring(0,3);
         String seg = cpf.substring(4,7);
@@ -48,6 +71,67 @@ public class Util {
         //date = (Date)formata.parse(data);
         return data;
     }
+    
+    
+    
+    public boolean isCNPJ(String CNPJ) {
+
+if (CNPJ.equals("00000000000000") || CNPJ.equals("11111111111111") ||
+    CNPJ.equals("22222222222222") || CNPJ.equals("33333333333333") || 
+    CNPJ.equals("44444444444444") || CNPJ.equals("55555555555555") || 
+    CNPJ.equals("66666666666666") || CNPJ.equals("77777777777777") || 
+    CNPJ.equals("88888888888888") || CNPJ.equals("99999999999999") || 
+        (CNPJ.length() != 14)) return(false);
+
+char dig13, dig14; 
+int sm, i, r, num, peso;
+
+
+try {
+        sm = 0; 
+        peso = 2; 
+        for (i=11; i>=0; i--) {
+
+
+
+        num = (int)(CNPJ.charAt(i) - 48); 
+        sm = sm + (num * peso); 
+        peso = peso + 1; 
+        if (peso == 10) peso = 2; }
+
+
+        r = sm % 11;
+        if ((r == 0) || (r == 1)) 
+               dig13 = '0';
+        else dig13 = (char)((11-r) + 48);
+
+
+sm = 0;
+peso = 2;
+for (i=12; i>=0; i--) {
+      num = (int)(CNPJ.charAt(i)- 48);
+      sm = sm + (num * peso);
+      peso = peso + 1;
+      if (peso == 10)
+           peso = 2;
+}
+
+      r = sm % 11;
+      if ((r == 0) || (r == 1))
+           dig14 = '0';
+      else dig14 = (char)((11-r) + 48);
+
+
+     if ((dig13 == CNPJ.charAt(12)) && (dig14 == CNPJ.charAt(13)))
+            return(true);
+            else return(false);
+     } catch (InputMismatchException erro) {
+          return(false);
+
+  }
+    }
+ 
+    
     
     
     /**
