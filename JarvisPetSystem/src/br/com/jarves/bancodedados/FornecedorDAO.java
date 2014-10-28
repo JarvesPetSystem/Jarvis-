@@ -93,9 +93,9 @@ public class FornecedorDAO {
         return msg;
     }
     /**
-     * Método que pesquisa se o cliente já é cadastrado
-     * @param cnpj cpf do cliente
-     * @param nome nome do cliente
+     * Método que pesquisa se o fornecedor já é cadastrado
+     * @param cnpj cpf do fornecedor
+     * @param nome nome do fornecedor
      * @return ArrayList de clientes 
      */
     public ArrayList<Fornecedor> pesquisarFornecedor(String cnpj,String nome){

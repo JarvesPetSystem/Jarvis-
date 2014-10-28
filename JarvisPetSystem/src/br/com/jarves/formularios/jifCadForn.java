@@ -390,8 +390,10 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         } else if (jtfNumero.getText().trim().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Por Favor Informe o Número");
         } else {
-            fornecedor.setNomeFornecedor(jtfIE.getText().toLowerCase().trim());
-            fornecedor.setCnpj(u.formataCpf(jftCnpj.getText().trim()));
+            fornecedor.setNomeFornecedor(jtfNomeForn.getText().toLowerCase().trim());
+            fornecedor.setCnpj(u.formataCnpj(jftCnpj.getText().trim()));
+            fornecedor.setIeFornecedor(jtfIE.getText().toLowerCase().trim());
+            
             
             
             
