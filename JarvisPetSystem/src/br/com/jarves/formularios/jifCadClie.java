@@ -520,8 +520,15 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
 
     private void jftCpfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jftCpfKeyReleased
         if (jftCpf.getText().trim().length() > 13) {
+            Util u = new Util();
+            if (!u.isCPF(u.formataCpf(jftCpf.getText().trim()))){
+                JOptionPane.showMessageDialog(null, "CPF Inválido");
+                jftCpf.setText("");
+                jftCpf.grabFocus();
+            }else{
+                buscaCliente();
+            }
             
-            buscaCliente();
         }
     }//GEN-LAST:event_jftCpfKeyReleased
 
