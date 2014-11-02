@@ -481,8 +481,19 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
             contato.setObs(jtfObs.getText().trim());
             cliente.setContato(contato);
             JOptionPane.showMessageDialog(null, clientedao.insereCliente(cliente));
-            limparCampos();
             
+            if(JOptionPane.showConfirmDialog(null, "Deseja Registrar um Animal para esse Cliente?", "Pergunta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                jifCadAnimal jie = new jifCadAnimal();
+                Global.jdpPrincipal.add(jie);
+                ((BasicInternalFrameUI) jie.getUI()).setNorthPane(null);
+                jie.setPosicao();
+                jie.setVisible(true);
+                Global.jtfCliente.setText(jtfNome.getText());
+                Global.cpf.setText("CPF: "+jftCpf.getText());
+                jifCadAnimal.cpf = jftCpf.getText();
+                this.dispose();
+            }
+            limparCampos();
         }
         
 

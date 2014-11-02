@@ -40,7 +40,7 @@ public class TableFormat extends DefaultTableCellRenderer{
             table.editingStopped(null);
             
         }
-        table.getColumnModel().getColumn(0).setPreferredWidth(200);
+        table.getColumnModel().getColumn(0).setPreferredWidth(160);
         table.getColumnModel().getColumn(1).setPreferredWidth(100);
      
         return this;

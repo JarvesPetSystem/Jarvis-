@@ -1,11 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.jarves.formularios;
 
+import br.com.jarves.bancodedados.AnimalDAO;
 import br.com.jarves.bancodedados.ClienteDAO;
+import br.com.jarves.classes.Animal;
 import br.com.jarves.classes.Cliente;
 import br.com.jarves.classes.TableFormat;
 import br.com.jarves.classes.Util;
@@ -19,12 +17,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Humberto
  */
-public class JifConCliente extends javax.swing.JInternalFrame {
+public class JifConAnimal extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form jifConEnd
      */
-    public JifConCliente() {
+    public JifConAnimal() {
         initComponents();
         carregaLista();
         jftCpf.setVisible(false);
@@ -52,12 +50,6 @@ public class JifConCliente extends javax.swing.JInternalFrame {
         jpnDados = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbCliente = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtbEndCli = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jtbConCli = new javax.swing.JTable();
         jftCpf = new javax.swing.JFormattedTextField();
         jrbNome = new javax.swing.JRadioButton();
         jrbCpf = new javax.swing.JRadioButton();
@@ -66,7 +58,7 @@ public class JifConCliente extends javax.swing.JInternalFrame {
         setTitle("Consulta de Clientes");
         getContentPane().setLayout(null);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clientes"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clientes / Animais"));
         jPanel2.setLayout(null);
 
         jlbNome.setText("Nome:");
@@ -120,54 +112,13 @@ public class JifConCliente extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jtbCliente);
 
         jpnDados.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 10, 700, 140);
+        jScrollPane1.setBounds(10, 10, 740, 140);
 
-        jTabbedPane1.addTab("Informações Pessoais", jpnDados);
-
-        jPanel1.setLayout(null);
-
-        jtbEndCli.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jtbEndCli.setToolTipText("Lista de Endereços");
-        jScrollPane2.setViewportView(jtbEndCli);
-
-        jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(20, 10, 700, 140);
-
-        jTabbedPane1.addTab("Endereço", jPanel1);
-
-        jPanel3.setLayout(null);
-
-        jtbConCli.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jtbConCli.setToolTipText("Lista de Endereços");
-        jScrollPane3.setViewportView(jtbConCli);
-
-        jPanel3.add(jScrollPane3);
-        jScrollPane3.setBounds(20, 10, 700, 140);
-
-        jTabbedPane1.addTab("Contato", jPanel3);
+        jTabbedPane1.addTab("Informações", jpnDados);
 
         jPanel2.add(jTabbedPane1);
         jTabbedPane1.setBounds(10, 140, 760, 190);
+        jTabbedPane1.getAccessibleContext().setAccessibleName("Informações");
 
         try {
             jftCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -210,6 +161,8 @@ public class JifConCliente extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 780, 340);
+
+        getAccessibleContext().setAccessibleName("Consulta de Animais");
 
         setBounds(0, 0, 791, 377);
     }// </editor-fold>//GEN-END:initComponents
@@ -267,7 +220,7 @@ public class JifConCliente extends javax.swing.JInternalFrame {
                 Object cliente = jtbCliente.getValueAt(indiceLinha, 0);
                 Object cpf = jtbCliente.getValueAt(indiceLinha, 1);
                 Global.jtfCliente.setText(cliente.toString());
-                Global.cpf.setText("CPF: "+cpf.toString()); 
+                Global.cpf.setText("CPF: "+cpf.toString());
                 jifCadAnimal.cpf = cpf.toString();
                 Global.jtfCliente.grabFocus();
                 flag =0;
@@ -279,12 +232,8 @@ public class JifConCliente extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgpPesquisar;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton jbtVoltar;
@@ -294,8 +243,6 @@ public class JifConCliente extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jrbCpf;
     private javax.swing.JRadioButton jrbNome;
     private javax.swing.JTable jtbCliente;
-    private javax.swing.JTable jtbConCli;
-    private javax.swing.JTable jtbEndCli;
     private javax.swing.JTextField jtfNome;
     // End of variables declaration//GEN-END:variables
 
@@ -314,25 +261,16 @@ public class JifConCliente extends javax.swing.JInternalFrame {
     public void filtraLista(){
         Util u = new Util();
         String titulopessoais[] = {"Nome","CPF","RG","Dt Nasc","Sexo","Cliente Desde"};
-        String tituloendereco[] = {"Nome","Endereço","N°","Complemento","CEP"};
-        String titulocontato[]  = {"Nome","Telefone","Celular","Email","Observações" };
-        
+              
         Object dados [][]={};
              
         DefaultTableModel modelo = new DefaultTableModel(dados,titulopessoais);
-        DefaultTableModel ender  = new DefaultTableModel(dados,tituloendereco);
-        DefaultTableModel contat = new DefaultTableModel(dados,titulocontato);
-        
+      
         jtbCliente.setDefaultRenderer(Object.class,new TableFormat());
         jtbCliente.setModel(modelo);
         
         
-        jtbEndCli.setDefaultRenderer(Object.class,new TableFormat());
-        jtbEndCli.setModel(ender);
         
-        
-        jtbConCli.setDefaultRenderer(Object.class,new TableFormat());
-        jtbConCli.setModel(contat);
         
         ArrayList<Cliente> lista = new ClienteDAO().pesquisarCliente(u.formataCpf(jftCpf.getText().trim()),jtfNome.getText().toLowerCase().trim()+"%");
                
@@ -340,21 +278,14 @@ public class JifConCliente extends javax.swing.JInternalFrame {
             modelo.addRow(new Object[]{lista.get(i).getNomeCliente(),u.reformataCpf(lista.get(i).getCpf()),
             lista.get(i).getRg(),u.reformataData(lista.get(i).getDtNasc()),lista.get(i).getSexo(),u.reformataData(lista.get(i).getDtCad())});
             
-            ender.addRow(new Object[]{lista.get(i).getNomeCliente(),lista.get(i).getEndereco().getNomeRua(),
-                                      lista.get(i).getEndereco().getNumero(),lista.get(i).getEndereco().getComplemento(),
-                                       u.reformataCep(lista.get(i).getEndereco().getCep())});
-        
-            contat.addRow(new Object[]{lista.get(i).getNomeCliente(),lista.get(i).getContato().getTelefone(),
-                                      lista.get(i).getContato().getCelular(),lista.get(i).getContato().getCelular(),lista.get(i).getContato().getObs()});
         }
         
     }
     
     public void carregaLista(){
         Util u = new Util();
-        String titulopessoais[] = {"Nome","CPF","RG","Dt Nasc","Sexo","Cliente Desde"};
-        String tituloendereco[] = {"Nome","Endereço","N°","Complemento","CEP"};
-        String titulocontato[]  = {"Nome","Telefone","Celular","Email","Observações" };
+        String titulopessoais[] = {"Nome","Peso","Raça","Dt Nasc","Sexo","Proprietário"};
+       
         
         Object dados [][]={};
              
@@ -363,40 +294,19 @@ public class JifConCliente extends javax.swing.JInternalFrame {
                 return false;
             }
         };
-        DefaultTableModel ender  = new DefaultTableModel(dados,tituloendereco){
-            public boolean isCellEditable(int row,int column){
-                return false;
-            }
-        };
-        DefaultTableModel contat = new DefaultTableModel(dados,titulocontato){
-            public boolean isCellEditable(int row,int column){
-                return false;
-            }
-        };
-        
+            
         jtbCliente.setDefaultRenderer(Object.class,new TableFormat());
         jtbCliente.setModel(modelo);
         
         
-        jtbEndCli.setDefaultRenderer(Object.class,new TableFormat());
-        jtbEndCli.setModel(ender);
-        
-        
-        jtbConCli.setDefaultRenderer(Object.class,new TableFormat());
-        jtbConCli.setModel(contat);
-        
-        ArrayList<Cliente> lista = new ClienteDAO().listarCliente();
+         
+        ArrayList<Animal> lista = new AnimalDAO().listarAnimal();
                
         for(int i = 0;i<lista.size();i++){
-            modelo.addRow(new Object[]{lista.get(i).getNomeCliente(),u.reformataCpf(lista.get(i).getCpf()),
-            lista.get(i).getRg(),u.reformataData(lista.get(i).getDtNasc()),lista.get(i).getSexo(),u.reformataData(lista.get(i).getDtCad())});
+            modelo.addRow(new Object[]{lista.get(i).getNome(),lista.get(i).getPeso(),lista.get(i).getRaca().getRaca(),
+                u.reformataData(lista.get(i).getDtNasc()),lista.get(i).getSexo(),lista.get(i).getCliente().getNomeCliente()
+                    });
             
-            ender.addRow(new Object[]{lista.get(i).getNomeCliente(),lista.get(i).getEndereco().getNomeRua(),
-                                      lista.get(i).getEndereco().getNumero(),lista.get(i).getEndereco().getComplemento(),
-                                       u.reformataCep(lista.get(i).getEndereco().getCep())});
-        
-            contat.addRow(new Object[]{lista.get(i).getNomeCliente(),lista.get(i).getContato().getTelefone(),
-                                      lista.get(i).getContato().getCelular(),lista.get(i).getContato().getCelular(),lista.get(i).getContato().getObs()});
         }
         
     }

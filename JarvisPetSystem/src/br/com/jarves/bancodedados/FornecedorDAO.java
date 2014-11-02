@@ -111,11 +111,11 @@ public class FornecedorDAO {
                          "tab_fornecedor tf INNER JOIN tab_endereco te ON tf.id_fornecedor IN te.id_fornecedor_fk INNER JOIN tab_logradouro tl ON "+
                          "te.id_logradouro_fk IN tl.id_logradouro INNER JOIN "+
                          "tab_contato tcon ON tf.id_fornecedor IN tcon.id_fornecedor_fk INNER JOIN tab_bairro tba ON "+
-                         "tl.id_bairro IN tba.id_bairro INN_endereco,tcon.email_contato email,tcon.cel_contato celu,tcon.tel_contato tele,tcon.obs_contato,initcap(tba.nome_bairro)bairro,\"+\n" +
-"                         \"initcap(tmu.nome_municipio)cidade,initcap(tes.nome_estado) estado FROM \"+\n" +
-"                         \"tab_fornecedor tf INNER JOIN tab_endereco te ON tf.id_fornecedor IN te.id_fornecedor_fk INNER JOIN tab_logradouro tl ON \"+\n" +
-"                         \"te.id_logradouro_fk IN tl.id_logradouro INNER JOIN \"+\n" +
-"                         \"tab_contato tcon ON tf.id_fornecedor IN tcon.id_fornecedor JOIN tab_municipio tmu ON "+
+                         "tl.id_bairro IN tba.id_bairro INN_endereco,tcon.email_contato email,tcon.cel_contato celu,tcon.tel_contato tele,tcon.obs_contato,initcap(tba.nome_bairro)bairro,"+
+                         "initcap(tmu.nome_municipio)cidade,initcap(tes.nome_estado) estado FROM \"+\n" +
+                         "tab_fornecedor tf INNER JOIN tab_endereco te ON tf.id_fornecedor IN te.id_fornecedor_fk INNER JOIN tab_logradouro tl ON "+
+                         "te.id_logradouro_fk IN tl.id_logradouro INNER JOIN "+
+                         "tab_contato tcon ON tf.id_fornecedor IN tcon.id_fornecedor JOIN tab_municipio tmu ON "+
                          "tba.id_municipio IN tmu.id_municipio INNER JOIN tab_estado tes ON "+
                          "tmu.id_estado IN tes.id_estado WHERE tf.nome_fornecedor LIKE ? or tf.cnpj_fornecedor like ?";
             System.out.println(sql + nome + cnpj);

@@ -48,11 +48,13 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jmnCadastro = new javax.swing.JMenu();
         jmiCadCliente = new javax.swing.JMenuItem();
+        jmiCadAnimal = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jmiSair = new javax.swing.JMenuItem();
         jmnConsulta = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jmiConAnimal = new javax.swing.JMenuItem();
         jmiConsCli = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -75,13 +77,21 @@ public class jfrPrincipal extends javax.swing.JFrame {
 
         jmiCadCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
         jmiCadCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/cadcli.png.png"))); // NOI18N
-        jmiCadCliente.setText("Clientes");
+        jmiCadCliente.setText("Cliente / Proprietário");
         jmiCadCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiCadClienteActionPerformed(evt);
             }
         });
         jmnCadastro.add(jmiCadCliente);
+
+        jmiCadAnimal.setText("Cliente / Animal");
+        jmiCadAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCadAnimalActionPerformed(evt);
+            }
+        });
+        jmnCadastro.add(jmiCadAnimal);
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/forn.png.png"))); // NOI18N
@@ -115,13 +125,21 @@ public class jfrPrincipal extends javax.swing.JFrame {
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/concli.png.png"))); // NOI18N
-        jMenuItem1.setText("Clientes");
+        jMenuItem1.setText("Clientes / Proprietários");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
         jmnConsulta.add(jMenuItem1);
+
+        jmiConAnimal.setText("Clientes / Animais");
+        jmiConAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiConAnimalActionPerformed(evt);
+            }
+        });
+        jmnConsulta.add(jmiConAnimal);
 
         jmiConsCli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK));
         jmiConsCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/iconMap.png.png"))); // NOI18N
@@ -220,6 +238,22 @@ public class jfrPrincipal extends javax.swing.JFrame {
        jif.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jmiCadAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadAnimalActionPerformed
+        jifCadAnimal ja = new jifCadAnimal();
+        jdpPrincipal.add(ja);
+        ((BasicInternalFrameUI)ja.getUI()).setNorthPane(null);
+        ja.setPosicao();
+        ja.setVisible(true);
+    }//GEN-LAST:event_jmiCadAnimalActionPerformed
+
+    private void jmiConAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConAnimalActionPerformed
+        JifConAnimal ja = new JifConAnimal();
+        jdpPrincipal.add(ja);
+        ((BasicInternalFrameUI)ja.getUI()).setNorthPane(null);
+        ja.setPosicao();
+        ja.setVisible(true); 
+    }//GEN-LAST:event_jmiConAnimalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -267,7 +301,9 @@ public class jfrPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JDesktopPane jdpPrincipal;
+    private javax.swing.JMenuItem jmiCadAnimal;
     private javax.swing.JMenuItem jmiCadCliente;
+    private javax.swing.JMenuItem jmiConAnimal;
     private javax.swing.JMenuItem jmiConsCli;
     private javax.swing.JMenuItem jmiSair;
     private javax.swing.JMenu jmnCadastro;

@@ -64,7 +64,7 @@ public class ClienteDAO {
      * @return Mensagem
      */
     public String insereCliente(Cliente cliente){
-        String msg = null;
+        String msg;
         ConexaoOracle co = new ConexaoOracle();
         
         try {
