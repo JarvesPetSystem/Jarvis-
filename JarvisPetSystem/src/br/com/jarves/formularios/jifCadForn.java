@@ -504,6 +504,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         if (lista.size() > 0){
             if (JOptionPane.showConfirmDialog(null, "Fornecedor ja cadastrado, Deseja Exibir os Dados?", "Pergunta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                     jtfNomeForn.setText(lista.get(0).getNomeFornecedor());
+                    jtfIE.setText(lista.get(0).getIeFornecedor());
                     jftCep.setText(lista.get(0).getIdEndereco().getCep());
                     jtfRua.setText(lista.get(0).getIdEndereco().getNomeRua());
                     jtfNumero.setText(lista.get(0).getIdEndereco().getNumero());
@@ -574,7 +575,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         } else if (jtfNomeForn.getText().trim().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Por Favor Informe o Nome");
         }  else if (jtfIE.getText().trim().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Por Favor informe o IE");
+            JOptionPane.showMessageDialog(null, "Por Favor informe o Numero de Inscrição Estadual");
         } else if (jftCep.getText().trim().length() < 8) {
             JOptionPane.showMessageDialog(null, "Por Favor Informe o CEP");
         } else if (jftCelular.getText().trim().length() < 2 && jftTelefone.getText().trim().length() < 2 && jtfEmail.getText().trim().equalsIgnoreCase("")) {
