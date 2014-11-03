@@ -61,7 +61,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clientes / Animais"));
         jPanel2.setLayout(null);
 
-        jlbNome.setText("Nome:");
+        jlbNome.setText("RGA:");
         jPanel2.add(jlbNome);
         jlbNome.setBounds(30, 40, 80, 30);
 
@@ -74,9 +74,12 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtfNomeKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfNomeKeyTyped(evt);
+            }
         });
         jPanel2.add(jtfNome);
-        jtfNome.setBounds(100, 40, 410, 30);
+        jtfNome.setBounds(100, 40, 120, 30);
         jPanel2.add(jSeparator1);
         jSeparator1.setBounds(10, 130, 760, 20);
 
@@ -140,7 +143,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
 
         bgpPesquisar.add(jrbNome);
         jrbNome.setSelected(true);
-        jrbNome.setText("Nome");
+        jrbNome.setText("RGA");
         jrbNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbNomeActionPerformed(evt);
@@ -150,14 +153,14 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
         jrbNome.setBounds(40, 90, 93, 23);
 
         bgpPesquisar.add(jrbCpf);
-        jrbCpf.setText("CPF");
+        jrbCpf.setText("CPF Proprietário");
         jrbCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbCpfActionPerformed(evt);
             }
         });
         jPanel2.add(jrbCpf);
-        jrbCpf.setBounds(130, 90, 45, 23);
+        jrbCpf.setBounds(130, 90, 140, 23);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 780, 340);
@@ -173,7 +176,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
 
     private void jtfNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNomeKeyReleased
        
-    if(jtfNome.getText().length()>4)
+    if(jtfNome.getText().length()>0)
         filtraLista();
     else
         carregaLista();
@@ -187,7 +190,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
        jftCpf.setVisible(false);
        jtfNome.setVisible(true);
        jtfNome.grabFocus();
-       jlbNome.setText("Nome: ");
+       jlbNome.setText("RGA: ");
        carregaLista();
     }//GEN-LAST:event_jrbNomeActionPerformed
 
@@ -196,7 +199,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
         jftCpf.setVisible(true);
         jftCpf.grabFocus();
         jftCpf.setText("");
-        jlbNome.setText("CPF:");
+        jlbNome.setText("CPF: ");
         carregaLista();
     }//GEN-LAST:event_jrbCpfActionPerformed
 
@@ -205,7 +208,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jftCpfActionPerformed
 
     private void jftCpfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jftCpfKeyReleased
-        if(jftCpf.getText().trim().length()>11){
+        if(jftCpf.getText().trim().length() == 14){
             filtraLista();
             
         }else{
@@ -228,6 +231,13 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_jtbClienteMouseClicked
+
+    private void jtfNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNomeKeyTyped
+        String caracteres="0987654321";
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfNomeKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -259,8 +269,20 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
      * Método que filtra a lista de clientes
      */
     public void filtraLista(){
+        
         Util u = new Util();
-        String titulopessoais[] = {"Nome","CPF","RG","Dt Nasc","Sexo","Cliente Desde"};
+        Animal animal = new Animal();
+        Cliente cliente = new Cliente();
+        
+        String cpf ="";
+        String id = "";
+        if(jftCpf.getText().trim().length()>13){
+           cpf = u.formataCpf(jftCpf.getText());
+        }
+        if(jtfNome.getText().trim().length()>0){
+            id = jtfNome.getText().trim()+"%";
+        }
+        String titulopessoais[] = {"RGA","Nome","Peso","Raça","Dt Nasc","Sexo","Proprietário"};
               
         Object dados [][]={};
              
@@ -271,20 +293,19 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
         
         
         
-        
-        ArrayList<Cliente> lista = new ClienteDAO().pesquisarCliente(u.formataCpf(jftCpf.getText().trim()),jtfNome.getText().toLowerCase().trim()+"%");
-               
-        for(int i = 0;i<lista.size();i++){
-            modelo.addRow(new Object[]{lista.get(i).getNomeCliente(),u.reformataCpf(lista.get(i).getCpf()),
-            lista.get(i).getRg(),u.reformataData(lista.get(i).getDtNasc()),lista.get(i).getSexo(),u.reformataData(lista.get(i).getDtCad())});
+        ArrayList<Animal> lista = new AnimalDAO().filtrarAnimal(cpf,id);
             
+        for(int i = 0;i<lista.size();i++){
+            modelo.addRow(new Object[]{lista.get(i).getIdAnimal(),lista.get(i).getNome(),lista.get(i).getPeso(),lista.get(i).getRaca().getRaca(),
+                u.reformataData(lista.get(i).getDtNasc()),lista.get(i).getSexo(),lista.get(i).getCliente().getNomeCliente()
+            });
         }
         
     }
     
     public void carregaLista(){
         Util u = new Util();
-        String titulopessoais[] = {"Nome","Peso","Raça","Dt Nasc","Sexo","Proprietário"};
+        String titulopessoais[] = {"RGA","Nome","Peso","Raça","Dt Nasc","Sexo","Proprietário"};
        
         
         Object dados [][]={};
@@ -303,10 +324,9 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
         ArrayList<Animal> lista = new AnimalDAO().listarAnimal();
                
         for(int i = 0;i<lista.size();i++){
-            modelo.addRow(new Object[]{lista.get(i).getNome(),lista.get(i).getPeso(),lista.get(i).getRaca().getRaca(),
+            modelo.addRow(new Object[]{lista.get(i).getIdAnimal(),lista.get(i).getNome(),lista.get(i).getPeso(),lista.get(i).getRaca().getRaca(),
                 u.reformataData(lista.get(i).getDtNasc()),lista.get(i).getSexo(),lista.get(i).getCliente().getNomeCliente()
-                    });
-            
+            });
         }
         
     }

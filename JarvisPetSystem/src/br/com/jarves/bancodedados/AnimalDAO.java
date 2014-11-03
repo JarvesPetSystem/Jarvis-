@@ -2,8 +2,6 @@ package br.com.jarves.bancodedados;
 
 import br.com.jarves.classes.Animal;
 import br.com.jarves.classes.Cliente;
-import br.com.jarves.classes.Contato;
-import br.com.jarves.classes.Logradouro;
 import br.com.jarves.classes.Raca;
 import java.sql.Connection;
 import java.sql.Date;
@@ -105,7 +103,7 @@ public class AnimalDAO {
      */
     public ArrayList<Animal> listarAnimal(){
        
-        ArrayList<Animal> lista = new ArrayList<Animal>();
+        ArrayList<Animal> lista = new ArrayList<>();
         ConexaoOracle co = new ConexaoOracle();
         try {
             Connection con = co.abreConexao();
@@ -113,8 +111,8 @@ public class AnimalDAO {
                          "initcap(ta.status_animal)status,ta.obs_animal obs,initcap(tc.nome_cliente)nomecli,ta.id_cliente_fk FROM " +
                          "tab_animal ta INNER JOIN tab_cliente tc ON " +
                          "ta.id_cliente_fk IN tc.id_cliente INNER JOIN " +
-                         "tab_raca tr on ta.id_raca_fk in tr.id_raca";
-            System.out.println(sql);
+                         "tab_raca tr on ta.id_raca_fk in tr.id_raca ORDER BY ta.id_animal";
+            
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
@@ -145,5 +143,55 @@ public class AnimalDAO {
         
         return lista;
          
+    }
+    
+    /**
+     * Método de Filtro de Animais
+     * @param animal
+     * @return Todos animais filtrados
+     */
+    public ArrayList<Animal>filtrarAnimal(String cpf,String id){
+        
+        ArrayList<Animal> lista = new ArrayList<>();
+        ConexaoOracle co = new ConexaoOracle();
+        
+        try{
+            Connection con = co.abreConexao();
+            String sql = "SELECT initcap(tc.nome_cliente)cliente,ta.id_animal,initcap(ta.nome_animal)nome,initcap(tr.nome_raca)raca, " +
+                         "ta.dtnasc_animal dtnasc, ta.peso_animal,initcap(ta.sexo_animal) sexo,initcap(ta.status_animal)status,ta.obs_animal obs " +
+                         "FROM tab_animal ta INNER JOIN tab_cliente tc ON " +
+                         "ta.id_cliente_fk IN tc.id_cliente INNER JOIN tab_raca tr ON " +
+                         "ta.id_raca_fk IN tr.id_raca WHERE tc.cpf_cliente LIKE ? OR ta.id_animal LIKE ? ORDER BY ta.id_animal";
+            
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, cpf);
+            stmt.setString(2, id);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Cliente cliente = new Cliente();
+                Raca raca = new Raca();
+                Animal animal = new Animal();
+                
+                cliente.setNomeCliente(rs.getString("cliente"));
+                raca.setRaca(rs.getString("raca"));
+                
+                animal.setCliente(cliente);
+                animal.setRaca(raca);
+                animal.setNome(rs.getString("nome"));
+                animal.setIdAnimal(rs.getInt("id_animal"));
+                animal.setPeso(rs.getDouble("peso_animal"));
+                animal.setDtNasc(rs.getDate("dtnasc"));
+                animal.setSexo(rs.getString("sexo"));
+                animal.setStatus(rs.getString("status"));
+                animal.setObs(rs.getString("obs"));
+                lista.add(animal);
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Erro: "+ex);
+        }
+        
+        
+        return lista;
     }
 }

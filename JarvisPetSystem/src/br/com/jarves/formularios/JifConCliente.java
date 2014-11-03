@@ -235,6 +235,7 @@ public class JifConCliente extends javax.swing.JInternalFrame {
        jtfNome.setVisible(true);
        jtfNome.grabFocus();
        jlbNome.setText("Nome: ");
+       jtfNome.setText("");
        carregaLista();
     }//GEN-LAST:event_jrbNomeActionPerformed
 
@@ -252,7 +253,7 @@ public class JifConCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jftCpfActionPerformed
 
     private void jftCpfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jftCpfKeyReleased
-        if(jftCpf.getText().trim().length()>11){
+        if(jftCpf.getText().trim().length()==14){
             filtraLista();
             
         }else{
@@ -313,6 +314,9 @@ public class JifConCliente extends javax.swing.JInternalFrame {
      */
     public void filtraLista(){
         Util u = new Util();
+        
+        String cpf ="";
+        String nome = "";
         String titulopessoais[] = {"Nome","CPF","RG","Dt Nasc","Sexo","Cliente Desde"};
         String tituloendereco[] = {"Nome","Endereço","N°","Complemento","CEP"};
         String titulocontato[]  = {"Nome","Telefone","Celular","Email","Observações" };
@@ -334,7 +338,13 @@ public class JifConCliente extends javax.swing.JInternalFrame {
         jtbConCli.setDefaultRenderer(Object.class,new TableFormat());
         jtbConCli.setModel(contat);
         
-        ArrayList<Cliente> lista = new ClienteDAO().pesquisarCliente(u.formataCpf(jftCpf.getText().trim()),jtfNome.getText().toLowerCase().trim()+"%");
+        if(jftCpf.getText().trim().length()>11){
+           cpf = u.formataCpf(jftCpf.getText().trim());
+        }
+        if(jtfNome.getText().trim().length()>0){
+            nome = jtfNome.getText()+"%";
+        }
+        ArrayList<Cliente> lista = new ClienteDAO().pesquisarCliente(cpf,nome);
                
         for(int i = 0;i<lista.size();i++){
             modelo.addRow(new Object[]{lista.get(i).getNomeCliente(),u.reformataCpf(lista.get(i).getCpf()),

@@ -22,7 +22,6 @@ public class EnderecoDAO {
                         "INNER JOIN tab_estado te ON " +
                         "tm.id_estado IN te.id_estado " +
                         "WHERE tl.cep_logradouro in ?";
-            System.out.println(sql);
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, logradouro.getCep());
             ResultSet rs = stmt.executeQuery();

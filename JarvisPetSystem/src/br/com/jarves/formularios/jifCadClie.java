@@ -16,7 +16,6 @@ import br.com.jarves.util.LimiteDigitos;
 
 import java.awt.Dimension;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -28,7 +27,9 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  *
  * @author Humberto
  */
-public class jifCadClie extends javax.swing.JInternalFrame  {
+public class jifCadClie extends javax.swing.JInternalFrame {
+
+    int idCliente = 0;
 
     /**
      * Creates new form jifCadCli
@@ -41,8 +42,7 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
         jtfEmail.setDocument(new LimiteDigitos(60));
         jtfObs.setDocument(new LimiteDigitos(60));
         
-        
-        
+        jbtAlterar.setVisible(false);
     }
 
     /**
@@ -58,9 +58,8 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
         jPanel2 = new javax.swing.JPanel();
         jftCpf = new javax.swing.JFormattedTextField();
         jtfNome = new javax.swing.JTextField();
-        btnPesquisar = new javax.swing.JButton();
+        jbtAlterar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jtbPainel = new javax.swing.JTabbedPane();
         jpnEndereco = new javax.swing.JPanel();
         jftCep = new javax.swing.JFormattedTextField();
@@ -146,28 +145,18 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
         jPanel2.add(jtfNome);
         jtfNome.setBounds(110, 100, 290, 30);
 
-        btnPesquisar.setText("Pesquisar");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+        jbtAlterar.setText("Alterar");
+        jbtAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarActionPerformed(evt);
+                jbtAlterarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnPesquisar);
-        btnPesquisar.setBounds(460, 170, 110, 40);
+        jPanel2.add(jbtAlterar);
+        jbtAlterar.setBounds(460, 100, 110, 40);
 
         jLabel1.setText("Dt Nascimento:");
         jPanel2.add(jLabel1);
         jLabel1.setBounds(20, 150, 80, 30);
-
-        jButton1.setText("jButton1");
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton1);
-        jButton1.setBounds(460, 120, 110, 40);
 
         jtbPainel.setNextFocusableComponent(jPanel4);
 
@@ -342,19 +331,20 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
             }
         });
         jPanel2.add(jbtInserir);
-        jbtInserir.setBounds(460, 20, 110, 40);
+        jbtInserir.setBounds(460, 50, 110, 40);
         jPanel2.add(jSeparator1);
         jSeparator1.setBounds(20, 242, 560, 10);
 
         jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/voltar.png.jpg"))); // NOI18N
-        jbtVoltar.setText("Voltar");
+        jbtVoltar.setText("Cancelar");
+        jbtVoltar.setActionCommand("");
         jbtVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtVoltarActionPerformed(evt);
             }
         });
         jPanel2.add(jbtVoltar);
-        jbtVoltar.setBounds(460, 70, 110, 40);
+        jbtVoltar.setBounds(460, 150, 110, 40);
 
         jtfRg.setNextFocusableComponent(jtfNome);
         jPanel2.add(jtfRg);
@@ -381,48 +371,28 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
         setBounds(0, 0, 650, 541);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        
-        Cliente c = new Cliente();
-        ClienteDAO cd = new ClienteDAO();
-        
-        if (cd.getCliente(c) != null) {
-            JOptionPane.showMessageDialog(null, "" + cd.getCliente(c).getIdCliente() + "\n" + cd.getCliente(c).getNomeCliente() + "\n"
-                    + cd.getCliente(c).getEndereco().getNomeRua() + "\n" + cd.getCliente(c).getEndereco().getBairro());
-            
-        } else {
-            JOptionPane.showMessageDialog(null, "Cliente não Cadastrado", "Erro", 3);
+    private void jbtAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAlterarActionPerformed
+        if(validaCampos()){
+            alteraCliente();
+            limparCampos();
+            jbtAlterar.setVisible(false);
+            jbtInserir.setVisible(true);
         }
         
-    }//GEN-LAST:event_btnPesquisarActionPerformed
+    }//GEN-LAST:event_jbtAlterarActionPerformed
 
     private void jbtPesEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPesEndActionPerformed
-        
+
         jifConEnd jie = new jifConEnd();
         Global.jdpPrincipal.add(jie);
-        
+
         ((BasicInternalFrameUI) jie.getUI()).setNorthPane(null);
         jie.setPosicao();
         jie.setVisible(true);
-        jie.flag =1;
+        jie.flag = 1;
 
     }//GEN-LAST:event_jbtPesEndActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        if (jdcNasc.getDate() != null) {
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            String data = formato.format(jdcNasc.getDate());
-            System.out.println(data);
-            Date d = new Date();
-            
-            if(jdcNasc.getDate().after(d)){System.out.println("não pode porra");}
-            System.out.println(d + "\n"+ jdcNasc.getDate());
-        } else {
-            JOptionPane.showMessageDialog(null, "Malucão");
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-    
 
     private void jdcNascPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcNascPropertyChange
 
@@ -434,35 +404,20 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
     Logradouro end = new Logradouro();
     EnderecoDAO endereco = new EnderecoDAO();
     private void jftCepKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jftCepKeyReleased
-        
+
         if (jftCep.getText().trim().length() > 8) {
             buscaCep();
         }
     }//GEN-LAST:event_jftCepKeyReleased
 
     private void jbtInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtInserirActionPerformed
-        Util u = new Util();
-        Cliente cliente = new Cliente();
-        ClienteDAO clientedao = new ClienteDAO();
-        Contato contato = new Contato();
-        Date d = new Date();
-        if (!u.isCPF(u.formataCpf(jftCpf.getText()))) {
-            JOptionPane.showMessageDialog(null, "CPF Inválido");
-        } else if (jtfNome.getText().trim().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Por Favor Informe o Nome");
-        } else if (jdcNasc.getDate() == null) {
-            JOptionPane.showMessageDialog(null, "Por Favor Selecione Uma Data de Nascimento");
-        } else if (jcbSexo.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Por Favor Selecione o Sexo");
-        } else if (jftCep.getText().trim().length() < 8) {
-            JOptionPane.showMessageDialog(null, "Por Favor Informe o CEP");
-        } else if (jftCelular.getText().trim().length() < 2 && jftTelefone.getText().trim().length() < 2 && jtfEmail.getText().trim().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Por Favor Informe ao Menos um Contato");
-        } else if (jtfNumero.getText().trim().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "Por Favor Informe o Número");
-        } else if(jdcNasc.getDate().after(d)){
-            JOptionPane.showMessageDialog(null, "Data de Nascimento Não Pode Ser Superior a Data Atual");
-        }else {
+
+        if (validaCampos()) {
+            Util u = new Util();
+            Cliente cliente = new Cliente();
+            ClienteDAO clientedao = new ClienteDAO();
+            Contato contato = new Contato();
+
             cliente.setNomeCliente(jtfNome.getText().toLowerCase().trim());
             cliente.setCpf(u.formataCpf(jftCpf.getText().trim()));
             cliente.setRg(jtfRg.getText().trim());
@@ -481,21 +436,21 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
             contato.setObs(jtfObs.getText().trim());
             cliente.setContato(contato);
             JOptionPane.showMessageDialog(null, clientedao.insereCliente(cliente));
-            
-            if(JOptionPane.showConfirmDialog(null, "Deseja Registrar um Animal para esse Cliente?", "Pergunta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+
+            if (JOptionPane.showConfirmDialog(null, "Deseja Registrar um Animal para esse Proprietário?", "Pergunta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 jifCadAnimal jie = new jifCadAnimal();
                 Global.jdpPrincipal.add(jie);
                 ((BasicInternalFrameUI) jie.getUI()).setNorthPane(null);
                 jie.setPosicao();
                 jie.setVisible(true);
                 Global.jtfCliente.setText(jtfNome.getText());
-                Global.cpf.setText("CPF: "+jftCpf.getText());
+                Global.cpf.setText("CPF: " + jftCpf.getText());
                 jifCadAnimal.cpf = jftCpf.getText();
                 this.dispose();
             }
             limparCampos();
         }
-        
+
 
     }//GEN-LAST:event_jbtInserirActionPerformed
     /**
@@ -521,9 +476,9 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
         jtbPainel.setSelectedIndex(0);
         jlbDesde.setText("");
         jftCpf.grabFocus();
-        
+
     }
-    
+
 
     private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
         this.dispose();
@@ -532,14 +487,14 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
     private void jftCpfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jftCpfKeyReleased
         if (jftCpf.getText().trim().length() > 13) {
             Util u = new Util();
-            if (!u.isCPF(u.formataCpf(jftCpf.getText().trim()))){
+            if (!u.isCPF(u.formataCpf(jftCpf.getText().trim()))) {
                 JOptionPane.showMessageDialog(null, "CPF Inválido");
                 jftCpf.setText("");
                 jftCpf.grabFocus();
-            }else{
+            } else {
                 buscaCliente();
             }
-            
+
         }
     }//GEN-LAST:event_jftCpfKeyReleased
 
@@ -550,21 +505,19 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
     }//GEN-LAST:event_jftCepFocusGained
 
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
-        
+
     }//GEN-LAST:event_jPanel1KeyPressed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-      
+
     }//GEN-LAST:event_formKeyPressed
 
     private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
-         
+
     }//GEN-LAST:event_formKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnPesquisar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -585,6 +538,7 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbtAlterar;
     private javax.swing.JButton jbtInserir;
     private javax.swing.JButton jbtPesEnd;
     private javax.swing.JButton jbtVoltar;
@@ -612,8 +566,8 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
     /**
      * Abre a tela no meio do formulário
      */
-    public void setPosicao() {        
-        Dimension d = this.getDesktopPane().getSize();        
+    public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
         this.setLocation((d.width - this.getSize().width) / 2, 0);
     }
 
@@ -621,48 +575,112 @@ public class jifCadClie extends javax.swing.JInternalFrame  {
      * Método que filtra a lista de clientes
      */
     public void buscaCliente() {
-        
+
         Util u = new Util();
         ClienteDAO cliente = new ClienteDAO();
         ArrayList<Cliente> lista = new ClienteDAO().pesquisarCliente(u.formataCpf(jftCpf.getText().trim()), null);
-        
-        if (lista.size() > 0){
-                if(JOptionPane.showConfirmDialog(null, "Cliente já Cadastrado, Deseja Exibir os Dados?", "Pergunta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    jtfNome.setText(lista.get(0).getNomeCliente());
-                    jtfRg.setText(lista.get(0).getRg());
-                    jdcNasc.setDate(lista.get(0).getDtNasc());
-                    jcbSexo.setSelectedItem(lista.get(0).getSexo());
-                    jftCep.setText(lista.get(0).getEndereco().getCep());
-                    jtfRua.setText(lista.get(0).getEndereco().getNomeRua());
-                    jtfNumero.setText(lista.get(0).getEndereco().getNumero());
-                    jtfBairro.setText(lista.get(0).getEndereco().getBairro());
-                    jtfComplemento.setText(lista.get(0).getEndereco().getComplemento());
-                    jtfCidade.setText(lista.get(0).getEndereco().getCidade());
-                    jtfEstado.setText(lista.get(0).getEndereco().getEstado());
-                    jftTelefone.setText(lista.get(0).getContato().getTelefone());
-                    jftCelular.setText(lista.get(0).getContato().getCelular());
-                    jtfEmail.setText(lista.get(0).getContato().getEmail());
-                    jtfObs.setText(lista.get(0).getContato().getObs());
-                    jlbDesde.setText("Cliente desde: "+u.reformataData(lista.get(0).getDtCad()));
-                }else {
-                    limparCampos();
+
+        if (lista.size() > 0) {
+            if (JOptionPane.showConfirmDialog(null, "Cliente já Cadastrado, Deseja Exibir os Dados?", "Pergunta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                idCliente = lista.get(0).getIdCliente();
+                jtfNome.setText(lista.get(0).getNomeCliente());
+                jtfRg.setText(lista.get(0).getRg());
+                jdcNasc.setDate(lista.get(0).getDtNasc());
+                jcbSexo.setSelectedItem(lista.get(0).getSexo());
+                jftCep.setText(lista.get(0).getEndereco().getCep());
+                jtfRua.setText(lista.get(0).getEndereco().getNomeRua());
+                jtfNumero.setText(lista.get(0).getEndereco().getNumero());
+                jtfBairro.setText(lista.get(0).getEndereco().getBairro());
+                jtfComplemento.setText(lista.get(0).getEndereco().getComplemento());
+                jtfCidade.setText(lista.get(0).getEndereco().getCidade());
+                jtfEstado.setText(lista.get(0).getEndereco().getEstado());
+                jftTelefone.setText(lista.get(0).getContato().getTelefone());
+                jftCelular.setText(lista.get(0).getContato().getCelular());
+                jtfEmail.setText(lista.get(0).getContato().getEmail());
+                jtfObs.setText(lista.get(0).getContato().getObs());
+                jlbDesde.setText("Cliente desde: " + u.reformataData(lista.get(0).getDtCad()));
+                end.setIdLogradouro(lista.get(0).getEndereco().getIdLogradouro());
+                jbtInserir.setVisible(false);
+                jbtAlterar.setVisible(true);
+            } else {
+                limparCampos();
             }
         }
     }
-    public void buscaCep(){
-            Util u = new Util();
-            
-            String cep = u.formataCep(jftCep.getText().trim());
-            end.setCep(cep);
-            endereco.getEndereco(end);
-            if (end.getIdLogradouro() == 0) {
-                JOptionPane.showMessageDialog(null, "Endereço Não Localizado");
-                jftCep.setText("");
-            } else {
-                jtfBairro.setText(end.getBairro());
-                jtfCidade.setText(end.getCidade());
-                jtfRua.setText(end.getNomeRua());
-                jtfEstado.setText(end.getEstado());
-            }
+
+    public void buscaCep() {
+        Util u = new Util();
+
+        String cep = u.formataCep(jftCep.getText().trim());
+        end.setCep(cep);
+        endereco.getEndereco(end);
+        if (end.getIdLogradouro() == 0) {
+            JOptionPane.showMessageDialog(null, "Endereço Não Localizado");
+            jftCep.setText("");
+        } else {
+            jtfBairro.setText(end.getBairro());
+            jtfCidade.setText(end.getCidade());
+            jtfRua.setText(end.getNomeRua());
+            jtfEstado.setText(end.getEstado());
+        }
+    }
+
+    public void alteraCliente() {
+        ClienteDAO cd = new ClienteDAO();
+        Cliente cliente = new Cliente();
+        Contato contato = new Contato();
+        Util u = new Util();
+
+        cliente.setIdCliente(idCliente);
+        cliente.setNomeCliente(jtfNome.getText().toLowerCase());
+        cliente.setCpf(u.formataCpf(jftCpf.getText().trim()));
+        cliente.setRg(jtfRg.getText().trim());
+        try {
+            cliente.setDtNasc(u.data(jdcNasc.getDate()));
+        } catch (ParseException ex) {
+            Logger.getLogger(jifCadClie.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        cliente.setSexo(jcbSexo.getSelectedItem().toString().toLowerCase());
+        end.setNumero(jtfNumero.getText().trim());
+        end.setComplemento(jtfComplemento.getText().trim());
+        cliente.setEndereco(end);
+        contato.setEmail(jtfEmail.getText().toLowerCase().trim());
+        contato.setTelefone(u.formataTelefone(jftTelefone.getText()));
+        contato.setCelular(u.formataCelular(jftCelular.getText()));
+        contato.setObs(jtfObs.getText().trim());
+        cliente.setContato(contato);
+
+        JOptionPane.showMessageDialog(null, cd.atualizaCliente(cliente));
+    }
+
+    public boolean validaCampos() {
+
+        boolean retorno = false;
+
+        Date d = new Date();
+        Util u = new Util();
+
+        if (!u.isCPF(u.formataCpf(jftCpf.getText()))) {
+            JOptionPane.showMessageDialog(null, "CPF Inválido");
+        } else if (jtfNome.getText().trim().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por Favor Informe o Nome");
+        } else if (jdcNasc.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Por Favor Selecione Uma Data de Nascimento");
+        } else if (jcbSexo.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Por Favor Selecione o Sexo");
+        } else if (jftCep.getText().trim().length() < 8) {
+            JOptionPane.showMessageDialog(null, "Por Favor Informe o CEP");
+        } else if (jftCelular.getText().trim().length() < 2 && jftTelefone.getText().trim().length() < 2 && jtfEmail.getText().trim().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por Favor Informe ao Menos um Contato");
+        } else if (jtfNumero.getText().trim().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por Favor Informe o Número");
+        } else if (jdcNasc.getDate().after(d)) {
+            JOptionPane.showMessageDialog(null, "Data de Nascimento Não Pode Ser Superior a Data Atual");
+        } else {
+            retorno = true;
+        }
+
+        return retorno;
+
     }
 }

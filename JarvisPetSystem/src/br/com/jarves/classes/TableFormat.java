@@ -34,14 +34,14 @@ public class TableFormat extends DefaultTableCellRenderer{
         }
         
         if(isSelected){
-            setBackground(Color.decode("#6A5ACD"));
+            setBackground(Color.BLACK);
             setForeground(Color.white);
             setFont(new Font("Arial",Font.BOLD,16));
             table.editingStopped(null);
             
         }
-        table.getColumnModel().getColumn(0).setPreferredWidth(160);
-        table.getColumnModel().getColumn(1).setPreferredWidth(100);
+        //table.getColumnModel().getColumn(0).setPreferredWidth(160);
+        //table.getColumnModel().getColumn(1).setPreferredWidth(100);
      
         return this;
     }
