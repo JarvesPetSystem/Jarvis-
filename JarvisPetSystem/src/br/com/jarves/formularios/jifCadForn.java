@@ -327,12 +327,13 @@ public class jifCadForn extends javax.swing.JInternalFrame {
 
     private void jbtPesEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPesEndActionPerformed
         
-        JifConCliente jie = new JifConCliente();
+        jifConEnd jie = new jifConEnd();
         Global.jdpPrincipal.add(jie);
         
         ((BasicInternalFrameUI) jie.getUI()).setNorthPane(null);
         jie.setPosicao();
         jie.setVisible(true);
+        jie.flag =2;
         
 
     }//GEN-LAST:event_jbtPesEndActionPerformed
@@ -439,7 +440,17 @@ public class jifCadForn extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbtVoltarActionPerformed
 
     private void jftCnpjKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jftCnpjKeyReleased
-       
+      if (jftCnpj.getText().trim().length() > 16) {
+          Util u = new Util();
+            if (!u.isCNPJ(u.formataCnpj(jftCnpj.getText().trim()))){
+                JOptionPane.showMessageDialog(null, "CNPJ Inválido");
+                jftCnpj.setText("");
+                jftCnpj.grabFocus();
+                
+            }else{
+                buscaFornecedor();
+            }
+      }
     }//GEN-LAST:event_jftCnpjKeyReleased
 
     private void jftCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jftCnpjActionPerformed
@@ -509,10 +520,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         
         if (lista.size() > 0){
             if (JOptionPane.showConfirmDialog(null, "Fornecedor ja cadastrado, Deseja Exibir os Dados?", "Pergunta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                jtfNomeForn.setText(lista.get(0).getNomeFornecedor());
-                    
-                    
-                   
+                    jtfNomeForn.setText(lista.get(0).getNomeFornecedor());
                     jftCep.setText(lista.get(0).getIdEndereco().getCep());
                     jtfRua.setText(lista.get(0).getIdEndereco().getNomeRua());
                     jtfNumero.setText(lista.get(0).getIdEndereco().getNumero());

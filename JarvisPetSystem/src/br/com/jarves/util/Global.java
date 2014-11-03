@@ -21,5 +21,7 @@ public class Global {
     public static JDesktopPane jdpPrincipal;
     public static JFormattedTextField jtfCep;
     public static JTextField jtfCliente;
+    public static JTextField jtfFornecedor;
     public static JLabel cpf;
+     public static JLabel cnpj;
 }

@@ -23,7 +23,7 @@ public class FornecedorDAO {
             String sql = "SELECT f.id_fornecedor, initcap(f.nome_fornecedor)nome_fornecedor"+
                     " ,l.id_logradouro,l.nome_logradouro, l.cep_logradouro, "+
                     "b.nome_bairro, m.nome_municipio,e.nome_estado "+
-                    "FROM tab_fornecedor f INNER JOIN tab_logradouro l "+
+                    "FROM tab_fornecedor c INNER JOIN tab_logradouro l "+
                     "ON f.id_logradouro in l.id_logradouro "+
                     "INNER JOIN  tab_bairro b ON l.id_bairro in b.id_bairro INNER JOIN tab_municipio m ON "+ 
                     "b.id_municipio in m.id_municipio INNER JOIN tab_estado e ON m.id_estado IN e.id_estado "+
@@ -60,7 +60,7 @@ public class FornecedorDAO {
     
     /**
      * Insere um cliente no banco de dados
-     * @param fornecedor dados do cliente
+     * @param cliente dados do cliente
      * @return Mensagem
      */
     public String insereFornecedor(Fornecedor fornecedor){
@@ -80,7 +80,7 @@ public class FornecedorDAO {
             cs.setString(7, fornecedor.getIdContato().getEmail());
             cs.setString(8, fornecedor.getIdContato().getTelefone());
             cs.setString(9, fornecedor.getIdContato().getCelular());
-            cs.setString(10,fornecedor.getIdContato().getObs());
+            cs.setString(10, fornecedor.getIdContato().getObs());
             cs.execute();
             cs.close();
             con.close();
@@ -93,9 +93,9 @@ public class FornecedorDAO {
         return msg;
     }
     /**
-     * Método que pesquisa se o fornecedor já é cadastrado
-     * @param cnpj cpf do fornecedor
-     * @param nome nome do fornecedor
+     * Método que pesquisa se o cliente já é cadastrado
+     * @param cpf cpf do cliente
+     * @param nome nome do cliente
      * @return ArrayList de clientes 
      */
     public ArrayList<Fornecedor> pesquisarFornecedor(String cnpj,String nome){
@@ -104,18 +104,14 @@ public class FornecedorDAO {
         ConexaoOracle co = new ConexaoOracle();
         try {
             Connection con = co.abreConexao();
-            String sql = "SELECT id_fornecedor,initcap(nome_fornecedor)nome,cnpj_fornecedor cnpj," +
+            String sql = "SELECT id_fornecedor,initcap(nome_fornecedor)nome,cnpj_fornecedor cnpj,ie_fornecedor ie," +
                          "dtcad_fornecedor dtcad,initcap(tl.nome_logradouro)endereco,tl.cep_logradouro cep,te.nr_endereco num, "+
                          "te.comp_endereco,tcon.email_contato email,tcon.cel_contato celu,tcon.tel_contato tele,tcon.obs_contato,initcap(tba.nome_bairro)bairro,"+
                          "initcap(tmu.nome_municipio)cidade,initcap(tes.nome_estado) estado FROM "+
                          "tab_fornecedor tf INNER JOIN tab_endereco te ON tf.id_fornecedor IN te.id_fornecedor_fk INNER JOIN tab_logradouro tl ON "+
                          "te.id_logradouro_fk IN tl.id_logradouro INNER JOIN "+
                          "tab_contato tcon ON tf.id_fornecedor IN tcon.id_fornecedor_fk INNER JOIN tab_bairro tba ON "+
-                         "tl.id_bairro IN tba.id_bairro INN_endereco,tcon.email_contato email,tcon.cel_contato celu,tcon.tel_contato tele,tcon.obs_contato,initcap(tba.nome_bairro)bairro,"+
-                         "initcap(tmu.nome_municipio)cidade,initcap(tes.nome_estado) estado FROM \"+\n" +
-                         "tab_fornecedor tf INNER JOIN tab_endereco te ON tf.id_fornecedor IN te.id_fornecedor_fk INNER JOIN tab_logradouro tl ON "+
-                         "te.id_logradouro_fk IN tl.id_logradouro INNER JOIN "+
-                         "tab_contato tcon ON tf.id_fornecedor IN tcon.id_fornecedor JOIN tab_municipio tmu ON "+
+                         "tl.id_bairro IN tba.id_bairro INNER JOIN tab_municipio tmu ON "+
                          "tba.id_municipio IN tmu.id_municipio INNER JOIN tab_estado tes ON "+
                          "tmu.id_estado IN tes.id_estado WHERE tf.nome_fornecedor LIKE ? or tf.cnpj_fornecedor like ?";
             System.out.println(sql + nome + cnpj);
@@ -128,7 +124,7 @@ public class FornecedorDAO {
                 Logradouro endereco = new Logradouro();
                 Contato contato = new Contato();
                 
-                fornecedor.setIdFornecedor(rs.getInt(""));
+                fornecedor.setIdFornecedor(rs.getInt("id_fornecedor"));
                 fornecedor.setNomeFornecedor(rs.getString("nome"));
                 fornecedor.setCnpj(rs.getString("cnpj"));
                 fornecedor.setIeFornecedor(rs.getString("ie"));
@@ -166,10 +162,10 @@ public class FornecedorDAO {
         ConexaoOracle co = new ConexaoOracle();
         try {
             Connection con = co.abreConexao();
-            String sql = "SELECT id_fornecedor,initcap(nome_fornecedor)nome,cnpj_fornecedor cnpj,"+
+            String sql = "SELECT id_fornecedor,initcap(nome_fornecedor)nome,cnpj_fornecedor cnpj,ie_fornecedor ie,"+
                          "dtcad_fornecedor dtcad,initcap(tl.nome_logradouro)endereco,tl.cep_logradouro cep,te.nr_endereco num, te.comp_endereco,"+
                          "tcon.email_contato email,tcon.cel_contato celu,tcon.tel_contato tele,tcon.obs_contato "+
-                         "FROM tab_cliente tf INNER JOIN tab_endereco te ON tf.id_fornecedor IN te.id_fornecedor_fk INNER JOIN tab_logradouro tl ON "+
+                         "FROM tab_fornecedor tf INNER JOIN tab_endereco te ON tf.id_fornecedor IN te.id_fornecedor_fk INNER JOIN tab_logradouro tl ON "+
                          "te.id_logradouro_fk IN tl.id_logradouro INNER JOIN tab_contato tcon ON "+
                          "tf.id_fornecedor in tcon.id_fornecedor_fk ";
             System.out.println(sql);
@@ -180,10 +176,10 @@ public class FornecedorDAO {
                 Logradouro endereco = new Logradouro();
                 Contato contato = new Contato();
                 
-                fornecedor.setIdFornecedor(rs.getInt(""));
+                fornecedor.setIdFornecedor(rs.getInt("id_fornecedor"));
                 fornecedor.setNomeFornecedor(rs.getString("nome"));
                 fornecedor.setCnpj(rs.getString("cnpj"));
-                fornecedor.setIeFornecedor(rs.getString("inscricao estadual"));
+                fornecedor.setIeFornecedor(rs.getString("ie"));
                 fornecedor.setDtCadFornecedor(rs.getDate("dtcad"));
                 endereco.setNomeRua(rs.getString("endereco"));
                 endereco.setNumero(rs.getString("num"));
@@ -207,4 +203,3 @@ public class FornecedorDAO {
     }
 
 }
-
