@@ -201,5 +201,34 @@ public class FornecedorDAO {
         return lista;
          
     }
+    
+    public String atualizaFornecedor(Fornecedor fornecedor) {
+        String msg = "";
+
+        ConexaoOracle co = new ConexaoOracle();
+        try {
+            Connection con = co.abreConexao();
+            CallableStatement cs = con.prepareCall("{call altera_fornecedor(?,?,?,?,?,?,?,?,?,?,?)}");
+            cs.setInt(1, fornecedor.getIdFornecedor());
+            cs.setString(2, fornecedor.getNomeFornecedor());
+            cs.setString(3, fornecedor.getCnpj());
+            cs.setString(4, fornecedor.getIeFornecedor());
+            cs.setString(5, fornecedor.getIdEndereco().getNumero());
+            cs.setString(6, fornecedor.getIdEndereco().getComplemento());
+            cs.setInt   (7, fornecedor.getIdEndereco().getIdLogradouro());
+            cs.setString(8, fornecedor.getIdContato().getEmail());
+            cs.setString(9, fornecedor.getIdContato().getTelefone());
+            cs.setString(10, fornecedor.getIdContato().getCelular());
+            cs.setString(11, fornecedor.getIdContato().getObs());
+            cs.execute();
+            cs.close();
+            con.close();
+            msg = "Fornecedor Alterado com Sucesso!";
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro: " + ex);
+        }
+        return msg;
+
+    }
 
 }

@@ -5,8 +5,10 @@
  */
 package br.com.jarves.formularios;
 
+
 import br.com.jarves.bancodedados.FornecedorDAO;
 import br.com.jarves.bancodedados.EnderecoDAO;
+
 import br.com.jarves.classes.Fornecedor;
 import br.com.jarves.classes.Contato;
 import br.com.jarves.classes.Logradouro;
@@ -31,6 +33,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Humberto
  */
 public class jifCadForn extends javax.swing.JInternalFrame {
+    
+    int idFornecedor = 0;
 
     /**
      * Creates new form jifCadCli
@@ -53,8 +57,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jftCnpj = new javax.swing.JFormattedTextField();
         jtfIE = new javax.swing.JTextField();
-        btnPesquisar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jbtAlterar = new javax.swing.JButton();
         jtbPainel = new javax.swing.JTabbedPane();
         jpnEndereco = new javax.swing.JPanel();
         jftCep = new javax.swing.JFormattedTextField();
@@ -121,24 +124,15 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jPanel2.add(jtfIE);
         jtfIE.setBounds(120, 140, 290, 30);
 
-        btnPesquisar.setText("Pesquisar");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+        jbtAlterar.setText("Alterar");
+        jbtAlterar.setFocusable(false);
+        jbtAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarActionPerformed(evt);
+                jbtAlterarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnPesquisar);
-        btnPesquisar.setBounds(460, 170, 110, 40);
-
-        jButton1.setText("jButton1");
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton1);
-        jButton1.setBounds(460, 120, 110, 40);
+        jPanel2.add(jbtAlterar);
+        jbtAlterar.setBounds(460, 70, 110, 40);
 
         jpnEndereco.setLayout(null);
 
@@ -285,7 +279,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jbtVoltar);
-        jbtVoltar.setBounds(460, 70, 110, 40);
+        jbtVoltar.setBounds(460, 120, 110, 40);
 
         jLabel15.setText("CNPJ:");
         jPanel2.add(jLabel15);
@@ -310,21 +304,6 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         setBounds(0, 0, 650, 537);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        
-        Fornecedor f = new Fornecedor();
-        FornecedorDAO fd = new FornecedorDAO();
-        
-        if (fd.getFornecedor(f) != null) {
-            JOptionPane.showMessageDialog(null, "" + fd.getFornecedor(f).getIdFornecedor() + "\n" + fd.getFornecedor(f).getNomeFornecedor() + "\n"
-                    + fd.getFornecedor(f).getIdEndereco().getNomeRua() + "\n" + fd.getFornecedor(f).getIdEndereco().getBairro());
-            
-        } else {
-            JOptionPane.showMessageDialog(null, "Fornecedor não Cadastrado", "Erro", 3);
-        }
-        
-    }//GEN-LAST:event_btnPesquisarActionPerformed
-
     private void jbtPesEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPesEndActionPerformed
         
         jifConEnd jie = new jifConEnd();
@@ -338,10 +317,15 @@ public class jifCadForn extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jbtPesEndActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbtAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAlterarActionPerformed
+           if(validaCampos()){
+            alteraFornecedor();
+            limparCampos();
+            jbtAlterar.setVisible(false);
+            jbtInserir.setVisible(true);
+        }        
         
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbtAlterarActionPerformed
     
 
     private void jdcNascPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcNascPropertyChange
@@ -459,8 +443,6 @@ public class jifCadForn extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnPesquisar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -479,6 +461,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbtAlterar;
     private javax.swing.JButton jbtInserir;
     private javax.swing.JButton jbtPesEnd;
     private javax.swing.JButton jbtVoltar;
@@ -553,5 +536,56 @@ public class jifCadForn extends javax.swing.JInternalFrame {
                 jtfRua.setText(end.getNomeRua());
                 jtfEstado.setText(end.getEstado());
             }
+    }
+    
+    
+    public void alteraFornecedor() {
+        FornecedorDAO fd = new FornecedorDAO();
+        Fornecedor fornecedor = new Fornecedor();
+        Contato contato = new Contato();
+        Util u = new Util();
+
+        fornecedor.setIdFornecedor(idFornecedor);
+        fornecedor.setNomeFornecedor(jtfNomeForn.getText().toLowerCase());
+        fornecedor.setCnpj(u.formataCnpj(jftCnpj.getText().trim()));
+        fornecedor.setIeFornecedor(jtfIE.getText().trim());
+        end.setNumero(jtfNumero.getText().trim());
+        end.setComplemento(jtfComplemento.getText().trim());
+        fornecedor.setIdEndereco(end);
+        contato.setEmail(jtfEmail.getText().toLowerCase().trim());
+        contato.setTelefone(u.formataTelefone(jftTelefone.getText()));
+        contato.setCelular(u.formataCelular(jftCelular.getText()));
+        contato.setObs(jtfObs.getText().trim());
+        fornecedor.setIdContato(contato);
+
+        JOptionPane.showMessageDialog(null, fd.atualizaFornecedor(fornecedor));
+    }
+    
+    
+    public boolean validaCampos() {
+
+        boolean retorno = false;
+
+        Date d = new Date();
+        Util u = new Util();
+
+        if (!u.isCNPJ(u.formataCnpj(jftCnpj.getText()))) {
+            JOptionPane.showMessageDialog(null, "CNPJ Inválido");
+        } else if (jtfNomeForn.getText().trim().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por Favor Informe o Nome");
+        }  else if (jtfIE.getText().trim().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por Favor informe o IE");
+        } else if (jftCep.getText().trim().length() < 8) {
+            JOptionPane.showMessageDialog(null, "Por Favor Informe o CEP");
+        } else if (jftCelular.getText().trim().length() < 2 && jftTelefone.getText().trim().length() < 2 && jtfEmail.getText().trim().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por Favor Informe ao Menos um Contato");
+        } else if (jtfNumero.getText().trim().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Por Favor Informe o Número");
+        }  else {
+            retorno = true;
+        }
+
+        return retorno;
+
     }
 }
