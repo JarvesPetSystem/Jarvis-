@@ -15,6 +15,9 @@ import br.com.jarves.util.Global;
 import br.com.jarves.util.LimiteDigitos;
 
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import static java.awt.event.KeyEvent.VK_F1;
+import java.awt.event.KeyListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import static oracle.net.aso.C11.i;
 
 /**
  *
@@ -142,6 +146,11 @@ public class jifCadClie extends javax.swing.JInternalFrame {
 
         jtfNome.setToolTipText("Informe o Nome do Cliente");
         jtfNome.setNextFocusableComponent(jdcNasc);
+        jtfNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfNomeActionPerformed(evt);
+            }
+        });
         jPanel2.add(jtfNome);
         jtfNome.setBounds(110, 100, 290, 30);
 
@@ -171,14 +180,14 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         }
         jftCep.setToolTipText("Digite o CEP");
         jftCep.setNextFocusableComponent(jtfNumero);
-        jftCep.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jftCepActionPerformed(evt);
-            }
-        });
         jftCep.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jftCepFocusGained(evt);
+            }
+        });
+        jftCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jftCepActionPerformed(evt);
             }
         });
         jftCep.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -305,6 +314,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jtbPainel.getAccessibleContext().setAccessibleName("Contato");
 
         jLabel7.setText("RG:");
+        jLabel7.setNextFocusableComponent(jtfNome);
         jPanel2.add(jLabel7);
         jLabel7.setBounds(250, 50, 80, 30);
 
@@ -323,11 +333,16 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jcbSexo.setBounds(110, 200, 160, 30);
 
         jbtInserir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/inserir.png.png"))); // NOI18N
-        jbtInserir.setMnemonic('i');
+        jbtInserir.setMnemonic('V');
         jbtInserir.setText("Inserir");
         jbtInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtInserirActionPerformed(evt);
+            }
+        });
+        jbtInserir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jbtInserirKeyPressed(evt);
             }
         });
         jPanel2.add(jbtInserir);
@@ -389,7 +404,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         ((BasicInternalFrameUI) jie.getUI()).setNorthPane(null);
         jie.setPosicao();
         jie.setVisible(true);
-        jie.flag = 1;
+        jie.flag = 1; //essa flag faz a tela de endereço saber quem tá chamando nesse caso 1 significa cliente
 
     }//GEN-LAST:event_jbtPesEndActionPerformed
 
@@ -449,6 +464,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
                 this.dispose();
             }
             limparCampos();
+            
         }
 
 
@@ -515,6 +531,14 @@ public class jifCadClie extends javax.swing.JInternalFrame {
     private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
 
     }//GEN-LAST:event_formKeyTyped
+
+    private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNomeActionPerformed
+
+    private void jbtInserirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbtInserirKeyPressed
+          
+    }//GEN-LAST:event_jbtInserirKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -683,4 +707,14 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         return retorno;
 
     }
+    
+    public void keyPressed(KeyEvent evt) {  
+    if(evt.getKeyCode() == KeyEvent.VK_F1)  
+            JOptionPane.showMessageDialog(null, "Pressionou F1!");  
+    else if(evt.getKeyCode() == KeyEvent.VK_F2)  
+            JOptionPane.showMessageDialog(null, "Pressionou F2!");  
+    if(evt.getKeyCode() == KeyEvent.VK_F3)  
+            JOptionPane.showMessageDialog(null, "Pressionou F3!");  
+}  
+    
 }

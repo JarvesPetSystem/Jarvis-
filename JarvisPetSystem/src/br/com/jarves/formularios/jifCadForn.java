@@ -12,21 +12,14 @@ import br.com.jarves.bancodedados.EnderecoDAO;
 import br.com.jarves.classes.Fornecedor;
 import br.com.jarves.classes.Contato;
 import br.com.jarves.classes.Logradouro;
-import br.com.jarves.classes.TableFormat;
 import br.com.jarves.classes.Util;
 import br.com.jarves.util.Global;
-
 import java.awt.Dimension;
-import java.awt.Frame;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
-import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -35,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
 public class jifCadForn extends javax.swing.JInternalFrame {
     
     int idFornecedor = 0;
-
+    int idLogradouro = 0;
     /**
      * Creates new form jifCadCli
      */
@@ -111,6 +104,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jftCnpj.setNextFocusableComponent(jtfNomeForn);
         jftCnpj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jftCnpjActionPerformed(evt);
@@ -123,6 +117,8 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         });
         jPanel2.add(jftCnpj);
         jftCnpj.setBounds(120, 40, 120, 30);
+
+        jtfIE.setNextFocusableComponent(jftCep);
         jPanel2.add(jtfIE);
         jtfIE.setBounds(120, 140, 290, 30);
 
@@ -144,6 +140,12 @@ public class jifCadForn extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
         jftCep.setToolTipText("Digite o CEP");
+        jftCep.setNextFocusableComponent(jtfNumero);
+        jftCep.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jftCepFocusGained(evt);
+            }
+        });
         jftCep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jftCepActionPerformed(evt);
@@ -192,12 +194,16 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jtfEstado.setEditable(false);
         jpnEndereco.add(jtfEstado);
         jtfEstado.setBounds(380, 130, 100, 30);
+
+        jtfNumero.setNextFocusableComponent(jtfComplemento);
         jpnEndereco.add(jtfNumero);
         jtfNumero.setBounds(380, 50, 90, 30);
 
         jLabel14.setText("N °:");
         jpnEndereco.add(jLabel14);
         jLabel14.setBounds(350, 50, 40, 30);
+
+        jtfComplemento.setNextFocusableComponent(jftCnpj);
         jpnEndereco.add(jtfComplemento);
         jtfComplemento.setBounds(380, 90, 150, 30);
 
@@ -226,6 +232,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jftTelefone.setNextFocusableComponent(jftCelular);
         jPanel4.add(jftTelefone);
         jftTelefone.setBounds(90, 20, 170, 30);
 
@@ -234,6 +241,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jftCelular.setNextFocusableComponent(jtfEmail);
         jPanel4.add(jftCelular);
         jftCelular.setBounds(90, 60, 170, 30);
 
@@ -244,12 +252,16 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jLabel11.setText("Celular:");
         jPanel4.add(jLabel11);
         jLabel11.setBounds(30, 60, 90, 30);
+
+        jtfEmail.setNextFocusableComponent(jtfObs);
         jPanel4.add(jtfEmail);
         jtfEmail.setBounds(90, 100, 370, 30);
 
         jLabel12.setText("Observações:");
         jPanel4.add(jLabel12);
         jLabel12.setBounds(10, 140, 90, 30);
+
+        jtfObs.setNextFocusableComponent(jftCnpj);
         jPanel4.add(jtfObs);
         jtfObs.setBounds(90, 140, 370, 30);
 
@@ -286,6 +298,8 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jLabel15.setText("CNPJ:");
         jPanel2.add(jLabel15);
         jLabel15.setBounds(60, 40, 50, 30);
+
+        jtfNomeForn.setNextFocusableComponent(jtfIE);
         jPanel2.add(jtfNomeForn);
         jtfNomeForn.setBounds(120, 90, 290, 30);
 
@@ -415,6 +429,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jftCelular.setText("");
         jtfEmail.setText("");
         jtfObs.setText("");
+        jlbDesde.setText("");
         jtbPainel.setSelectedIndex(0);
         jftCnpj.grabFocus();
         
@@ -442,6 +457,12 @@ public class jifCadForn extends javax.swing.JInternalFrame {
     private void jftCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jftCnpjActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jftCnpjActionPerformed
+
+    private void jftCepFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jftCepFocusGained
+         if (jftCep.getText().trim().length() > 8) {
+            buscaCep();
+        }
+    }//GEN-LAST:event_jftCepFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -505,6 +526,9 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         
         if (lista.size() > 0){
             if (JOptionPane.showConfirmDialog(null, "Fornecedor ja cadastrado, Deseja Exibir os Dados?", "Pergunta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    idFornecedor = lista.get(0).getIdFornecedor();
+                    idLogradouro = lista.get(0).getIdEndereco().getIdLogradouro();
+                    
                     jtfNomeForn.setText(lista.get(0).getNomeFornecedor());
                     jtfIE.setText(lista.get(0).getIeFornecedor());
                     jftCep.setText(lista.get(0).getIdEndereco().getCep());
@@ -554,6 +578,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         fornecedor.setNomeFornecedor(jtfNomeForn.getText().toLowerCase());
         fornecedor.setCnpj(u.formataCnpj(jftCnpj.getText().trim()));
         fornecedor.setIeFornecedor(jtfIE.getText().trim());
+        end.setIdLogradouro(idLogradouro);
         end.setNumero(jtfNumero.getText().trim());
         end.setComplemento(jtfComplemento.getText().trim());
         fornecedor.setIdEndereco(end);
@@ -562,7 +587,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         contato.setCelular(u.formataCelular(jftCelular.getText()));
         contato.setObs(jtfObs.getText().trim());
         fornecedor.setIdContato(contato);
-
+        System.out.println(idLogradouro);
         JOptionPane.showMessageDialog(null, fd.atualizaFornecedor(fornecedor));
     }
     

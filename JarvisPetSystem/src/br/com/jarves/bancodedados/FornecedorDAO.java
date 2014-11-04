@@ -3,7 +3,6 @@ package br.com.jarves.bancodedados;
 import br.com.jarves.classes.*;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +19,7 @@ public class FornecedorDAO {
         try {
             
             Connection con = co.abreConexao();
-            String sql = "SELECT f.id_fornecedor, initcap(f.nome_fornecedor)nome_fornecedor"+
+            String sql = "SELECT f.id_fornecedor , te.ID_LOGRADOURO_FK idlog, initcap(f.nome_fornecedor)nome_fornecedor"+
                     " ,l.id_logradouro,l.nome_logradouro, l.cep_logradouro, "+
                     "b.nome_bairro, m.nome_municipio,e.nome_estado "+
                     "FROM tab_fornecedor c INNER JOIN tab_logradouro l "+
@@ -37,6 +36,8 @@ public class FornecedorDAO {
             if(rs.next()){
                 fornecedor.setIdFornecedor(rs.getInt("id_fornecedor"));
                 fornecedor.setNomeFornecedor(rs.getString("nome_fornecedor"));
+                endereco.setIdLogradouro(rs.getInt("idlog"));
+                System.out.println(rs.getInt("idlog"));
                 endereco.setNomeRua(rs.getString("nome_logradouro"));
                 endereco.setBairro(rs.getString("nome_bairro"));
                 endereco.setCep(rs.getString("cep_logradouro"));
@@ -52,7 +53,7 @@ public class FornecedorDAO {
             
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Erro: " + e);
-            e.printStackTrace();
+            
         }
         //JOptionPane.showMessageDialog(null, user.getNomeUsuario());
         return fornecedor;
@@ -60,11 +61,11 @@ public class FornecedorDAO {
     
     /**
      * Insere um cliente no banco de dados
-     * @param cliente dados do cliente
+     * @param fornecedor dados do cliente
      * @return Mensagem
      */
     public String insereFornecedor(Fornecedor fornecedor){
-        String msg = null;
+        String msg = "";
         ConexaoOracle co = new ConexaoOracle();
         
         try {
@@ -94,13 +95,13 @@ public class FornecedorDAO {
     }
     /**
      * Método que pesquisa se o cliente já é cadastrado
-     * @param cpf cpf do cliente
+     * @param cnpj cpf do cliente
      * @param nome nome do cliente
      * @return ArrayList de clientes 
      */
     public ArrayList<Fornecedor> pesquisarFornecedor(String cnpj,String nome){
        
-        ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
+        ArrayList<Fornecedor> lista = new ArrayList<>();
         ConexaoOracle co = new ConexaoOracle();
         try {
             Connection con = co.abreConexao();
@@ -129,6 +130,8 @@ public class FornecedorDAO {
                 fornecedor.setCnpj(rs.getString("cnpj"));
                 fornecedor.setIeFornecedor(rs.getString("ie"));
                 fornecedor.setDtCadFornecedor(rs.getDate("dtcad"));
+                endereco.setIdLogradouro(rs.getInt("idlog"));
+                System.out.println(rs.getInt("idlog"));
                 endereco.setNomeRua(rs.getString("endereco"));
                 endereco.setNumero(rs.getString("num"));
                 endereco.setBairro(rs.getString("bairro"));
@@ -209,6 +212,8 @@ public class FornecedorDAO {
         try {
             Connection con = co.abreConexao();
             CallableStatement cs = con.prepareCall("{call altera_fornecedor(?,?,?,?,?,?,?,?,?,?,?)}");
+            System.out.println(fornecedor.getIdFornecedor());
+            
             cs.setInt   (1, fornecedor.getIdFornecedor());
             cs.setString(2, fornecedor.getNomeFornecedor());
             cs.setString(3, fornecedor.getCnpj());

@@ -257,7 +257,7 @@ public int flag=0;
     }//GEN-LAST:event_jftCnpjActionPerformed
 
     private void jftCnpjKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jftCnpjKeyReleased
-        if(jftCnpj.getText().trim().length()==16){
+        if(jftCnpj.getText().trim().length()==14){
             filtraLista();
             
         }else{
@@ -313,13 +313,13 @@ public int flag=0;
     
     
     /**
-     * Método que filtra a lista de clientes
+     * Método que filtra a lista de fornecedores
      */
     public void filtraLista(){
         Util u = new Util();
         String cnpj = "";
         String nome = "";
-        String titulopessoais[] = {"Nome","CNPJ","Cliente Desde"};
+        String titulopessoais[] = {"Nome","CNPJ","IE","Cliente Desde"};
         String tituloendereco[] = {"Nome","Endereço","N°","Complemento","CEP"};
         String titulocontato[]  = {"Nome","Telefone","Celular","Email","Observações" };
         
@@ -341,16 +341,16 @@ public int flag=0;
         jtbConForn.setModel(contat);
         
         if(jftCnpj.getText().trim().length()>11){
-           cnpj = u.formataCpf(jftCnpj.getText().trim());
+           cnpj = u.formataCnpj(jftCnpj.getText().trim());
         }
         if(jtfNome.getText().trim().length()>0){
             nome = jtfNome.getText()+"%";
         }
         
-        ArrayList<Fornecedor> lista = new FornecedorDAO().pesquisarFornecedor(u.formataCnpj(jftCnpj.getText().trim()),jtfNome.getText().toLowerCase().trim()+"%");
+        ArrayList<Fornecedor> lista = new FornecedorDAO().pesquisarFornecedor(cnpj,nome);
                
         for(int i = 0;i<lista.size();i++){
-            modelo.addRow(new Object[]{lista.get(i).getNomeFornecedor(),u.reformataCnpj(lista.get(i).getCnpj()),
+            modelo.addRow(new Object[]{lista.get(i).getNomeFornecedor(),u.reformataCnpj(lista.get(i).getCnpj()),lista.get(i).getIeFornecedor(),
             u.reformataData(lista.get(i).getDtCadFornecedor())});
             
             ender.addRow(new Object[]{lista.get(i).getNomeFornecedor(),lista.get(i).getIdEndereco().getNomeRua(),
@@ -359,13 +359,14 @@ public int flag=0;
         
             contat.addRow(new Object[]{lista.get(i).getNomeFornecedor(),lista.get(i).getIdContato().getTelefone(),
                                       lista.get(i).getIdContato().getCelular(),lista.get(i).getIdContato().getCelular(),lista.get(i).getIdContato().getObs()});
-        }
         
+        }
     }
+    
     
     public void carregaLista(){
         Util u = new Util();
-        String titulopessoais[] = {"Nome","CNPJ","Fornecedor Desde"};
+        String titulopessoais[] = {"Nome","CNPJ","IE","Cliente Desde"};
         String tituloendereco[] = {"Nome","Endereço","N°","Complemento","CEP"};
         String titulocontato[]  = {"Nome","Telefone","Celular","Email","Observações" };
         
@@ -401,7 +402,7 @@ public int flag=0;
         ArrayList<Fornecedor> lista = new FornecedorDAO().listarFornecedor();
                
         for(int i = 0;i<lista.size();i++){
-            modelo.addRow(new Object[]{lista.get(i).getNomeFornecedor(),u.reformataCnpj(lista.get(i).getCnpj()),
+            modelo.addRow(new Object[]{lista.get(i).getNomeFornecedor(),u.reformataCnpj(lista.get(i).getCnpj()),lista.get(i).getIeFornecedor(),
             u.reformataData(lista.get(i).getDtCadFornecedor())});
             
             ender.addRow(new Object[]{lista.get(i).getNomeFornecedor(),lista.get(i).getIdEndereco().getNomeRua(),

@@ -147,6 +147,14 @@ public int flag;
                 Global.jtfCep.grabFocus();
                 flag =0;
                 this.dispose();
+            }else if (flag ==2){
+                int indiceLinha = jtbEndereco.getSelectedRow();
+                Object cep = jtbEndereco.getValueAt(indiceLinha, 2);
+                Global.jtfCep.setText(cep.toString());
+                
+                Global.jtfCep.grabFocus();
+                flag =0;
+                this.dispose();
             }
            
        }
