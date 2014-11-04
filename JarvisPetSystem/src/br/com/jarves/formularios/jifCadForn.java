@@ -323,8 +323,8 @@ public class jifCadForn extends javax.swing.JInternalFrame {
            if(validaCampos()){
             alteraFornecedor();
             limparCampos();
-            jbtAlterar.setVisible(true);
-            jbtInserir.setVisible(false);
+            jbtAlterar.setVisible(false);
+            jbtInserir.setVisible(true);
         }        
         
     }//GEN-LAST:event_jbtAlterarActionPerformed
