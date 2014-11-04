@@ -42,7 +42,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
     public jifCadForn() {
         initComponents();
         Global.jtfCep = jftCep;
-        jbtAlterar.setVisible(false);
+        jbtAlterarForn.setVisible(false);
         
     }
 
@@ -59,7 +59,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jftCnpj = new javax.swing.JFormattedTextField();
         jtfIE = new javax.swing.JTextField();
-        jbtAlterar = new javax.swing.JButton();
+        jbtAlterarForn = new javax.swing.JButton();
         jtbPainel = new javax.swing.JTabbedPane();
         jpnEndereco = new javax.swing.JPanel();
         jftCep = new javax.swing.JFormattedTextField();
@@ -126,15 +126,15 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jPanel2.add(jtfIE);
         jtfIE.setBounds(120, 140, 290, 30);
 
-        jbtAlterar.setText("Alterar");
-        jbtAlterar.setFocusable(false);
-        jbtAlterar.addActionListener(new java.awt.event.ActionListener() {
+        jbtAlterarForn.setText("Alterar");
+        jbtAlterarForn.setFocusable(false);
+        jbtAlterarForn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtAlterarActionPerformed(evt);
+                jbtAlterarFornActionPerformed(evt);
             }
         });
-        jPanel2.add(jbtAlterar);
-        jbtAlterar.setBounds(460, 70, 110, 40);
+        jPanel2.add(jbtAlterarForn);
+        jbtAlterarForn.setBounds(460, 70, 110, 40);
 
         jpnEndereco.setLayout(null);
 
@@ -319,15 +319,15 @@ public class jifCadForn extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jbtPesEndActionPerformed
 
-    private void jbtAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAlterarActionPerformed
+    private void jbtAlterarFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAlterarFornActionPerformed
            if(validaCampos()){
             alteraFornecedor();
             limparCampos();
-            jbtAlterar.setVisible(false);
+            jbtAlterarForn.setVisible(false);
             jbtInserir.setVisible(true);
         }        
         
-    }//GEN-LAST:event_jbtAlterarActionPerformed
+    }//GEN-LAST:event_jbtAlterarFornActionPerformed
     
 
     private void jdcNascPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcNascPropertyChange
@@ -463,7 +463,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JButton jbtAlterar;
+    private javax.swing.JButton jbtAlterarForn;
     private javax.swing.JButton jbtInserir;
     private javax.swing.JButton jbtPesEnd;
     private javax.swing.JButton jbtVoltar;
@@ -519,6 +519,8 @@ public class jifCadForn extends javax.swing.JInternalFrame {
                     jtfEmail.setText(lista.get(0).getIdContato().getEmail());
                     jtfObs.setText(lista.get(0).getIdContato().getObs());
                     jlbDesde.setText("Fornecedor desde: "+u.reformataData(lista.get(0).getDtCadFornecedor()));
+                    jbtInserir.setVisible(false);
+                    jbtAlterarForn.setVisible(true);
                 }else {
                     limparCampos();
             }
