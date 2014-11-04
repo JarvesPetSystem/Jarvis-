@@ -209,7 +209,7 @@ public class FornecedorDAO {
         try {
             Connection con = co.abreConexao();
             CallableStatement cs = con.prepareCall("{call altera_fornecedor(?,?,?,?,?,?,?,?,?,?,?)}");
-            cs.setInt(1, fornecedor.getIdFornecedor());
+            cs.setInt   (1, fornecedor.getIdFornecedor());
             cs.setString(2, fornecedor.getNomeFornecedor());
             cs.setString(3, fornecedor.getCnpj());
             cs.setString(4, fornecedor.getIeFornecedor());

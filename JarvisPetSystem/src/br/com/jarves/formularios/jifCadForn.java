@@ -41,6 +41,8 @@ public class jifCadForn extends javax.swing.JInternalFrame {
      */
     public jifCadForn() {
         initComponents();
+        Global.jtfCep = jftCep;
+        jbtAlterar.setVisible(false);
         
     }
 
