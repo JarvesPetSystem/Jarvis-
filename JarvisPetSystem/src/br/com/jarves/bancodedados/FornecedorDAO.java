@@ -115,7 +115,7 @@ public class FornecedorDAO {
                          "tl.id_bairro IN tba.id_bairro INNER JOIN tab_municipio tmu ON "+
                          "tba.id_municipio IN tmu.id_municipio INNER JOIN tab_estado tes ON "+
                          "tmu.id_estado IN tes.id_estado WHERE tf.nome_fornecedor LIKE ? or tf.cnpj_fornecedor like ?";
-            System.out.println(sql + nome + cnpj);
+            System.out.println(sql + cnpj + nome);
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, nome);
             stmt.setString(2, cnpj);

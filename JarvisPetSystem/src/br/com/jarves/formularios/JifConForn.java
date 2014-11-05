@@ -257,7 +257,7 @@ public int flag=0;
     }//GEN-LAST:event_jftCnpjActionPerformed
 
     private void jftCnpjKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jftCnpjKeyReleased
-        if(jftCnpj.getText().trim().length()==14){
+        if(jftCnpj.getText().trim().length()==18){
             filtraLista();
             
         }else{
