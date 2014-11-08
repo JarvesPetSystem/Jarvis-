@@ -88,7 +88,7 @@ public int flag=0;
             }
         });
         jPanel2.add(jtfNome);
-        jtfNome.setBounds(130, 40, 410, 30);
+        jtfNome.setBounds(100, 40, 410, 30);
         jPanel2.add(jSeparator1);
         jSeparator1.setBounds(10, 130, 760, 20);
 

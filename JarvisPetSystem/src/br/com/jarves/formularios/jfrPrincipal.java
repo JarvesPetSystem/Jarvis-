@@ -49,6 +49,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jmnCadastro = new javax.swing.JMenu();
         jmiCadCliente = new javax.swing.JMenuItem();
         jmiCadAnimal = new javax.swing.JMenuItem();
+        jmiCategoria = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jmiSair = new javax.swing.JMenuItem();
@@ -86,6 +87,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         });
         jmnCadastro.add(jmiCadCliente);
 
+        jmiCadAnimal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
         jmiCadAnimal.setText("Cliente / Animal");
         jmiCadAnimal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +95,15 @@ public class jfrPrincipal extends javax.swing.JFrame {
             }
         });
         jmnCadastro.add(jmiCadAnimal);
+
+        jmiCategoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK));
+        jmiCategoria.setText("Categoria");
+        jmiCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCategoriaActionPerformed(evt);
+            }
+        });
+        jmnCadastro.add(jmiCategoria);
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/forn.png.png"))); // NOI18N
@@ -273,6 +284,16 @@ public class jfrPrincipal extends javax.swing.JFrame {
        jie.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jmiCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCategoriaActionPerformed
+        jifCadCategoria jie = new jifCadCategoria();
+        jdpPrincipal.add(jie);
+          
+       ((BasicInternalFrameUI)jie.getUI()).setNorthPane(null);
+       //jie.setBorder(null); //insere bordas no formulário
+       jie.setPosicao();
+       jie.setVisible(true);
+    }//GEN-LAST:event_jmiCategoriaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -323,6 +344,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JMenuItem jmiCadAnimal;
     private javax.swing.JMenuItem jmiCadCliente;
+    private javax.swing.JMenuItem jmiCategoria;
     private javax.swing.JMenuItem jmiConAnimal;
     private javax.swing.JMenuItem jmiConsCli;
     private javax.swing.JMenuItem jmiSair;
