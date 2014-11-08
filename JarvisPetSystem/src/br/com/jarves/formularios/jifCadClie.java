@@ -16,8 +16,6 @@ import br.com.jarves.util.LimiteDigitos;
 
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import static java.awt.event.KeyEvent.VK_F1;
-import java.awt.event.KeyListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,7 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
-import static oracle.net.aso.C11.i;
+
 
 /**
  *
@@ -99,8 +97,8 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jbtVoltar = new javax.swing.JButton();
         jtfRg = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jdcNasc = new com.toedter.calendar.JDateChooser();
         jlbDesde = new javax.swing.JLabel();
+        jdcNasc = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -369,13 +367,11 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel15);
         jLabel15.setBounds(70, 50, 80, 30);
 
-        jdcNasc.setNextFocusableComponent(jcbSexo);
-        jPanel2.add(jdcNasc);
-        jdcNasc.setBounds(110, 150, 160, 30);
-
         jlbDesde.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jPanel2.add(jlbDesde);
         jlbDesde.setBounds(110, 20, 290, 20);
+        jPanel2.add(jdcNasc);
+        jdcNasc.setBounds(110, 150, 160, 30);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 10, 600, 490);

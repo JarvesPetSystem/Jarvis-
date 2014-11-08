@@ -106,7 +106,7 @@ public class FornecedorDAO {
         try {
             Connection con = co.abreConexao();
             String sql = "SELECT id_fornecedor,initcap(nome_fornecedor)nome,cnpj_fornecedor cnpj,ie_fornecedor ie," +
-                         "dtcad_fornecedor dtcad,initcap(tl.nome_logradouro)endereco,tl.cep_logradouro cep,te.nr_endereco num, "+
+                         "dtcad_fornecedor dtcad,tl.id_logradouro idlog,initcap(tl.nome_logradouro)endereco,tl.cep_logradouro cep,te.nr_endereco num, "+
                          "te.comp_endereco,tcon.email_contato email,tcon.cel_contato celu,tcon.tel_contato tele,tcon.obs_contato,initcap(tba.nome_bairro)bairro,"+
                          "initcap(tmu.nome_municipio)cidade,initcap(tes.nome_estado) estado FROM "+
                          "tab_fornecedor tf INNER JOIN tab_endereco te ON tf.id_fornecedor IN te.id_fornecedor_fk INNER JOIN tab_logradouro tl ON "+

@@ -1,8 +1,6 @@
 package br.com.jarves.bancodedados;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ConexaoOracle {
@@ -30,6 +28,15 @@ public class ConexaoOracle {
     public void fecharConexao(ResultSet rs,Statement stmt,Connection con){
         try {
             rs.close();
+            stmt.close();
+            con.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao fechar comunicação com BD "+ ex.toString());
+        }
+    }    
+    public void fecharConexao(PreparedStatement stmt,Connection con){
+        try {
+            
             stmt.close();
             con.close();
         } catch (SQLException ex) {

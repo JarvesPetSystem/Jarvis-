@@ -88,7 +88,7 @@ public int flag=0;
             }
         });
         jPanel2.add(jtfNome);
-        jtfNome.setBounds(100, 40, 410, 30);
+        jtfNome.setBounds(130, 40, 410, 30);
         jPanel2.add(jSeparator1);
         jSeparator1.setBounds(10, 130, 760, 20);
 
@@ -319,7 +319,7 @@ public int flag=0;
         Util u = new Util();
         String cnpj = "";
         String nome = "";
-        String titulopessoais[] = {"Nome","CNPJ","IE","Cliente Desde"};
+        String titulopessoais[] = {"Nome","CNPJ","IE","Fornecedor Desde"};
         String tituloendereco[] = {"Nome","Endereço","N°","Complemento","CEP"};
         String titulocontato[]  = {"Nome","Telefone","Celular","Email","Observações" };
         
@@ -340,7 +340,7 @@ public int flag=0;
         jtbConForn.setDefaultRenderer(Object.class,new TableFormat());
         jtbConForn.setModel(contat);
         
-        if(jftCnpj.getText().trim().length()>11){
+        if(jftCnpj.getText().trim().length()==18){
            cnpj = u.formataCnpj(jftCnpj.getText().trim());
         }
         if(jtfNome.getText().trim().length()>0){
