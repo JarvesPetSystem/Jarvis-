@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
-import static oracle.net.aso.C11.i;
+
 
 /**
  *
@@ -316,7 +316,7 @@ public void setPosicao() {
 
 public void carregaLista() {
 
-        String titulopessoais[] = {"Código", "servico","descrição","preco"};
+        String titulopessoais[] = {"Código", "Serviço","Descrição","Preço"};
 
         Object dados[][] = {};
 
