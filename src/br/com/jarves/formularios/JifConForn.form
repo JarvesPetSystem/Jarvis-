@@ -85,7 +85,7 @@
         <Component class="javax.swing.JButton" name="jbtVoltar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/br/com/jarves/icones/voltar.png.jpg"/>
+              <Image iconType="3" name="/br/com/jarves/icones/icone voltar (Copy).png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Voltar"/>
           </Properties>

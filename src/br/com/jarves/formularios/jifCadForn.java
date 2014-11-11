@@ -70,6 +70,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jtfComplemento = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jbtPesEnd = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jftTelefone = new javax.swing.JFormattedTextField();
@@ -79,6 +80,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jtfEmail = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jtfObs = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jbtInserir = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -93,10 +95,12 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         setName(""); // NOI18N
         getContentPane().setLayout(null);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Fornecedor"));
         jPanel2.setToolTipText("Cadastro de Fornecedor");
+        jPanel2.setOpaque(false);
         jPanel2.setLayout(null);
 
         try {
@@ -122,6 +126,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jPanel2.add(jtfIE);
         jtfIE.setBounds(120, 140, 290, 30);
 
+        jbtAlterarForn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/alterar.png"))); // NOI18N
         jbtAlterarForn.setText("Alterar");
         jbtAlterarForn.setFocusable(false);
         jbtAlterarForn.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +137,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jPanel2.add(jbtAlterarForn);
         jbtAlterarForn.setBounds(460, 70, 110, 40);
 
+        jpnEndereco.setOpaque(false);
         jpnEndereco.setLayout(null);
 
         try {
@@ -211,6 +217,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jpnEndereco.add(jLabel16);
         jLabel16.setBounds(340, 90, 40, 30);
 
+        jbtPesEnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/lupa_16x16.png"))); // NOI18N
         jbtPesEnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtPesEndActionPerformed(evt);
@@ -219,8 +226,13 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jpnEndereco.add(jbtPesEnd);
         jbtPesEnd.setBounds(170, 10, 70, 30);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Banner.png"))); // NOI18N
+        jpnEndereco.add(jLabel1);
+        jLabel1.setBounds(0, 0, 550, 190);
+
         jtbPainel.addTab("Endereço", jpnEndereco);
 
+        jPanel4.setOpaque(false);
         jPanel4.setLayout(null);
 
         jLabel9.setText("Telefone:");
@@ -265,6 +277,10 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jPanel4.add(jtfObs);
         jtfObs.setBounds(90, 140, 370, 30);
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/banner-contato.jpg"))); // NOI18N
+        jPanel4.add(jLabel7);
+        jLabel7.setBounds(0, 0, 550, 190);
+
         jtbPainel.addTab("Contato", jPanel4);
 
         jPanel2.add(jtbPainel);
@@ -275,6 +291,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel13);
         jLabel13.setBounds(10, 140, 100, 30);
 
+        jbtInserir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/inserir.png.png"))); // NOI18N
         jbtInserir.setText("Inserir");
         jbtInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,6 +303,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jPanel2.add(jSeparator1);
         jSeparator1.setBounds(20, 242, 560, 10);
 
+        jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/icone voltar (Copy).png"))); // NOI18N
         jbtVoltar.setText("Voltar");
         jbtVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -466,6 +484,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -479,6 +498,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

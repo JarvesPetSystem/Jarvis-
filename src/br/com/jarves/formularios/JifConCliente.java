@@ -66,6 +66,7 @@ public class JifConCliente extends javax.swing.JInternalFrame {
         setTitle("Consulta de Clientes");
         getContentPane().setLayout(null);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clientes"));
         jPanel2.setLayout(null);
 
@@ -88,7 +89,7 @@ public class JifConCliente extends javax.swing.JInternalFrame {
         jPanel2.add(jSeparator1);
         jSeparator1.setBounds(10, 130, 760, 20);
 
-        jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/voltar.png.jpg"))); // NOI18N
+        jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/icone voltar (Copy).png"))); // NOI18N
         jbtVoltar.setText("Voltar");
         jbtVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +99,9 @@ public class JifConCliente extends javax.swing.JInternalFrame {
         jPanel2.add(jbtVoltar);
         jbtVoltar.setBounds(640, 30, 100, 40);
 
+        jTabbedPane1.setBackground(new java.awt.Color(0, 0, 102));
+
+        jpnDados.setBackground(new java.awt.Color(0, 0, 102));
         jpnDados.setLayout(null);
 
         jtbCliente.setModel(new javax.swing.table.DefaultTableModel(
@@ -124,6 +128,7 @@ public class JifConCliente extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Informações Pessoais", jpnDados);
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
         jPanel1.setLayout(null);
 
         jtbEndCli.setModel(new javax.swing.table.DefaultTableModel(
@@ -145,6 +150,7 @@ public class JifConCliente extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Endereço", jPanel1);
 
+        jPanel3.setBackground(new java.awt.Color(0, 0, 102));
         jPanel3.setLayout(null);
 
         jtbConCli.setModel(new javax.swing.table.DefaultTableModel(

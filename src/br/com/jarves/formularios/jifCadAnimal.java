@@ -78,6 +78,7 @@ public class jifCadAnimal extends javax.swing.JInternalFrame  {
         jLabel20 = new javax.swing.JLabel();
         jblCpf = new javax.swing.JLabel();
         jdcNasc = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -148,7 +149,7 @@ public class jifCadAnimal extends javax.swing.JInternalFrame  {
         jPanel2.add(jbtInserir);
         jbtInserir.setBounds(460, 20, 110, 40);
 
-        jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/voltar.png.jpg"))); // NOI18N
+        jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/icone voltar (Copy).png"))); // NOI18N
         jbtVoltar.setText("Voltar");
         jbtVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,6 +240,10 @@ public class jifCadAnimal extends javax.swing.JInternalFrame  {
         jblCpf.setBounds(120, 24, 150, 20);
         jPanel2.add(jdcNasc);
         jdcNasc.setBounds(120, 170, 160, 30);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/CadAnimais.png"))); // NOI18N
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(10, 50, 560, 450);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 10, 580, 480);
@@ -369,6 +374,7 @@ public class jifCadAnimal extends javax.swing.JInternalFrame  {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;

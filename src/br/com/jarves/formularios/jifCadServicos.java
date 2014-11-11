@@ -90,6 +90,7 @@ public class jifCadServicos extends javax.swing.JInternalFrame {
         jtfDescServ.setRows(5);
         jScrollPane1.setViewportView(jtfDescServ);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/icone voltar (Copy).png"))); // NOI18N
         jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +98,7 @@ public class jifCadServicos extends javax.swing.JInternalFrame {
             }
         });
 
+        jbtInserir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/inserir.png.png"))); // NOI18N
         jbtInserir.setText("Inserir");
         jbtInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

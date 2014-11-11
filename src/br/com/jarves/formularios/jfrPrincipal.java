@@ -49,37 +49,41 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jmnCadastro = new javax.swing.JMenu();
         jmiCadCliente = new javax.swing.JMenuItem();
         jmiCadAnimal = new javax.swing.JMenuItem();
-        jmiCategoria = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jmiSair = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
         jmnConsulta = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jmiConAnimal = new javax.swing.JMenuItem();
         jmiConsCli = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jmiSair = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jmiCategoria = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jarvis Pet System");
 
         jdpPrincipal.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/principal.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Principal1 (Copy)_1.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(930, 1024));
         jdpPrincipal.add(jLabel1);
-        jLabel1.setBounds(360, 30, 940, 740);
+        jLabel1.setBounds(-10, -10, 1050, 710);
 
         jmnCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/registro.png.png"))); // NOI18N
-        jmnCadastro.setText("Registros");
+        jmnCadastro.setText("Clientes");
 
         jmiCadCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
-        jmiCadCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/cadcli.png.png"))); // NOI18N
+        jmiCadCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/clie.png"))); // NOI18N
         jmiCadCliente.setText("Cliente / Proprietário");
         jmiCadCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,6 +93,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jmnCadastro.add(jmiCadCliente);
 
         jmiCadAnimal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
+        jmiCadAnimal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/icone-1 (Copy).jpg"))); // NOI18N
         jmiCadAnimal.setText("Cliente / Animal");
         jmiCadAnimal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,50 +101,6 @@ public class jfrPrincipal extends javax.swing.JFrame {
             }
         });
         jmnCadastro.add(jmiCadAnimal);
-
-        jmiCategoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK));
-        jmiCategoria.setText("Categoria");
-        jmiCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiCategoriaActionPerformed(evt);
-            }
-        });
-        jmnCadastro.add(jmiCategoria);
-
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/forn.png.png"))); // NOI18N
-        jMenuItem4.setText("Fornecedor");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jmnCadastro.add(jMenuItem4);
-
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/prod.png.png"))); // NOI18N
-        jMenuItem5.setText("Produtos");
-        jmnCadastro.add(jMenuItem5);
-
-        jmiSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
-        jmiSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/f.png.png"))); // NOI18N
-        jmiSair.setText("Sair");
-        jmiSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiSairActionPerformed(evt);
-            }
-        });
-        jmnCadastro.add(jmiSair);
-
-        jMenuItem7.setText("Servicos");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        jmnCadastro.add(jMenuItem7);
-
-        jMenuBar1.add(jmnCadastro);
 
         jmnConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/cons.png.gif"))); // NOI18N
         jmnConsulta.setText("Consultas");
@@ -154,6 +115,8 @@ public class jfrPrincipal extends javax.swing.JFrame {
         });
         jmnConsulta.add(jMenuItem1);
 
+        jmiConAnimal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK));
+        jmiConAnimal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/bt.png.jpg"))); // NOI18N
         jmiConAnimal.setText("Clientes / Animais");
         jmiConAnimal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,36 +135,109 @@ public class jfrPrincipal extends javax.swing.JFrame {
         });
         jmnConsulta.add(jmiConsCli);
 
-        jMenuItem6.setText("Fornecedores");
+        jmnCadastro.add(jmnConsulta);
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/ico-relatorio (Copy).png"))); // NOI18N
+        jMenuItem2.setText("Relatório de Clientes");
+        jmnCadastro.add(jMenuItem2);
+
+        jmiSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        jmiSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/f.png.png"))); // NOI18N
+        jmiSair.setText("Sair");
+        jmiSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiSairActionPerformed(evt);
+            }
+        });
+        jmnCadastro.add(jmiSair);
+
+        jMenuBar1.add(jmnCadastro);
+
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/dinheiro (Copy).png"))); // NOI18N
+        jMenu3.setText("Vendas");
+
+        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/DinDin.png"))); // NOI18N
+        jMenuItem8.setText("Caixa");
+        jMenu3.add(jMenuItem8);
+
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/Servicos.png"))); // NOI18N
+        jMenuItem5.setText("Serviços");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem5);
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/RelGraf (Copy).png"))); // NOI18N
+        jMenuItem3.setText("Relatório de Vendas");
+        jMenu3.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/produtoS.png"))); // NOI18N
+        jMenu5.setText("Produtos");
+
+        jmiCategoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK));
+        jmiCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/categoria.png"))); // NOI18N
+        jmiCategoria.setText("Categoria");
+        jmiCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCategoriaActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jmiCategoria);
+
+        jMenuBar1.add(jMenu5);
+
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/carregador.png"))); // NOI18N
+        jMenu6.setText("Estoque");
+
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/prod.png.png"))); // NOI18N
+        jMenuItem7.setText("Produtos");
+        jMenu6.add(jMenuItem7);
+
+        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/relat.png.png"))); // NOI18N
+        jMenuItem10.setText("Relatório de Estoque");
+        jMenu6.add(jMenuItem10);
+
+        jMenuBar1.add(jMenu6);
+
+        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/compras (Copy).png"))); // NOI18N
+        jMenu7.setText("Compras");
+
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/fornecedor_icon (Copy).png"))); // NOI18N
+        jMenuItem4.setText("Fornecedor");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem4);
+
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/icono-estado (Copy).jpg"))); // NOI18N
+        jMenuItem6.setText("Consultar / Fornecedores");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
             }
         });
-        jmnConsulta.add(jMenuItem6);
+        jMenu7.add(jMenuItem6);
 
-        jMenuBar1.add(jmnConsulta);
+        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/wp732e2b44_1a (Copy).png"))); // NOI18N
+        jMenuItem9.setText("Relatório de Compras");
+        jMenu7.add(jMenuItem9);
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/servi.png.jpg"))); // NOI18N
-        jMenu1.setText("Serviços");
-
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/vac.png.png"))); // NOI18N
-        jMenuItem2.setText("Vacinação");
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/bt.png.jpg"))); // NOI18N
-        jMenuItem3.setText("Banho e Tosa");
-        jMenu1.add(jMenuItem3);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/relat.png.png"))); // NOI18N
-        jMenu2.setText("Relátorios");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/caixa.png.jpg"))); // NOI18N
-        jMenu3.setText("Caixa");
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
 
@@ -209,14 +245,14 @@ public class jfrPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+            .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(416, 339));
+        setSize(new java.awt.Dimension(420, 339));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -303,15 +339,17 @@ public class jfrPrincipal extends javax.swing.JFrame {
        jie.setVisible(true);
     }//GEN-LAST:event_jmiCategoriaActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-       jifCadServicos jis = new jifCadServicos();
-       jdpPrincipal.add(jis);
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+       jifCadCategoria jic = new jifCadCategoria();
+       jdpPrincipal.add(jic);
        
-       ((BasicInternalFrameUI)jis.getUI()).setNorthPane(null);
+       ((BasicInternalFrameUI)jic.getUI()).setNorthPane(null);
        //jic.setBorder(null); insere bordas no formulário
-       jis.setPosicao();
-       jis.setVisible(true);        
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+       jic.setPosicao();
+       jic.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -350,17 +388,21 @@ public class jfrPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JMenuItem jmiCadAnimal;
     private javax.swing.JMenuItem jmiCadCliente;

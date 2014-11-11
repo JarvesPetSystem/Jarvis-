@@ -53,17 +53,23 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
         jftCpf = new javax.swing.JFormattedTextField();
         jrbNome = new javax.swing.JRadioButton();
         jrbCpf = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setTitle("Consulta de Clientes");
+        setOpaque(true);
         getContentPane().setLayout(null);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clientes / Animais"));
         jPanel2.setLayout(null);
 
+        jlbNome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jlbNome.setForeground(new java.awt.Color(255, 255, 0));
         jlbNome.setText("RGA:");
         jPanel2.add(jlbNome);
-        jlbNome.setBounds(30, 40, 80, 30);
+        jlbNome.setBounds(50, 40, 80, 30);
 
         jtfNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,7 +89,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
         jPanel2.add(jSeparator1);
         jSeparator1.setBounds(10, 130, 760, 20);
 
-        jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/voltar.png.jpg"))); // NOI18N
+        jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/icone voltar (Copy).png"))); // NOI18N
         jbtVoltar.setText("Voltar");
         jbtVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +99,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
         jPanel2.add(jbtVoltar);
         jbtVoltar.setBounds(640, 30, 100, 40);
 
+        jpnDados.setBackground(new java.awt.Color(0, 0, 102));
         jpnDados.setLayout(null);
 
         jtbCliente.setModel(new javax.swing.table.DefaultTableModel(
@@ -141,6 +148,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
         jPanel2.add(jftCpf);
         jftCpf.setBounds(100, 40, 120, 30);
 
+        jrbNome.setBackground(new java.awt.Color(255, 255, 255));
         bgpPesquisar.add(jrbNome);
         jrbNome.setSelected(true);
         jrbNome.setText("RGA");
@@ -152,6 +160,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
         jPanel2.add(jrbNome);
         jrbNome.setBounds(40, 90, 93, 23);
 
+        jrbCpf.setBackground(new java.awt.Color(255, 255, 255));
         bgpPesquisar.add(jrbCpf);
         jrbCpf.setText("CPF Proprietário");
         jrbCpf.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +170,10 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
         });
         jPanel2.add(jrbCpf);
         jrbCpf.setBounds(130, 90, 140, 23);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/banner_animais.jpg"))); // NOI18N
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(30, 20, 770, 130);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 780, 340);
@@ -242,6 +255,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgpPesquisar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

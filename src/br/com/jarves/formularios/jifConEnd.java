@@ -49,6 +49,7 @@ public int flag;
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbEndereco = new javax.swing.JTable();
         jbtVoltar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setTitle("Consulta de Endereços");
@@ -106,6 +107,7 @@ public int flag;
         jPanel2.add(jScrollPane1);
         jScrollPane1.setBounds(10, 160, 760, 170);
 
+        jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/icone voltar (Copy).png"))); // NOI18N
         jbtVoltar.setText("Voltar");
         jbtVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,10 +117,14 @@ public int flag;
         jPanel2.add(jbtVoltar);
         jbtVoltar.setBounds(530, 60, 100, 40);
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/header_banner.png"))); // NOI18N
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(10, 20, 760, 150);
+
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 780, 340);
 
-        setBounds(0, 0, 791, 377);
+        setBounds(0, 0, 788, 377);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
@@ -164,6 +170,7 @@ public int flag;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

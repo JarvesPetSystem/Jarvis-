@@ -79,6 +79,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jtfComplemento = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jbtPesEnd = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jftTelefone = new javax.swing.JFormattedTextField();
@@ -88,6 +89,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jtfEmail = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jtfObs = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -152,6 +154,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jPanel2.add(jtfNome);
         jtfNome.setBounds(110, 100, 290, 30);
 
+        jbtAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/alterar.png"))); // NOI18N
         jbtAlterar.setText("Alterar");
         jbtAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,6 +260,10 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jpnEndereco.add(jbtPesEnd);
         jbtPesEnd.setBounds(170, 10, 30, 30);
 
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Banner.png"))); // NOI18N
+        jpnEndereco.add(jLabel17);
+        jLabel17.setBounds(0, 0, 550, 190);
+
         jtbPainel.addTab("Endereço", jpnEndereco);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -305,6 +312,10 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jPanel4.add(jtfObs);
         jtfObs.setBounds(90, 140, 370, 30);
 
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/banner-contato.jpg"))); // NOI18N
+        jPanel4.add(jLabel18);
+        jLabel18.setBounds(0, -10, 550, 200);
+
         jtbPainel.addTab("Contato", jPanel4);
 
         jPanel2.add(jtbPainel);
@@ -348,7 +359,7 @@ public class jifCadClie extends javax.swing.JInternalFrame {
         jPanel2.add(jSeparator1);
         jSeparator1.setBounds(20, 242, 560, 10);
 
-        jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/voltar.png.jpg"))); // NOI18N
+        jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/icone voltar (Copy).png"))); // NOI18N
         jbtVoltar.setText("Cancelar");
         jbtVoltar.setActionCommand("");
         jbtVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -546,6 +557,8 @@ public class jifCadClie extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
