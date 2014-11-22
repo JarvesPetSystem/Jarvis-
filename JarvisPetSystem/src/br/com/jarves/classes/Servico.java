@@ -5,6 +5,7 @@
  */
 package br.com.jarves.classes;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -15,10 +16,17 @@ public class Servico {
  private int idServico;   
     
  private String nomeServico;
- private double precoServico;
+ private BigDecimal precoServico;
  private String descrServico;
  private Date dtCadServico;
-    
+
+    public int getIdServico() {
+        return idServico;
+    }
+
+    public void setIdServico(int idServico) {
+        this.idServico = idServico;
+    }
 
     public String getNomeServico() {
         return nomeServico;
@@ -28,6 +36,13 @@ public class Servico {
         this.nomeServico = nomeServico;
     }
 
+    public BigDecimal getPrecoServico() {
+        return precoServico;
+    }
+
+    public void setPrecoServico(BigDecimal precoServico) {
+        this.precoServico = precoServico;
+    }
 
     public String getDescrServico() {
         return descrServico;
@@ -44,21 +59,4 @@ public class Servico {
     public void setDtCadServico(Date dtCadServico) {
         this.dtCadServico = dtCadServico;
     }
-
-    public int getIdServico() {
-        return idServico;
-    }
-
-    public void setIdServico(int idServico) {
-        this.idServico = idServico;
-    }
-
-    public double getPrecoServico() {
-        return precoServico;
-    }
-
-    public void setPrecoServico(double precoServico) {
-        this.precoServico = precoServico;
-    }
-    
 }

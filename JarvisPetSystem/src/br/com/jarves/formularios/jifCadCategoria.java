@@ -50,7 +50,7 @@ public class jifCadCategoria extends javax.swing.JInternalFrame {
         setTitle("Registro de Categoria");
         getContentPane().setLayout(null);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de Categorias"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de Categorias de Produtos"));
         jPanel2.setLayout(null);
 
         jLabel1.setText("Categoria:");

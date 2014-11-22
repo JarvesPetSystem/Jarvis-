@@ -54,6 +54,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jmiSair = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jmiCadProd = new javax.swing.JMenuItem();
         jmnConsulta = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jmiConAnimal = new javax.swing.JMenuItem();
@@ -138,6 +139,14 @@ public class jfrPrincipal extends javax.swing.JFrame {
             }
         });
         jmnCadastro.add(jMenuItem7);
+
+        jmiCadProd.setText("Produtos");
+        jmiCadProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCadProdActionPerformed(evt);
+            }
+        });
+        jmnCadastro.add(jmiCadProd);
 
         jMenuBar1.add(jmnCadastro);
 
@@ -313,6 +322,16 @@ public class jfrPrincipal extends javax.swing.JFrame {
        jis.setVisible(true);        
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jmiCadProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadProdActionPerformed
+       jifCadProduto jis = new jifCadProduto();
+       jdpPrincipal.add(jis);
+       
+       ((BasicInternalFrameUI)jis.getUI()).setNorthPane(null);
+       //jic.setBorder(null); insere bordas no formulário
+       jis.setPosicao();
+       jis.setVisible(true);  
+    }//GEN-LAST:event_jmiCadProdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -364,6 +383,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JMenuItem jmiCadAnimal;
     private javax.swing.JMenuItem jmiCadCliente;
+    private javax.swing.JMenuItem jmiCadProd;
     private javax.swing.JMenuItem jmiCategoria;
     private javax.swing.JMenuItem jmiConAnimal;
     private javax.swing.JMenuItem jmiConsCli;

@@ -6,9 +6,7 @@
 package br.com.jarves.bancodedados;
 
 import br.com.jarves.classes.*;
-import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +30,7 @@ public class ServicoDAO {
             
             stmt.setString(1, servico.getNomeServico());
             stmt.setString(2, servico.getDescrServico());
-            stmt.setDouble(3, servico.getPrecoServico());
+            stmt.setBigDecimal(3, servico.getPrecoServico());
             
             
             stmt.execute();
@@ -52,7 +50,7 @@ public class ServicoDAO {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, servico.getNomeServico());
             stmt.setString(2, servico.getDescrServico());
-            stmt.setDouble(3, servico.getPrecoServico());
+            stmt.setBigDecimal(3, servico.getPrecoServico());
             stmt.setInt(4, servico.getIdServico());
             stmt.execute();
             msg = "Servico Alterado com Sucesso!";
@@ -76,7 +74,7 @@ public class ServicoDAO {
                 servico.setIdServico(rs.getInt("id_servico"));
                 servico.setNomeServico(rs.getString("servico"));
                 servico.setDescrServico(rs.getString("descr"));
-                servico.setPrecoServico(rs.getDouble("preco"));
+                servico.setPrecoServico(rs.getBigDecimal("preco"));
                 lista.add(servico);
                 
             }

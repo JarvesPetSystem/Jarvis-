@@ -32,6 +32,12 @@ public class CategoriaDAO {
         }
         return msg;
     }
+    
+    /**
+     * Altera a Categoria de um Produto
+     * @param categoria
+     * @return Mensagem de sucesso ou erro na operação
+     */
     public String alteraCategoria(Categoria categoria){
         String msg;
              

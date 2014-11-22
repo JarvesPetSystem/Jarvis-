@@ -5,29 +5,15 @@
  */
 package br.com.jarves.formularios;
 
-import br.com.jarves.bancodedados.ClienteDAO;
-import br.com.jarves.bancodedados.EnderecoDAO;
+
 import br.com.jarves.bancodedados.ServicoDAO;
-import br.com.jarves.classes.Cliente;
-import br.com.jarves.classes.Contato;
-import br.com.jarves.classes.Logradouro;
 import br.com.jarves.classes.Servico;
 import br.com.jarves.classes.TableFormat;
-import br.com.jarves.classes.Util;
-import br.com.jarves.util.Global;
-import br.com.jarves.util.LimiteDigitos;
-
 import java.awt.Dimension;
-import java.awt.event.KeyEvent;
-import static java.awt.event.KeyEvent.VK_F1;
-import java.awt.event.KeyListener;
-import java.text.ParseException;
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -69,12 +55,12 @@ public class jifCadServicos extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jbtInserir = new javax.swing.JButton();
         lblDtCad = new javax.swing.JLabel();
-        jtfPreco = new javax.swing.JTextField();
         btnAltera = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtbServico = new javax.swing.JTable();
+        jtfPreco = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Serviços"));
 
@@ -131,6 +117,13 @@ public class jifCadServicos extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jtbServico);
 
+        jtfPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        jtfPreco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfPrecoKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,10 +140,10 @@ public class jifCadServicos extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfNomeServ)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jtfNomeServ))
+                                .addComponent(jtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,18 +151,16 @@ public class jifCadServicos extends javax.swing.JInternalFrame {
                                 .addComponent(btnAltera, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 14, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(99, 99, 99)
-                                .addComponent(lblDtCad, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(99, 99, 99)
+                        .addComponent(lblDtCad, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -186,13 +177,13 @@ public class jifCadServicos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(jtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -233,7 +224,8 @@ public class jifCadServicos extends javax.swing.JInternalFrame {
             Servico servico = new Servico();
             servico.setNomeServico(jtfNomeServ.getText().trim().toLowerCase());
             servico.setDescrServico(jtfDescServ.getText().trim().toLowerCase());
-            servico.setPrecoServico(Double.parseDouble(jtfPreco.getText().trim().toLowerCase()));
+            BigDecimal valor  = new BigDecimal(jtfPreco.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
+            servico.setPrecoServico(valor);
             JOptionPane.showMessageDialog(null, sd.insereServico(servico));
             jtfNomeServ.setText("");
             jtfDescServ.setText("");
@@ -258,7 +250,8 @@ public class jifCadServicos extends javax.swing.JInternalFrame {
            servico.setIdServico(idServico);
            servico.setNomeServico(jtfNomeServ.getText().trim().toLowerCase());
            servico.setDescrServico(jtfDescServ.getText().trim().toLowerCase());
-           servico.setPrecoServico(Double.parseDouble(jtfPreco.getText()));
+           BigDecimal valor  = new BigDecimal(jtfPreco.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
+           servico.setPrecoServico(valor);
            JOptionPane.showMessageDialog(null, sd.alteraServico(servico));
            jtfNomeServ.setText("");
            jtfPreco.setText("");
@@ -279,11 +272,18 @@ public class jifCadServicos extends javax.swing.JInternalFrame {
             Object cate1 = jtbServico.getValueAt(indiceLinha, 2);
             jtfDescServ.setText(cate1.toString());
             Object cate2 = jtbServico.getValueAt(indiceLinha, 3);
-            jtfPreco.setText(cate2.toString());
+            jtfPreco.setText(cate2.toString().replace("R$ ", ""));
             jbtInserir.setVisible(false);
             btnAltera.setVisible(true);
         }
     }//GEN-LAST:event_jtbServicoMouseClicked
+
+    private void jtfPrecoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPrecoKeyTyped
+      String caracteres="0987654321.,";
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfPrecoKeyTyped
 
    public void limparCampos() {
         jtfNomeServ.setText("");
@@ -306,7 +306,7 @@ public class jifCadServicos extends javax.swing.JInternalFrame {
     private javax.swing.JTable jtbServico;
     private javax.swing.JTextArea jtfDescServ;
     private javax.swing.JTextField jtfNomeServ;
-    private javax.swing.JTextField jtfPreco;
+    private javax.swing.JFormattedTextField jtfPreco;
     private javax.swing.JLabel lblDtCad;
     // End of variables declaration//GEN-END:variables
 public void setPosicao() {
@@ -335,7 +335,7 @@ public void carregaLista() {
 
             lista1.getIdServico();
             modelo.addRow(new Object[]{lista1.getIdServico(), lista1.getNomeServico(), lista1.getDescrServico(),
-            lista1.getPrecoServico()});
+            NumberFormat.getCurrencyInstance().format((lista1.getPrecoServico()))});
         }
 
     }
