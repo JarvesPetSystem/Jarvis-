@@ -1,11 +1,9 @@
 package br.com.jarves.bancodedados;
 
-import br.com.jarves.classes.Cliente;
+
 import br.com.jarves.classes.Produtos;
-import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.SQLException;
 
 /**
@@ -19,7 +17,7 @@ public class ProdutoDAO {
      * @param produtos
      * @return mensagem de sucesso ou insucesso
      */
-    public String insereCliente(Produtos produtos) {
+    public String insereProdutos(Produtos produtos) {
         String msg;
         ConexaoOracle co = new ConexaoOracle();
 
@@ -38,10 +36,10 @@ public class ProdutoDAO {
             cs.execute();
             cs.close();
             con.close();
-            msg = "Proprietário Inserido com Sucesso";
+            msg = "Produto Gravado com Sucesso!";
 
         } catch (SQLException ex) {
-            msg = "Erro" + ex;
+            msg = "Erro: " + ex;
         }
 
         return msg;

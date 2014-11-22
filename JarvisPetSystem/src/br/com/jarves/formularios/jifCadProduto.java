@@ -6,14 +6,17 @@
 package br.com.jarves.formularios;
 
 import br.com.jarves.bancodedados.CategoriaDAO;
+import br.com.jarves.bancodedados.ProdutoDAO;
 import br.com.jarves.classes.Categoria;
 import br.com.jarves.classes.PrecoProduto;
 import br.com.jarves.classes.Produtos;
-import br.com.jarves.classes.TableFormat;
+
 import java.awt.Dimension;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -139,7 +142,15 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
         jLabel8.setBounds(30, 80, 70, 30);
 
         jtfPrecoCom.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        jtfPrecoCom.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfPrecoComFocusLost(evt);
+            }
+        });
         jtfPrecoCom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfPrecoComKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfPrecoComKeyTyped(evt);
             }
@@ -147,6 +158,7 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
         jPanel2.add(jtfPrecoCom);
         jtfPrecoCom.setBounds(100, 210, 60, 30);
 
+        jtfPrecoVenda.setEditable(false);
         jtfPrecoVenda.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         jtfPrecoVenda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -155,8 +167,36 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
         });
         jPanel2.add(jtfPrecoVenda);
         jtfPrecoVenda.setBounds(470, 210, 60, 30);
+
+        jtfLucro.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfLucroFocusLost(evt);
+            }
+        });
+        jtfLucro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfLucroKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfLucroKeyTyped(evt);
+            }
+        });
         jPanel2.add(jtfLucro);
         jtfLucro.setBounds(220, 210, 40, 30);
+
+        jtfImposto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfImpostoFocusLost(evt);
+            }
+        });
+        jtfImposto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfImpostoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfImpostoKeyTyped(evt);
+            }
+        });
         jPanel2.add(jtfImposto);
         jtfImposto.setBounds(330, 210, 50, 30);
 
@@ -181,11 +221,29 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
         Produtos produtos = new Produtos();
         Categoria categoria = new Categoria();
         PrecoProduto preprod = new PrecoProduto();
+        ProdutoDAO pdao = new ProdutoDAO();
         
         categoria.setNomeCategoria(jcbCategoria.getSelectedItem().toString().toLowerCase());
+        
         BigDecimal precoCom  = new BigDecimal(jtfPrecoCom.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
-        BigDecimal precoVen  = new BigDecimal(jtfPrecoVenda.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
+        BigDecimal lucro  = new BigDecimal(jtfLucro.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
+        BigDecimal imposto = new BigDecimal(jtfImposto.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
+        BigDecimal precoVen = new BigDecimal(jtfPrecoVenda.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
+
+        
         preprod.setPrecoCompra(precoCom);
+        preprod.setImposto(imposto);
+        preprod.setLucro(lucro);
+        preprod.setPrecoVenda(precoVen);
+        
+        produtos.setCategoria(categoria);
+        produtos.setPrecoProduto(preprod);
+        produtos.setEanProduto(jtfCodigo.getText().trim());
+        produtos.setDescricao(jtfDescricao.getText().trim().toLowerCase());
+        produtos.setUnidade(jcbUnidade.getSelectedItem().toString());
+        
+        JOptionPane.showMessageDialog(null, pdao.insereProdutos(produtos));
+        limparCampos();
     }//GEN-LAST:event_jbtGravarActionPerformed
 
     private void jtfPrecoComKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPrecoComKeyTyped
@@ -200,16 +258,52 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtfPrecoVendaKeyTyped
 
     private void jbtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelarActionPerformed
-        BigDecimal precoCom  = new BigDecimal(jtfPrecoCom.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
-        BigDecimal precoVen  = new BigDecimal(jtfPrecoVenda.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
-        BigDecimal imposto = new BigDecimal(jtfImposto.getText());
-        BigDecimal imp = precoCom.multiply(imposto).divide(new BigDecimal(100));
-        
-        System.out.println(precoCom);
-        System.out.println(precoVen);
-        System.out.println(imp);
-        System.out.println(jtfLucro.getText());
+        calculaPreco();
     }//GEN-LAST:event_jbtCancelarActionPerformed
+
+    private void jtfPrecoComFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfPrecoComFocusLost
+        if(jtfPrecoCom.getText().trim().equals("")){
+            calculaPreco();
+        }
+    }//GEN-LAST:event_jtfPrecoComFocusLost
+
+    private void jtfLucroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfLucroFocusLost
+        if(!jtfLucro.getText().trim().equals("")){
+            calculaPreco();
+        }
+    }//GEN-LAST:event_jtfLucroFocusLost
+
+    private void jtfImpostoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfImpostoFocusLost
+        if(!jtfImposto.getText().trim().equals("")){
+            calculaPreco();
+        }
+    }//GEN-LAST:event_jtfImpostoFocusLost
+
+    private void jtfPrecoComKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPrecoComKeyReleased
+        calculaPreco();
+    }//GEN-LAST:event_jtfPrecoComKeyReleased
+
+    private void jtfLucroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfLucroKeyReleased
+        calculaPreco();
+    }//GEN-LAST:event_jtfLucroKeyReleased
+
+    private void jtfImpostoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfImpostoKeyReleased
+        calculaPreco();
+    }//GEN-LAST:event_jtfImpostoKeyReleased
+
+    private void jtfLucroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfLucroKeyTyped
+        String caracteres="0987654321,";
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfLucroKeyTyped
+
+    private void jtfImpostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfImpostoKeyTyped
+        String caracteres="0987654321,";
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfImpostoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -242,6 +336,9 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
         this.setLocation((d.width - this.getSize().width) / 2, 0);
     }
 
+    /**
+     * Método que carraga lista de categorias de Produtos
+     */
      public void carregaCategoria() {
          
         ArrayList<Categoria> lista = new CategoriaDAO().listarCategoria();
@@ -253,6 +350,39 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
         }
 
     }
+     /**
+      * Método para calcular o preço do produto
+      */
+     
+     public void calculaPreco(){
+     
+        if(!jtfPrecoCom.getText().trim().equals("")&& !jtfImposto.getText().trim().equals("") && !jtfLucro.getText().trim().equals("")){
+            BigDecimal precoCom  = new BigDecimal(jtfPrecoCom.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
+        
+            BigDecimal lucro  = new BigDecimal(jtfLucro.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
+            BigDecimal imposto = new BigDecimal(jtfImposto.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
+        
+            BigDecimal vlimp = precoCom.multiply(imposto).divide(new BigDecimal(100));
+            BigDecimal vllucro = precoCom.multiply(lucro).divide(new BigDecimal(100));
+            BigDecimal vlvenda = precoCom.add(vllucro).add(vlimp);
+        
+            jtfPrecoVenda.setText(NumberFormat.getCurrencyInstance().format(vlvenda).replace("R$ ", ""));
+        }
+     }
+     
+     public void limparCampos(){
+     
+         jtfCodigo.setText("");
+         jtfDescricao.setText("");
+         jcbUnidade.setSelectedIndex(0);
+         jcbCategoria.setSelectedIndex(0);
+         jtfPrecoCom.setText("");
+         jtfLucro.setText("");
+         jtfImposto.setText("");
+         jtfPrecoVenda.setText("");
+         jtfCodigo.grabFocus();
+     
+     }
 
     
 
