@@ -17,18 +17,18 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-
-
 /**
  *
  * @author Humberto
  */
 public final class jifCadProduto extends javax.swing.JInternalFrame {
 
-    
+    int idProduto;
+
     public jifCadProduto() {
         initComponents();
         carregaCategoria();
+        jbtAlterar.setVisible(false);
     }
 
     /**
@@ -59,6 +59,8 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
         jtfPrecoVenda = new javax.swing.JFormattedTextField();
         jtfLucro = new javax.swing.JTextField();
         jtfImposto = new javax.swing.JTextField();
+        jbtAlterar = new javax.swing.JButton();
+        jbtSair = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setTitle("Registro de Produtos");
@@ -118,7 +120,7 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jbtGravar);
-        jbtGravar.setBounds(50, 290, 90, 30);
+        jbtGravar.setBounds(30, 290, 90, 30);
 
         jbtCancelar.setText("Cancelar");
         jbtCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +129,7 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jbtCancelar);
-        jbtCancelar.setBounds(170, 290, 90, 30);
+        jbtCancelar.setBounds(130, 290, 90, 30);
 
         jtfDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -200,6 +202,24 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
         jPanel2.add(jtfImposto);
         jtfImposto.setBounds(330, 210, 50, 30);
 
+        jbtAlterar.setText("Alterar");
+        jbtAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtAlterarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jbtAlterar);
+        jbtAlterar.setBounds(30, 290, 90, 30);
+
+        jbtSair.setText("Sair");
+        jbtSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtSairActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jbtSair);
+        jbtSair.setBounds(230, 290, 90, 30);
+
         getContentPane().add(jPanel2);
         jPanel2.setBounds(10, 0, 610, 350);
 
@@ -207,10 +227,37 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtfCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCodigoKeyPressed
-       if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
-           System.out.println("Enter");
-       }
-        
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            ProdutoDAO pdao = new ProdutoDAO();
+            Produtos p = new Produtos();
+            p.setEanProduto(jtfCodigo.getText().trim());
+            pdao.getProdutos(p);
+            System.out.println(p.getDescricao());
+            if (!p.getDescricao().equals("")) {
+                if (JOptionPane.showConfirmDialog(null, "Produto já Registrado, Deseja Exibir os Dados?", "Pergunta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    idProduto = p.getIdProduto();
+                    jtfDescricao.setText(p.getDescricao());
+                    jcbUnidade.setSelectedItem(p.getUnidade());
+                    jcbCategoria.setSelectedItem(p.getCategoria().getNomeCategoria());
+
+                    jtfPrecoCom.setText(NumberFormat.getCurrencyInstance().format(p.getPrecoProduto().getPrecoCompra()).replace("R$ ", ""));
+                    jtfLucro.setText(NumberFormat.getCurrencyInstance().format(p.getPrecoProduto().getLucro()).replace("R$ ", ""));
+                    jtfImposto.setText(NumberFormat.getCurrencyInstance().format(p.getPrecoProduto().getImposto()).replace("R$ ", ""));
+                    jtfPrecoVenda.setText(NumberFormat.getCurrencyInstance().format(p.getPrecoProduto().getPrecoVenda()).replace("R$ ", ""));
+
+                    jbtGravar.setVisible(false);
+                    jbtAlterar.setVisible(true);
+                    jtfCodigo.setEditable(false);
+                } else {
+                    limparCampos();
+                }
+            } else {
+                jtfDescricao.grabFocus();
+
+            }
+
+        }
+
     }//GEN-LAST:event_jtfCodigoKeyPressed
 
     private void jtfDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDescricaoKeyPressed
@@ -218,37 +265,39 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtfDescricaoKeyPressed
 
     private void jbtGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtGravarActionPerformed
-        Produtos produtos = new Produtos();
-        Categoria categoria = new Categoria();
-        PrecoProduto preprod = new PrecoProduto();
-        ProdutoDAO pdao = new ProdutoDAO();
-        
-        categoria.setNomeCategoria(jcbCategoria.getSelectedItem().toString().toLowerCase());
-        
-        BigDecimal precoCom  = new BigDecimal(jtfPrecoCom.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
-        BigDecimal lucro  = new BigDecimal(jtfLucro.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
-        BigDecimal imposto = new BigDecimal(jtfImposto.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
-        BigDecimal precoVen = new BigDecimal(jtfPrecoVenda.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
 
-        
-        preprod.setPrecoCompra(precoCom);
-        preprod.setImposto(imposto);
-        preprod.setLucro(lucro);
-        preprod.setPrecoVenda(precoVen);
-        
-        produtos.setCategoria(categoria);
-        produtos.setPrecoProduto(preprod);
-        produtos.setEanProduto(jtfCodigo.getText().trim());
-        produtos.setDescricao(jtfDescricao.getText().trim().toLowerCase());
-        produtos.setUnidade(jcbUnidade.getSelectedItem().toString());
-        
-        JOptionPane.showMessageDialog(null, pdao.insereProdutos(produtos));
-        limparCampos();
+        if (validaCampos()) {
+            Produtos produtos = new Produtos();
+            Categoria categoria = new Categoria();
+            PrecoProduto preprod = new PrecoProduto();
+            ProdutoDAO pdao = new ProdutoDAO();
+
+            categoria.setNomeCategoria(jcbCategoria.getSelectedItem().toString().toLowerCase());
+
+            BigDecimal precoCom = new BigDecimal(jtfPrecoCom.getText().replaceAll("\\.", "").replace(",", ".").replace("R$ ", ""));
+            BigDecimal lucro = new BigDecimal(jtfLucro.getText().replaceAll("\\.", "").replace(",", ".").replace("R$ ", ""));
+            BigDecimal imposto = new BigDecimal(jtfImposto.getText().replaceAll("\\.", "").replace(",", ".").replace("R$ ", ""));
+            BigDecimal precoVen = new BigDecimal(jtfPrecoVenda.getText().replaceAll("\\.", "").replace(",", ".").replace("R$ ", ""));
+
+            preprod.setPrecoCompra(precoCom);
+            preprod.setImposto(imposto);
+            preprod.setLucro(lucro);
+            preprod.setPrecoVenda(precoVen);
+
+            produtos.setCategoria(categoria);
+            produtos.setPrecoProduto(preprod);
+            produtos.setEanProduto(jtfCodigo.getText().trim());
+            produtos.setDescricao(jtfDescricao.getText().trim().toLowerCase());
+            produtos.setUnidade(jcbUnidade.getSelectedItem().toString());
+
+            JOptionPane.showMessageDialog(null, pdao.insereProdutos(produtos));
+            limparCampos();
+        }
     }//GEN-LAST:event_jbtGravarActionPerformed
 
     private void jtfPrecoComKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPrecoComKeyTyped
-        String caracteres="0987654321.,";
-        if(!caracteres.contains(evt.getKeyChar()+"")){
+        String caracteres = "0987654321.,";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
             evt.consume();
         }
     }//GEN-LAST:event_jtfPrecoComKeyTyped
@@ -258,23 +307,23 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtfPrecoVendaKeyTyped
 
     private void jbtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelarActionPerformed
-        calculaPreco();
+        limparCampos();
     }//GEN-LAST:event_jbtCancelarActionPerformed
 
     private void jtfPrecoComFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfPrecoComFocusLost
-        if(jtfPrecoCom.getText().trim().equals("")){
+        if (jtfPrecoCom.getText().trim().equals("")) {
             calculaPreco();
         }
     }//GEN-LAST:event_jtfPrecoComFocusLost
 
     private void jtfLucroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfLucroFocusLost
-        if(!jtfLucro.getText().trim().equals("")){
+        if (!jtfLucro.getText().trim().equals("")) {
             calculaPreco();
         }
     }//GEN-LAST:event_jtfLucroFocusLost
 
     private void jtfImpostoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfImpostoFocusLost
-        if(!jtfImposto.getText().trim().equals("")){
+        if (!jtfImposto.getText().trim().equals("")) {
             calculaPreco();
         }
     }//GEN-LAST:event_jtfImpostoFocusLost
@@ -292,18 +341,54 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtfImpostoKeyReleased
 
     private void jtfLucroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfLucroKeyTyped
-        String caracteres="0987654321,";
-        if(!caracteres.contains(evt.getKeyChar()+"")){
+        String caracteres = "0987654321,";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
             evt.consume();
         }
     }//GEN-LAST:event_jtfLucroKeyTyped
 
     private void jtfImpostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfImpostoKeyTyped
-        String caracteres="0987654321,";
-        if(!caracteres.contains(evt.getKeyChar()+"")){
+        String caracteres = "0987654321,";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
             evt.consume();
         }
     }//GEN-LAST:event_jtfImpostoKeyTyped
+
+    private void jbtAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAlterarActionPerformed
+
+        if (validaCampos()) {
+            Produtos produtos = new Produtos();
+            Categoria categoria = new Categoria();
+            PrecoProduto preprod = new PrecoProduto();
+            ProdutoDAO pdao = new ProdutoDAO();
+
+            categoria.setNomeCategoria(jcbCategoria.getSelectedItem().toString().toLowerCase());
+
+            BigDecimal precoCom = new BigDecimal(jtfPrecoCom.getText().replaceAll("\\.", "").replace(",", ".").replace("R$ ", ""));
+            BigDecimal lucro = new BigDecimal(jtfLucro.getText().replaceAll("\\.", "").replace(",", ".").replace("R$ ", ""));
+            BigDecimal imposto = new BigDecimal(jtfImposto.getText().replaceAll("\\.", "").replace(",", ".").replace("R$ ", ""));
+            BigDecimal precoVen = new BigDecimal(jtfPrecoVenda.getText().replaceAll("\\.", "").replace(",", ".").replace("R$ ", ""));
+
+            preprod.setPrecoCompra(precoCom);
+            preprod.setImposto(imposto);
+            preprod.setLucro(lucro);
+            preprod.setPrecoVenda(precoVen);
+
+            produtos.setIdProduto(idProduto);
+            produtos.setCategoria(categoria);
+            produtos.setPrecoProduto(preprod);
+            produtos.setEanProduto(jtfCodigo.getText().trim());
+            produtos.setDescricao(jtfDescricao.getText().trim().toLowerCase());
+            produtos.setUnidade(jcbUnidade.getSelectedItem().toString());
+
+            JOptionPane.showMessageDialog(null, pdao.alteraProdutos(produtos));
+            limparCampos();
+        }
+    }//GEN-LAST:event_jbtAlterarActionPerformed
+
+    private void jbtSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jbtSairActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -316,8 +401,10 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton jbtAlterar;
     private javax.swing.JButton jbtCancelar;
     private javax.swing.JButton jbtGravar;
+    private javax.swing.JButton jbtSair;
     private javax.swing.JComboBox jcbCategoria;
     private javax.swing.JComboBox jcbUnidade;
     private javax.swing.JTextField jtfCodigo;
@@ -339,53 +426,81 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
     /**
      * Método que carraga lista de categorias de Produtos
      */
-     public void carregaCategoria() {
-         
+    public void carregaCategoria() {
+
         ArrayList<Categoria> lista = new CategoriaDAO().listarCategoria();
 
         for (Categoria lista1 : lista) {
 
             jcbCategoria.addItem(lista1.getNomeCategoria());
-            
+
         }
 
     }
-     /**
-      * Método para calcular o preço do produto
-      */
-     
-     public void calculaPreco(){
-     
-        if(!jtfPrecoCom.getText().trim().equals("")&& !jtfImposto.getText().trim().equals("") && !jtfLucro.getText().trim().equals("")){
-            BigDecimal precoCom  = new BigDecimal(jtfPrecoCom.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
-        
-            BigDecimal lucro  = new BigDecimal(jtfLucro.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
-            BigDecimal imposto = new BigDecimal(jtfImposto.getText().replaceAll("\\.","").replace(",", ".").replace("R$ ", ""));
-        
+
+    /**
+     * Método para calcular o preço do produto
+     */
+    public void calculaPreco() {
+
+        if (!jtfPrecoCom.getText().trim().equals("") && !jtfImposto.getText().trim().equals("") && !jtfLucro.getText().trim().equals("")) {
+            BigDecimal precoCom = new BigDecimal(jtfPrecoCom.getText().replaceAll("\\.", "").replace(",", ".").replace("R$ ", ""));
+
+            BigDecimal lucro = new BigDecimal(jtfLucro.getText().replaceAll("\\.", "").replace(",", ".").replace("R$ ", ""));
+            BigDecimal imposto = new BigDecimal(jtfImposto.getText().replaceAll("\\.", "").replace(",", ".").replace("R$ ", ""));
+
             BigDecimal vlimp = precoCom.multiply(imposto).divide(new BigDecimal(100));
             BigDecimal vllucro = precoCom.multiply(lucro).divide(new BigDecimal(100));
             BigDecimal vlvenda = precoCom.add(vllucro).add(vlimp);
-        
+
             jtfPrecoVenda.setText(NumberFormat.getCurrencyInstance().format(vlvenda).replace("R$ ", ""));
         }
-     }
-     
-     public void limparCampos(){
-     
-         jtfCodigo.setText("");
-         jtfDescricao.setText("");
-         jcbUnidade.setSelectedIndex(0);
-         jcbCategoria.setSelectedIndex(0);
-         jtfPrecoCom.setText("");
-         jtfLucro.setText("");
-         jtfImposto.setText("");
-         jtfPrecoVenda.setText("");
-         jtfCodigo.grabFocus();
-     
-     }
+    }
 
-    
+    public void limparCampos() {
+        jtfCodigo.setEditable(true);
+        jtfCodigo.setText("");
+        jtfDescricao.setText("");
+        jcbUnidade.setSelectedIndex(0);
+        jcbCategoria.setSelectedIndex(0);
+        jtfPrecoCom.setText("");
+        jtfLucro.setText("");
+        jtfImposto.setText("");
+        jtfPrecoVenda.setText("");
+        jtfCodigo.grabFocus();
+        jbtGravar.setVisible(true);
+        jbtAlterar.setVisible(false);
 
-      
-    
+    }
+
+    public boolean validaCampos() {
+        boolean retorno = false;
+        if (jtfCodigo.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe o Código do Produto!");
+            jtfCodigo.grabFocus();
+        } else if (jtfDescricao.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe a Descricão do Produto!");
+            jtfDescricao.grabFocus();
+        } else if (jcbUnidade.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Informe o Tipo de Unidade do Produto!");
+            jcbUnidade.grabFocus();
+        } else if (jcbCategoria.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Informe a Categoria do Produto!");
+            jcbCategoria.grabFocus();
+        } else if (jtfPrecoCom.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe o Preço de Compra do Produto!");
+            jtfPrecoCom.grabFocus();
+        } else if (jtfLucro.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe o Lucro!");
+            jtfLucro.grabFocus();
+        } else if (jtfImposto.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informe o Imposto!");
+            jtfImposto.grabFocus();
+        } else {
+            retorno = true;
+        }
+        return retorno;
+
+    }
+
 }
