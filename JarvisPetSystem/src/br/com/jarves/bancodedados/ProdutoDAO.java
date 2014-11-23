@@ -212,6 +212,56 @@ public class ProdutoDAO {
         return  lista;
     }
     /**
+     * 
+     * @param codigo
+     * @return 
+     */
+    public ArrayList<Produtos> listarHistProdutosDesc(String codigo){
+        
+        ArrayList<Produtos> lista = new ArrayList<>();
+        ConexaoOracle co = new ConexaoOracle();
+        try{
+            Connection con = co.abreConexao();
+            String sql = "SELECT tprod.id_produto id_prod,tprod.ean_produto ean,initcap(tprod.desc_produto)descricao, " +
+                         "initcap(tprod.un_produto)un_produto, tpreprod.preco_compra compra,tpreprod.preco_venda venda, " +
+                         "tpreprod.imposto imposto, tpreprod.lucro lucro,initcap(tcat.nome_categoria)nome_categoria,tpreprod.dt_ini_preco inicio,tpreprod.dt_fim_preco fim " +
+                         "FROM tab_produto tprod INNER JOIN tab_preco_produto tpreprod ON  tprod.id_produto IN tpreprod.id_produto_fk INNER JOIN " +
+                         "tab_categoria tcat ON tprod.id_categoria_fk IN tcat.id_categoria WHERE ean_produto IN ? AND dt_fim_preco IS NOT NULL";
+            System.out.println(sql + "\n"+codigo);
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, codigo);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+               Produtos produtos = new Produtos();
+               PrecoProduto preco = new PrecoProduto();
+               Categoria categoria = new Categoria();
+               
+               categoria.setNomeCategoria(rs.getString("nome_categoria"));
+               
+               preco.setPrecoCompra(rs.getBigDecimal("compra"));
+               preco.setPrecoVenda(rs.getBigDecimal("venda"));
+               preco.setImposto(rs.getBigDecimal("imposto"));
+               preco.setLucro(rs.getBigDecimal("lucro"));
+               preco.setDtInicio(rs.getDate("inicio"));
+               preco.setDtFim(rs.getDate("fim"));
+               produtos.setIdProduto(rs.getInt("id_prod"));
+               produtos.setEanProduto(rs.getString("ean"));
+               produtos.setDescricao(rs.getString("descricao"));
+               produtos.setUnidade(rs.getString("un_produto"));
+               produtos.setCategoria(categoria);
+               produtos.setPrecoProduto(preco);
+               lista.add(produtos);
+            }
+            
+            co.fecharConexao(rs, stmt, con);
+        }catch(Exception ex){
+            System.out.println("Erro: " +ex);
+        }
+        
+        return  lista;
+    }
+    /**
      * Busca de produtos por codigo do produto
      * @param produto
      * @return 

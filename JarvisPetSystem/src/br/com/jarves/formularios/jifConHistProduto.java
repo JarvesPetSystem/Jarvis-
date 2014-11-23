@@ -9,23 +9,25 @@ package br.com.jarves.formularios;
 import br.com.jarves.bancodedados.ProdutoDAO;
 import br.com.jarves.classes.Produtos;
 import br.com.jarves.classes.TableFormat;
+import br.com.jarves.classes.Util;
 import br.com.jarves.util.Global;
 import java.awt.Dimension;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-//import net.proteanit.sql.DbUtils;
+
 
 /**
  *
  * @author Humberto
  */
-public class jifConProd extends javax.swing.JInternalFrame {
+public class jifConHistProduto extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form jifConEnd
      */
-    public jifConProd() {
+    public jifConHistProduto() {
         initComponents();
         carregaLista();
         
@@ -50,9 +52,6 @@ public int flag;
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbEndereco = new javax.swing.JTable();
         jbtVoltar = new javax.swing.JButton();
-        jtfDescricao = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setTitle("Consulta de Endereços");
@@ -63,7 +62,7 @@ public int flag;
 
         lblCodDes.setText("Código:");
         jPanel2.add(lblCodDes);
-        lblCodDes.setBounds(30, 50, 80, 20);
+        lblCodDes.setBounds(30, 60, 80, 20);
 
         jtfCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +78,7 @@ public int flag;
             }
         });
         jPanel2.add(jtfCodigo);
-        jtfCodigo.setBounds(100, 40, 280, 30);
+        jtfCodigo.setBounds(90, 50, 280, 30);
         jPanel2.add(jSeparator1);
         jSeparator1.setBounds(10, 130, 760, 20);
 
@@ -120,41 +119,7 @@ public int flag;
             }
         });
         jPanel2.add(jbtVoltar);
-        jbtVoltar.setBounds(570, 40, 100, 40);
-
-        jtfDescricao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfDescricaoActionPerformed(evt);
-            }
-        });
-        jtfDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtfDescricaoKeyReleased(evt);
-            }
-        });
-        jPanel2.add(jtfDescricao);
-        jtfDescricao.setBounds(100, 40, 280, 30);
-
-        rbgProdutos.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Código");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jRadioButton1);
-        jRadioButton1.setBounds(430, 30, 59, 23);
-
-        rbgProdutos.add(jRadioButton2);
-        jRadioButton2.setText("Descricão");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jRadioButton2);
-        jRadioButton2.setBounds(430, 60, 71, 23);
+        jbtVoltar.setBounds(430, 50, 100, 40);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 780, 340);
@@ -169,14 +134,11 @@ public int flag;
     }//GEN-LAST:event_jbtVoltarActionPerformed
 
     private void jtfCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCodigoKeyReleased
-       
-    if(jtfCodigo.getText().trim().length()<2)
-        carregaLista();
-    
+            
     }//GEN-LAST:event_jtfCodigoKeyReleased
 
     private void jtfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCodigoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jtfCodigoActionPerformed
 
     private void jtbEnderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbEnderecoMouseClicked
@@ -203,30 +165,6 @@ public int flag;
       
     }//GEN-LAST:event_jtbEnderecoMouseClicked
 
-    private void jtfDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDescricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfDescricaoActionPerformed
-
-    private void jtfDescricaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDescricaoKeyReleased
-        if(jtfDescricao.getText().trim().length()>4)
-            filtraListaDesc();
-        else
-            carregaLista();
-                 
-    }//GEN-LAST:event_jtfDescricaoKeyReleased
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        lblCodDes.setText("Código:");
-        jtfCodigo.setVisible(true);
-        jtfDescricao.setVisible(false);
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        lblCodDes.setText("Descrição:");
-        jtfCodigo.setVisible(false);
-        jtfDescricao.setVisible(true);
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
-
     private void jtfCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCodigoKeyPressed
        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
            filtraLista();
@@ -236,14 +174,11 @@ public int flag;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtVoltar;
     private javax.swing.JTable jtbEndereco;
     private javax.swing.JTextField jtfCodigo;
-    private javax.swing.JTextField jtfDescricao;
     private javax.swing.JLabel lblCodDes;
     private javax.swing.ButtonGroup rbgProdutos;
     // End of variables declaration//GEN-END:variables
@@ -258,7 +193,7 @@ public int flag;
     
     public void carregaLista(){
         
-        String titulo[] = {"Código","Descricão","Unidade","Categoria","Compra R$","Imposto %","Lucro %","Venda R$"};
+        String titulo[] = {"Descricão","Unidade","Categoria","Compra R$","Imposto %","Lucro %","Venda R$","Dt Inicio Preço","Dt Fim Preço"};
         Object dados [][]={};
         DefaultTableModel modelo = new DefaultTableModel(dados,titulo){
             public boolean isCellEditable(int row,int column){
@@ -268,24 +203,13 @@ public int flag;
         jtbEndereco.setDefaultRenderer(Object.class,new TableFormat());
         jtbEndereco.setModel(modelo);
         
-        ArrayList<Produtos> lista = new ProdutoDAO().listarProdutos();
-        
-        for(int i = 0;i<lista.size();i++){
-            modelo.addRow(new String[]{lista.get(i).getEanProduto(),lista.get(i).getDescricao(),
-            lista.get(i).getUnidade(),lista.get(i).getCategoria().getNomeCategoria(),
-            NumberFormat.getCurrencyInstance().format((lista.get(i).getPrecoProduto().getPrecoCompra())).replace("R$ ", ""),
-            NumberFormat.getCurrencyInstance().format((lista.get(i).getPrecoProduto().getImposto())).replace("R$ ", ""),
-            NumberFormat.getCurrencyInstance().format((lista.get(i).getPrecoProduto().getLucro())).replace("R$ ", ""),
-            NumberFormat.getCurrencyInstance().format((lista.get(i).getPrecoProduto().getPrecoVenda())).replace("R$ ", "")
-            
-            });
-            
-        }
-        
-        
+               
     }
     public void filtraLista(){
-       String titulo[] = {"Código","Descricão","Unidade","Categoria","Compra R$","Imposto %","Lucro %","Venda R$"};
+        
+  
+        Util u = new Util();
+        String titulo[] = {"Descricão","Unidade","Categoria","Compra R$","Imposto %","Lucro %","Venda R$","Dt Inicio Preço","Dt Fim Preço"};
         Object dados [][]={};
         DefaultTableModel modelo = new DefaultTableModel(dados,titulo){
             public boolean isCellEditable(int row,int column){
@@ -296,49 +220,16 @@ public int flag;
         jtbEndereco.setModel(modelo);
         
         
-        ArrayList<Produtos> lista = new ProdutoDAO().listarProdutosCodigo(jtfCodigo.getText().trim()+"%");
-        
-        for(int i = 0;i<lista.size();i++){
-            modelo.addRow(new String[]{lista.get(i).getEanProduto(),lista.get(i).getDescricao(),
-            lista.get(i).getUnidade(),lista.get(i).getCategoria().getNomeCategoria(),
-            NumberFormat.getCurrencyInstance().format((lista.get(i).getPrecoProduto().getPrecoCompra())).replace("R$ ", ""),
-            NumberFormat.getCurrencyInstance().format((lista.get(i).getPrecoProduto().getImposto())).replace("R$ ", ""),
-            NumberFormat.getCurrencyInstance().format((lista.get(i).getPrecoProduto().getLucro())).replace("R$ ", ""),
-            NumberFormat.getCurrencyInstance().format((lista.get(i).getPrecoProduto().getPrecoVenda())).replace("R$ ", "")
-            
-            });
-            
-        }
-        
-    }
-    public void filtraListaDesc(){
-       String titulo[] = {"Código","Descricão","Unidade","Categoria","Compra R$","Imposto %","Lucro %","Venda R$"};
-        Object dados [][]={};
-        DefaultTableModel modelo = new DefaultTableModel(dados,titulo){
-            public boolean isCellEditable(int row,int column){
-                return false;
+        ArrayList<Produtos> lista = new ProdutoDAO().listarHistProdutosDesc(jtfCodigo.getText().trim());
+        if(lista.size()>0){
+            for (Produtos lista1 : lista) {
+                modelo.addRow(new String[]{lista1.getDescricao(), lista1.getUnidade(), lista1.getCategoria().getNomeCategoria(), NumberFormat.getCurrencyInstance().format(lista1.getPrecoProduto().getPrecoCompra()).replace("R$ ", ""), NumberFormat.getCurrencyInstance().format(lista1.getPrecoProduto().getImposto()).replace("R$ ", ""), NumberFormat.getCurrencyInstance().format(lista1.getPrecoProduto().getLucro()).replace("R$ ", ""), NumberFormat.getCurrencyInstance().format(lista1.getPrecoProduto().getPrecoVenda()).replace("R$ ", ""), u.reformataData(lista1.getPrecoProduto().getDtInicio()), u.reformataData(lista1.getPrecoProduto().getDtFim())});
             }
-        };
-        jtbEndereco.setDefaultRenderer(Object.class,new TableFormat());
-        jtbEndereco.setModel(modelo);
-        
-        
-        ArrayList<Produtos> lista = new ProdutoDAO().listarProdutosDesc(jtfDescricao.getText().trim().toLowerCase()+"%");
-        
-        for(int i = 0;i<lista.size();i++){
-            modelo.addRow(new String[]{lista.get(i).getEanProduto(),lista.get(i).getDescricao(),
-            lista.get(i).getUnidade(),lista.get(i).getCategoria().getNomeCategoria(),
-            NumberFormat.getCurrencyInstance().format((lista.get(i).getPrecoProduto().getPrecoCompra())).replace("R$ ", ""),
-            NumberFormat.getCurrencyInstance().format((lista.get(i).getPrecoProduto().getImposto())).replace("R$ ", ""),
-            NumberFormat.getCurrencyInstance().format((lista.get(i).getPrecoProduto().getLucro())).replace("R$ ", ""),
-            NumberFormat.getCurrencyInstance().format((lista.get(i).getPrecoProduto().getPrecoVenda())).replace("R$ ", "")
-            
-            });
-            
+        }else{
+            JOptionPane.showMessageDialog(null, "Produto Não Localizado!");
         }
-        
     }
-    
+        
     
 }
 

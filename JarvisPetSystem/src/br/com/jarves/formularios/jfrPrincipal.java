@@ -60,7 +60,9 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jmiConAnimal = new javax.swing.JMenuItem();
         jmiConsCli = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jmiConProd = new javax.swing.JMenuItem();
+        jmnProdutos = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -190,13 +192,25 @@ public class jfrPrincipal extends javax.swing.JFrame {
         });
         jmnConsulta.add(jMenuItem6);
 
-        jmiConProd.setText("Produtos");
-        jmiConProd.addActionListener(new java.awt.event.ActionListener() {
+        jmnProdutos.setText("Produtos");
+
+        jMenuItem8.setText("Produtos");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiConProdActionPerformed(evt);
+                jMenuItem8ActionPerformed(evt);
             }
         });
-        jmnConsulta.add(jmiConProd);
+        jmnProdutos.add(jMenuItem8);
+
+        jMenuItem9.setText("Histórico de Produto");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jmnProdutos.add(jMenuItem9);
+
+        jmnConsulta.add(jmnProdutos);
 
         jMenuBar1.add(jmnConsulta);
 
@@ -341,15 +355,25 @@ public class jfrPrincipal extends javax.swing.JFrame {
        jis.setVisible(true);  
     }//GEN-LAST:event_jmiCadProdActionPerformed
 
-    private void jmiConProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConProdActionPerformed
-       jifConProd jis = new jifConProd();
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        jifConProd jis = new jifConProd();
        jdpPrincipal.add(jis);
        
        ((BasicInternalFrameUI)jis.getUI()).setNorthPane(null);
        //jic.setBorder(null); insere bordas no formulário
        jis.setPosicao();
        jis.setVisible(true);  
-    }//GEN-LAST:event_jmiConProdActionPerformed
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+       jifConHistProduto jis = new jifConHistProduto();
+       jdpPrincipal.add(jis);
+       
+       ((BasicInternalFrameUI)jis.getUI()).setNorthPane(null);
+       //jic.setBorder(null); insere bordas no formulário
+       jis.setPosicao();
+       jis.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,17 +423,19 @@ public class jfrPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JMenuItem jmiCadAnimal;
     private javax.swing.JMenuItem jmiCadCliente;
     private javax.swing.JMenuItem jmiCadProd;
     private javax.swing.JMenuItem jmiCategoria;
     private javax.swing.JMenuItem jmiConAnimal;
-    private javax.swing.JMenuItem jmiConProd;
     private javax.swing.JMenuItem jmiConsCli;
     private javax.swing.JMenuItem jmiSair;
     private javax.swing.JMenu jmnCadastro;
     private javax.swing.JMenu jmnConsulta;
+    private javax.swing.JMenu jmnProdutos;
     // End of variables declaration//GEN-END:variables
 
 
