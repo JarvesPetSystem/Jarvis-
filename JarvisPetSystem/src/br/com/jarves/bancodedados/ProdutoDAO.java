@@ -70,7 +70,7 @@ public class ProdutoDAO {
             cs.execute();
             cs.close();
             con.close();
-            msg = "Produto Gravado com Sucesso!";
+            msg = "Produto Alterado com Sucesso!";
 
         } catch (SQLException ex) {
             msg = "Erro: " + ex;
@@ -86,8 +86,8 @@ public class ProdutoDAO {
         ConexaoOracle co = new ConexaoOracle();
         try{
             Connection con = co.abreConexao();
-            String sql = "SELECT tprod.id_produto id_prod,tprod.ean_produto ean,initcap(tprod.desc_produto)descricao,tprod.un_produto, " +
-                        "tpreprod.preco_compra compra,tpreprod.preco_venda venda, tpreprod.imposto imposto, tpreprod.lucro lucro,tcat.nome_categoria " +
+            String sql = "SELECT tprod.id_produto id_prod,tprod.ean_produto ean,initcap(tprod.desc_produto)descricao,initcap(tprod.un_produto)un_produto, " +
+                        "tpreprod.preco_compra compra,tpreprod.preco_venda venda, tpreprod.imposto imposto, tpreprod.lucro lucro,initcap(tcat.nome_categoria)nome_categoria " +
                         "FROM tab_produto tprod INNER JOIN tab_preco_produto tpreprod ON  " +
                         "tprod.id_produto IN tpreprod.id_produto_fk INNER JOIN tab_categoria tcat ON " +
                         "tprod.id_categoria_fk in tcat.id_categoria WHERE dt_fim_preco IS NULL ";
@@ -115,7 +115,98 @@ public class ProdutoDAO {
                produtos.setPrecoProduto(preco);
                lista.add(produtos);
             }
+            co.fecharConexao(rs, stmt, con);
         }catch(Exception ex){
+        }
+        
+        return  lista;
+    }
+    /**
+     * Filtra Lista de Produtos por código
+     * @return 
+     */
+    public ArrayList<Produtos> listarProdutosCodigo(String codigo){
+        
+        ArrayList<Produtos> lista = new ArrayList<>();
+        ConexaoOracle co = new ConexaoOracle();
+        try{
+            Connection con = co.abreConexao();
+            String sql = "SELECT tprod.id_produto id_prod,tprod.ean_produto ean,initcap(tprod.desc_produto)descricao,initcap(tprod.un_produto)un_produto, " +
+                        "tpreprod.preco_compra compra,tpreprod.preco_venda venda, tpreprod.imposto imposto, tpreprod.lucro lucro,initcap(tcat.nome_categoria)nome_categoria " +
+                        "FROM tab_produto tprod INNER JOIN tab_preco_produto tpreprod ON  " +
+                        "tprod.id_produto IN tpreprod.id_produto_fk INNER JOIN tab_categoria tcat ON " +
+                        "tprod.id_categoria_fk in tcat.id_categoria WHERE dt_fim_preco IS NULL AND ean_produto like ?";
+            System.out.println(sql + "\n"+codigo);
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, codigo);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+               Produtos produtos = new Produtos();
+               PrecoProduto preco = new PrecoProduto();
+               Categoria categoria = new Categoria();
+               
+               categoria.setNomeCategoria(rs.getString("nome_categoria"));
+               
+               preco.setPrecoCompra(rs.getBigDecimal("compra"));
+               preco.setPrecoVenda(rs.getBigDecimal("venda"));
+               preco.setImposto(rs.getBigDecimal("imposto"));
+               preco.setLucro(rs.getBigDecimal("lucro"));
+               
+               produtos.setIdProduto(rs.getInt("id_prod"));
+               produtos.setEanProduto(rs.getString("ean"));
+               produtos.setDescricao(rs.getString("descricao"));
+               produtos.setUnidade(rs.getString("un_produto"));
+               produtos.setCategoria(categoria);
+               produtos.setPrecoProduto(preco);
+               lista.add(produtos);
+            }
+            co.fecharConexao(rs, stmt, con);
+        }catch(Exception ex){
+            System.out.println("Erro: " +ex);
+        }
+        
+        return  lista;
+    }
+    public ArrayList<Produtos> listarProdutosDesc(String descricao){
+        
+        ArrayList<Produtos> lista = new ArrayList<>();
+        ConexaoOracle co = new ConexaoOracle();
+        try{
+            Connection con = co.abreConexao();
+            String sql = "SELECT tprod.id_produto id_prod,tprod.ean_produto ean,initcap(tprod.desc_produto)descricao,initcap(tprod.un_produto)un_produto, " +
+                        "tpreprod.preco_compra compra,tpreprod.preco_venda venda, tpreprod.imposto imposto, tpreprod.lucro lucro,initcap(tcat.nome_categoria)nome_categoria " +
+                        "FROM tab_produto tprod INNER JOIN tab_preco_produto tpreprod ON  " +
+                        "tprod.id_produto IN tpreprod.id_produto_fk INNER JOIN tab_categoria tcat ON " +
+                        "tprod.id_categoria_fk in tcat.id_categoria WHERE dt_fim_preco IS NULL AND desc_produto like ?";
+            System.out.println(sql + "\n"+descricao);
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, descricao);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+               Produtos produtos = new Produtos();
+               PrecoProduto preco = new PrecoProduto();
+               Categoria categoria = new Categoria();
+               
+               categoria.setNomeCategoria(rs.getString("nome_categoria"));
+               
+               preco.setPrecoCompra(rs.getBigDecimal("compra"));
+               preco.setPrecoVenda(rs.getBigDecimal("venda"));
+               preco.setImposto(rs.getBigDecimal("imposto"));
+               preco.setLucro(rs.getBigDecimal("lucro"));
+               
+               produtos.setIdProduto(rs.getInt("id_prod"));
+               produtos.setEanProduto(rs.getString("ean"));
+               produtos.setDescricao(rs.getString("descricao"));
+               produtos.setUnidade(rs.getString("un_produto"));
+               produtos.setCategoria(categoria);
+               produtos.setPrecoProduto(preco);
+               lista.add(produtos);
+            }
+            co.fecharConexao(rs, stmt, con);
+        }catch(Exception ex){
+            System.out.println("Erro: " +ex);
         }
         
         return  lista;
@@ -165,7 +256,7 @@ public class ProdutoDAO {
                 produto.setDescricao("");
                 
             }
-                    
+            co.fecharConexao(rs, stmt, con);
             
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex);

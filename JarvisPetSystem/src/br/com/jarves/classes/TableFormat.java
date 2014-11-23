@@ -22,7 +22,7 @@ public class TableFormat extends DefaultTableCellRenderer{
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int colum) {
         super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, colum);
         
-        setFont(new Font("Arial",Font.BOLD,12));
+        setFont(new Font("Arial",Font.PLAIN,12));
         setHorizontalAlignment(LEFT);
         
         if(row %2 == 0){
@@ -36,7 +36,7 @@ public class TableFormat extends DefaultTableCellRenderer{
         if(isSelected){
             setBackground(Color.BLACK);
             setForeground(Color.white);
-            setFont(new Font("Arial",Font.BOLD,16));
+            setFont(new Font("Arial",Font.BOLD,13));
             table.editingStopped(null);
             
         }
