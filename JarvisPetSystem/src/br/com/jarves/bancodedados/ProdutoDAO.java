@@ -168,6 +168,54 @@ public class ProdutoDAO {
         
         return  lista;
     }
+    public Produtos getProdutosCodigo(String codigo){
+        
+        
+        ConexaoOracle co = new ConexaoOracle();
+        Produtos produtos = new Produtos();
+        
+        try{
+            Connection con = co.abreConexao();
+            String sql = "SELECT tprod.id_produto id_prod,tprod.ean_produto ean,initcap(tprod.desc_produto)descricao,initcap(tprod.un_produto)un_produto, " +
+                        "tpreprod.preco_compra compra,tpreprod.preco_venda venda, tpreprod.imposto imposto, tpreprod.lucro lucro,initcap(tcat.nome_categoria)nome_categoria " +
+                        "FROM tab_produto tprod INNER JOIN tab_preco_produto tpreprod ON  " +
+                        "tprod.id_produto IN tpreprod.id_produto_fk INNER JOIN tab_categoria tcat ON " +
+                        "tprod.id_categoria_fk in tcat.id_categoria WHERE dt_fim_preco IS NULL AND ean_produto in ?";
+            System.out.println(sql + "\n"+codigo);
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, codigo);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+               
+               PrecoProduto preco = new PrecoProduto();
+               Categoria categoria = new Categoria();
+               
+               categoria.setNomeCategoria(rs.getString("nome_categoria"));
+               
+               preco.setPrecoCompra(rs.getBigDecimal("compra"));
+               preco.setPrecoVenda(rs.getBigDecimal("venda"));
+               preco.setImposto(rs.getBigDecimal("imposto"));
+               preco.setLucro(rs.getBigDecimal("lucro"));
+               
+               produtos.setIdProduto(rs.getInt("id_prod"));
+               produtos.setEanProduto(rs.getString("ean"));
+               produtos.setDescricao(rs.getString("descricao"));
+               produtos.setUnidade(rs.getString("un_produto"));
+               produtos.setCategoria(categoria);
+               produtos.setPrecoProduto(preco);
+               
+            }
+            co.fecharConexao(rs, stmt, con);
+        }catch(Exception ex){
+            System.out.println("Erro: " +ex);
+        }
+        
+        return  produtos;
+    }
+    
+    
+    
     public ArrayList<Produtos> listarProdutosDesc(String descricao){
         
         ArrayList<Produtos> lista = new ArrayList<>();

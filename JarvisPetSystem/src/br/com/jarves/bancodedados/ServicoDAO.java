@@ -85,4 +85,48 @@ public class ServicoDAO {
         
         return lista;
     }
+    
+    public Servico getServico(int codServico){
+        Servico servico = new Servico();
+        
+         try {
+            ConexaoOracle co = new ConexaoOracle();
+            Connection con = co.abreConexao();
+            String sql = "SELECT tcli.id_cliente,ts.id_servico,initcap(ts.nome_servico)servico,ts.preco_servico preco,initcap(tcli.nome_cliente) ncli,initcap(tani.nome_animal)nanimal FROM tab_agenda_servico taserv INNER JOIN tab_servico ts ON taserv.id_servico_fk IN ts.id_servico INNER JOIN tab_animal tani ON " +
+                         "taserv.id_animal_fk in tani.id_animal INNER JOIN tab_cliente tcli ON tani.id_cliente_fk IN tcli.id_cliente where id_agenda_servico in ?  AND status_pagto IS NULL and taserv.status_agenda_servico <> 'cancelado'";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, codServico);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Animal animal = new Animal();
+                Cliente cliente = new Cliente();
+                
+                animal.setNome(rs.getString("nanimal"));
+                cliente.setIdCliente(rs.getInt("id_cliente"));
+                cliente.setNomeCliente(rs.getString("ncli"));
+                servico.setIdServico(rs.getInt("id_servico"));
+                servico.setNomeServico(rs.getString("servico"));
+                servico.setPrecoServico(rs.getBigDecimal("preco"));
+                servico.setAnimal(animal);
+                servico.setCliente(cliente);
+                
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro: "+ex); 
+        }
+        
+        
+        
+        return servico;
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }

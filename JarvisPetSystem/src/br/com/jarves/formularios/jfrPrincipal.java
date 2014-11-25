@@ -68,6 +68,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jarvis Pet System");
@@ -233,6 +234,20 @@ public class jfrPrincipal extends javax.swing.JFrame {
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/caixa.png.jpg"))); // NOI18N
         jMenu3.setText("Caixa");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem10.setText("jMenuItem10");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem10);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -241,14 +256,14 @@ public class jfrPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(416, 339));
+        setSize(new java.awt.Dimension(479, 339));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -375,6 +390,20 @@ public class jfrPrincipal extends javax.swing.JFrame {
        jis.setVisible(true); 
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+      
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+       jifCaixa jis = new jifCaixa();
+       jdpPrincipal.add(jis);
+       
+       ((BasicInternalFrameUI)jis.getUI()).setNorthPane(null);
+       //jic.setBorder(null); insere bordas no formulário
+       jis.setPosicao();
+       jis.setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -417,6 +446,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

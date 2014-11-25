@@ -19,6 +19,8 @@ public class Servico {
  private BigDecimal precoServico;
  private String descrServico;
  private Date dtCadServico;
+ private Cliente cliente;
+ private Animal animal;
 
     public int getIdServico() {
         return idServico;
@@ -58,5 +60,21 @@ public class Servico {
 
     public void setDtCadServico(Date dtCadServico) {
         this.dtCadServico = dtCadServico;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Animal getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 }
