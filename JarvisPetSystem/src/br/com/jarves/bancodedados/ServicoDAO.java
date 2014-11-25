@@ -93,7 +93,7 @@ public class ServicoDAO {
             ConexaoOracle co = new ConexaoOracle();
             Connection con = co.abreConexao();
             String sql = "SELECT tcli.id_cliente,ts.id_servico,initcap(ts.nome_servico)servico,ts.preco_servico preco,initcap(tcli.nome_cliente) ncli,initcap(tani.nome_animal)nanimal FROM tab_agenda_servico taserv INNER JOIN tab_servico ts ON taserv.id_servico_fk IN ts.id_servico INNER JOIN tab_animal tani ON " +
-                         "taserv.id_animal_fk in tani.id_animal INNER JOIN tab_cliente tcli ON tani.id_cliente_fk IN tcli.id_cliente where id_agenda_servico in ?  AND status_pagto IS NULL and taserv.status_agenda_servico <> 'cancelado'";
+                         "taserv.id_animal_fk in tani.id_animal INNER JOIN tab_cliente tcli ON tani.id_cliente_fk IN tcli.id_cliente where id_agenda_servico in ?  AND status_pagto IS NULL and taserv.status_agenda_servico IN 'Finalizado'";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, codServico);
             ResultSet rs = stmt.executeQuery();
