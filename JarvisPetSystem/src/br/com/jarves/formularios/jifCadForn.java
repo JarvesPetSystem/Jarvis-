@@ -87,16 +87,21 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         jtfNomeForn = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jlbDesde = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setForeground(java.awt.Color.red);
         setName(""); // NOI18N
         getContentPane().setLayout(null);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Fornecedor"));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Fornecedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
         jPanel2.setToolTipText("Cadastro de Fornecedor");
+        jPanel2.setOpaque(false);
         jPanel2.setLayout(null);
 
         try {
@@ -116,11 +121,11 @@ public class jifCadForn extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jftCnpj);
-        jftCnpj.setBounds(120, 40, 120, 30);
+        jftCnpj.setBounds(150, 40, 120, 30);
 
         jtfIE.setNextFocusableComponent(jftCep);
         jPanel2.add(jtfIE);
-        jtfIE.setBounds(120, 140, 290, 30);
+        jtfIE.setBounds(150, 140, 290, 30);
 
         jbtAlterarForn.setText("Alterar");
         jbtAlterarForn.setFocusable(false);
@@ -130,8 +135,12 @@ public class jifCadForn extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jbtAlterarForn);
-        jbtAlterarForn.setBounds(460, 70, 110, 40);
+        jbtAlterarForn.setBounds(660, 90, 110, 40);
 
+        jtbPainel.setBackground(new java.awt.Color(255, 255, 255));
+        jtbPainel.setOpaque(true);
+
+        jpnEndereco.setBackground(new java.awt.Color(255, 255, 255));
         jpnEndereco.setLayout(null);
 
         try {
@@ -157,59 +166,59 @@ public class jifCadForn extends javax.swing.JInternalFrame {
             }
         });
         jpnEndereco.add(jftCep);
-        jftCep.setBounds(70, 10, 90, 30);
+        jftCep.setBounds(100, 10, 90, 30);
 
         jLabel5.setText("Estado:");
         jpnEndereco.add(jLabel5);
-        jLabel5.setBounds(330, 130, 50, 30);
+        jLabel5.setBounds(430, 130, 50, 30);
 
         jLabel4.setText("Cidade:");
         jpnEndereco.add(jLabel4);
-        jLabel4.setBounds(20, 134, 50, 30);
+        jLabel4.setBounds(50, 130, 50, 30);
 
         jtfCidade.setEditable(false);
         jpnEndereco.add(jtfCidade);
-        jtfCidade.setBounds(70, 130, 240, 30);
+        jtfCidade.setBounds(100, 130, 240, 30);
 
         jtfBairro.setEditable(false);
         jpnEndereco.add(jtfBairro);
-        jtfBairro.setBounds(70, 90, 240, 30);
+        jtfBairro.setBounds(100, 90, 240, 30);
 
         jtfRua.setEditable(false);
         jpnEndereco.add(jtfRua);
-        jtfRua.setBounds(70, 50, 240, 30);
+        jtfRua.setBounds(100, 50, 280, 30);
 
         jLabel2.setText("Endereço:");
         jpnEndereco.add(jLabel2);
-        jLabel2.setBounds(10, 50, 50, 30);
+        jLabel2.setBounds(40, 50, 50, 30);
 
         jLabel3.setText("Bairro:");
         jpnEndereco.add(jLabel3);
-        jLabel3.setBounds(20, 90, 50, 30);
+        jLabel3.setBounds(50, 90, 50, 30);
 
         jLabel6.setText("CEP:");
         jpnEndereco.add(jLabel6);
-        jLabel6.setBounds(30, 10, 80, 30);
+        jLabel6.setBounds(60, 10, 80, 30);
 
         jtfEstado.setEditable(false);
         jpnEndereco.add(jtfEstado);
-        jtfEstado.setBounds(380, 130, 100, 30);
+        jtfEstado.setBounds(480, 130, 100, 30);
 
         jtfNumero.setNextFocusableComponent(jtfComplemento);
         jpnEndereco.add(jtfNumero);
-        jtfNumero.setBounds(380, 50, 90, 30);
+        jtfNumero.setBounds(480, 50, 90, 30);
 
         jLabel14.setText("N °:");
         jpnEndereco.add(jLabel14);
-        jLabel14.setBounds(350, 50, 40, 30);
+        jLabel14.setBounds(450, 50, 40, 30);
 
         jtfComplemento.setNextFocusableComponent(jftCnpj);
         jpnEndereco.add(jtfComplemento);
-        jtfComplemento.setBounds(380, 90, 150, 30);
+        jtfComplemento.setBounds(480, 90, 150, 30);
 
         jLabel16.setText("Comp:");
         jpnEndereco.add(jLabel16);
-        jLabel16.setBounds(340, 90, 40, 30);
+        jLabel16.setBounds(440, 90, 40, 30);
 
         jbtPesEnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,15 +226,16 @@ public class jifCadForn extends javax.swing.JInternalFrame {
             }
         });
         jpnEndereco.add(jbtPesEnd);
-        jbtPesEnd.setBounds(170, 10, 70, 30);
+        jbtPesEnd.setBounds(220, 10, 70, 30);
 
         jtbPainel.addTab("Endereço", jpnEndereco);
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(null);
 
         jLabel9.setText("Telefone:");
         jPanel4.add(jLabel9);
-        jLabel9.setBounds(30, 20, 90, 30);
+        jLabel9.setBounds(60, 20, 90, 30);
 
         try {
             jftTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
@@ -234,7 +244,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         }
         jftTelefone.setNextFocusableComponent(jftCelular);
         jPanel4.add(jftTelefone);
-        jftTelefone.setBounds(90, 20, 170, 30);
+        jftTelefone.setBounds(120, 20, 170, 30);
 
         try {
             jftCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-####")));
@@ -243,37 +253,37 @@ public class jifCadForn extends javax.swing.JInternalFrame {
         }
         jftCelular.setNextFocusableComponent(jtfEmail);
         jPanel4.add(jftCelular);
-        jftCelular.setBounds(90, 60, 170, 30);
+        jftCelular.setBounds(120, 60, 170, 30);
 
         jLabel10.setText("Email:");
         jPanel4.add(jLabel10);
-        jLabel10.setBounds(40, 100, 90, 30);
+        jLabel10.setBounds(70, 100, 90, 30);
 
         jLabel11.setText("Celular:");
         jPanel4.add(jLabel11);
-        jLabel11.setBounds(30, 60, 90, 30);
+        jLabel11.setBounds(60, 60, 90, 30);
 
         jtfEmail.setNextFocusableComponent(jtfObs);
         jPanel4.add(jtfEmail);
-        jtfEmail.setBounds(90, 100, 370, 30);
+        jtfEmail.setBounds(120, 100, 370, 30);
 
         jLabel12.setText("Observações:");
         jPanel4.add(jLabel12);
-        jLabel12.setBounds(10, 140, 90, 30);
+        jLabel12.setBounds(40, 140, 90, 30);
 
         jtfObs.setNextFocusableComponent(jftCnpj);
         jPanel4.add(jtfObs);
-        jtfObs.setBounds(90, 140, 370, 30);
+        jtfObs.setBounds(120, 140, 370, 30);
 
         jtbPainel.addTab("Contato", jPanel4);
 
         jPanel2.add(jtbPainel);
-        jtbPainel.setBounds(20, 260, 550, 220);
+        jtbPainel.setBounds(80, 260, 670, 220);
         jtbPainel.getAccessibleContext().setAccessibleName("Contato");
 
         jLabel13.setText("Inscrição Estadual:");
         jPanel2.add(jLabel13);
-        jLabel13.setBounds(10, 140, 100, 30);
+        jLabel13.setBounds(40, 140, 100, 30);
 
         jbtInserir.setText("Inserir");
         jbtInserir.addActionListener(new java.awt.event.ActionListener() {
@@ -282,9 +292,9 @@ public class jifCadForn extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jbtInserir);
-        jbtInserir.setBounds(460, 20, 110, 40);
+        jbtInserir.setBounds(660, 40, 110, 40);
         jPanel2.add(jSeparator1);
-        jSeparator1.setBounds(20, 242, 560, 10);
+        jSeparator1.setBounds(20, 242, 800, 10);
 
         jbtVoltar.setText("Voltar");
         jbtVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -293,31 +303,39 @@ public class jifCadForn extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jbtVoltar);
-        jbtVoltar.setBounds(460, 120, 110, 40);
+        jbtVoltar.setBounds(660, 140, 110, 40);
 
         jLabel15.setText("CNPJ:");
         jPanel2.add(jLabel15);
-        jLabel15.setBounds(60, 40, 50, 30);
+        jLabel15.setBounds(90, 40, 50, 30);
 
         jtfNomeForn.setNextFocusableComponent(jtfIE);
         jPanel2.add(jtfNomeForn);
-        jtfNomeForn.setBounds(120, 90, 290, 30);
+        jtfNomeForn.setBounds(150, 90, 290, 30);
 
         jLabel17.setText("Nome:");
         jPanel2.add(jLabel17);
-        jLabel17.setBounds(60, 90, 80, 30);
+        jLabel17.setBounds(90, 90, 80, 30);
 
         jlbDesde.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jPanel2.add(jlbDesde);
         jlbDesde.setBounds(130, 10, 290, 20);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 10, 620, 490);
+        jPanel2.setBounds(30, 10, 860, 500);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon("E:\\Projeto maroto\\INTERFACES - JPG\\imagens pet\\Icone_Dog.png")); // NOI18N
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(10, 500, 160, 150);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\Projeto maroto\\INTERFACES - JPG\\imagens pet\\Rodapé_cadCli.png")); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, 500, 940, 200);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 650, 510);
+        jPanel1.setBounds(0, 0, 940, 710);
 
-        setBounds(0, 0, 650, 537);
+        setBounds(0, 0, 941, 725);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtPesEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtPesEndActionPerformed
@@ -466,6 +484,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -479,6 +498,7 @@ public class jifCadForn extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

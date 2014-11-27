@@ -61,12 +61,16 @@ public class JifConCliente extends javax.swing.JInternalFrame {
         jftCpf = new javax.swing.JFormattedTextField();
         jrbNome = new javax.swing.JRadioButton();
         jrbCpf = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
+        setBackground(java.awt.Color.white);
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setTitle("Consulta de Clientes");
         getContentPane().setLayout(null);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clientes"));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta de Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
         jPanel2.setLayout(null);
 
         jlbNome.setText("Nome:");
@@ -86,7 +90,7 @@ public class JifConCliente extends javax.swing.JInternalFrame {
         jPanel2.add(jtfNome);
         jtfNome.setBounds(100, 40, 410, 30);
         jPanel2.add(jSeparator1);
-        jSeparator1.setBounds(10, 130, 760, 20);
+        jSeparator1.setBounds(30, 120, 810, 20);
 
         jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/voltar.png.jpg"))); // NOI18N
         jbtVoltar.setText("Voltar");
@@ -167,7 +171,7 @@ public class JifConCliente extends javax.swing.JInternalFrame {
         jTabbedPane1.addTab("Contato", jPanel3);
 
         jPanel2.add(jTabbedPane1);
-        jTabbedPane1.setBounds(10, 140, 760, 190);
+        jTabbedPane1.setBounds(60, 150, 760, 190);
 
         try {
             jftCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -187,6 +191,7 @@ public class JifConCliente extends javax.swing.JInternalFrame {
         jPanel2.add(jftCpf);
         jftCpf.setBounds(100, 40, 120, 30);
 
+        jrbNome.setBackground(new java.awt.Color(255, 255, 255));
         bgpPesquisar.add(jrbNome);
         jrbNome.setSelected(true);
         jrbNome.setText("Nome");
@@ -198,6 +203,7 @@ public class JifConCliente extends javax.swing.JInternalFrame {
         jPanel2.add(jrbNome);
         jrbNome.setBounds(40, 90, 93, 23);
 
+        jrbCpf.setBackground(new java.awt.Color(255, 255, 255));
         bgpPesquisar.add(jrbCpf);
         jrbCpf.setText("CPF");
         jrbCpf.addActionListener(new java.awt.event.ActionListener() {
@@ -209,9 +215,17 @@ public class JifConCliente extends javax.swing.JInternalFrame {
         jrbCpf.setBounds(130, 90, 45, 23);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 0, 780, 340);
+        jPanel2.setBounds(30, 50, 870, 440);
 
-        setBounds(0, 0, 791, 377);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Img_Gato.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(10, 510, 190, 140);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Rodape_Padrao.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 520, 940, 180);
+
+        setBounds(0, 0, 941, 725);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
@@ -280,6 +294,8 @@ public class JifConCliente extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgpPesquisar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

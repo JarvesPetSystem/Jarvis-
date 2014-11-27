@@ -56,12 +56,18 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
         jtfPrecoVenda = new javax.swing.JFormattedTextField();
         jtfLucro = new javax.swing.JTextField();
         jtfImposto = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setTitle("Registro de Produtos");
         getContentPane().setLayout(null);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de Produtos"));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registro de Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
         jPanel2.setLayout(null);
 
         jtfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -108,6 +114,7 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel7);
         jLabel7.setBounds(270, 210, 80, 30);
 
+        jbtGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/Database.png"))); // NOI18N
         jbtGravar.setText("Gravar");
         jbtGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,8 +122,9 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jbtGravar);
-        jbtGravar.setBounds(50, 290, 90, 30);
+        jbtGravar.setBounds(50, 290, 100, 30);
 
+        jbtCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/Delete.png"))); // NOI18N
         jbtCancelar.setText("Cancelar");
         jbtCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +132,7 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jbtCancelar);
-        jbtCancelar.setBounds(170, 290, 90, 30);
+        jbtCancelar.setBounds(180, 290, 110, 30);
 
         jtfDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -132,7 +140,7 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jtfDescricao);
-        jtfDescricao.setBounds(110, 80, 210, 30);
+        jtfDescricao.setBounds(110, 80, 420, 30);
 
         jLabel8.setText("Descrição:");
         jPanel2.add(jLabel8);
@@ -161,9 +169,27 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
         jtfImposto.setBounds(330, 210, 50, 30);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(10, 0, 610, 350);
+        jPanel2.setBounds(130, 40, 670, 350);
 
-        setBounds(0, 0, 632, 404);
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(null);
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Img_Compras.png"))); // NOI18N
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(10, 420, 300, 190);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Rodape_Padrao.png"))); // NOI18N
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(0, 520, 940, 180);
+
+        jLabel10.setText("jLabel10");
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(10, 440, 190, 160);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 940, 700);
+
+        setBounds(0, 0, 941, 725);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtfCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCodigoKeyPressed
@@ -214,6 +240,8 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -221,6 +249,8 @@ public final class jifCadProduto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbtCancelar;
     private javax.swing.JButton jbtGravar;

@@ -13,7 +13,7 @@ public class ConexaoOracle {
             
             //Cria conexão com banco de dados
             String database = "jarves";
-            String server= "127.0.0.1:1521";
+            String server= "187.10.220.190:1521";
             String username="jarves";
             String password="jarves";
             String url = "jdbc:oracle:thin:@"+server+":XE";

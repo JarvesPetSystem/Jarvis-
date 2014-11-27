@@ -47,6 +47,8 @@ public int flag=0;
     private void initComponents() {
 
         bgpPesquisar = new javax.swing.ButtonGroup();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jlbNome = new javax.swing.JLabel();
         jtfNome = new javax.swing.JTextField();
@@ -65,12 +67,23 @@ public int flag=0;
         jftCnpj = new javax.swing.JFormattedTextField();
         jrbNome = new javax.swing.JRadioButton();
         jrbCnpj = new javax.swing.JRadioButton();
+        jPanel4 = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setTitle("Consulta de Endereços");
         getContentPane().setLayout(null);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clientes"));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Img_Rato.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(10, 470, 180, 140);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Rodape_Padrao.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 510, 940, 180);
+
+        jPanel2.setBackground(java.awt.Color.white);
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta de Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
         jPanel2.setLayout(null);
 
         jlbNome.setText("Nome:");
@@ -90,7 +103,7 @@ public int flag=0;
         jPanel2.add(jtfNome);
         jtfNome.setBounds(100, 40, 410, 30);
         jPanel2.add(jSeparator1);
-        jSeparator1.setBounds(10, 130, 760, 20);
+        jSeparator1.setBounds(20, 130, 810, 10);
 
         jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/voltar.png.jpg"))); // NOI18N
         jbtVoltar.setText("Voltar");
@@ -171,7 +184,7 @@ public int flag=0;
         jTabbedPane1.addTab("Contato", jPanel3);
 
         jPanel2.add(jTabbedPane1);
-        jTabbedPane1.setBounds(10, 140, 760, 190);
+        jTabbedPane1.setBounds(50, 170, 760, 200);
 
         try {
             jftCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
@@ -191,6 +204,7 @@ public int flag=0;
         jPanel2.add(jftCnpj);
         jftCnpj.setBounds(100, 40, 120, 30);
 
+        jrbNome.setBackground(new java.awt.Color(255, 255, 255));
         bgpPesquisar.add(jrbNome);
         jrbNome.setSelected(true);
         jrbNome.setText("Nome");
@@ -202,6 +216,7 @@ public int flag=0;
         jPanel2.add(jrbNome);
         jrbNome.setBounds(40, 90, 93, 23);
 
+        jrbCnpj.setBackground(new java.awt.Color(255, 255, 255));
         bgpPesquisar.add(jrbCnpj);
         jrbCnpj.setText("CNPJ");
         jrbCnpj.addActionListener(new java.awt.event.ActionListener() {
@@ -213,9 +228,14 @@ public int flag=0;
         jrbCnpj.setBounds(130, 90, 50, 23);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 0, 780, 340);
+        jPanel2.setBounds(30, 30, 860, 430);
 
-        setBounds(0, 0, 791, 377);
+        jPanel4.setBackground(java.awt.Color.white);
+        jPanel4.setLayout(null);
+        getContentPane().add(jPanel4);
+        jPanel4.setBounds(0, 0, 940, 530);
+
+        setBounds(0, 0, 941, 725);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
@@ -283,9 +303,12 @@ public int flag=0;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgpPesquisar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

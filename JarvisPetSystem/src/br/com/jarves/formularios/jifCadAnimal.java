@@ -78,6 +78,8 @@ public class jifCadAnimal extends javax.swing.JInternalFrame  {
         jLabel20 = new javax.swing.JLabel();
         jblCpf = new javax.swing.JLabel();
         jdcNasc = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -102,30 +104,30 @@ public class jifCadAnimal extends javax.swing.JInternalFrame  {
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Animais"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Animais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
         jPanel2.setToolTipText("Cadastro de Animal");
         jPanel2.setLayout(null);
 
         jtfNome.setToolTipText("Informe o Nome do Cliente");
         jtfNome.setNextFocusableComponent(jdcNasc);
         jPanel2.add(jtfNome);
-        jtfNome.setBounds(120, 90, 240, 30);
+        jtfNome.setBounds(140, 90, 280, 30);
 
         jLabel1.setText("Dt Nascimento:");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(30, 170, 80, 30);
+        jLabel1.setBounds(50, 170, 80, 30);
 
         jLabel7.setText("Status:");
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(200, 130, 80, 30);
+        jLabel7.setBounds(220, 130, 80, 30);
 
         jLabel8.setText("Nome:");
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(70, 90, 80, 30);
+        jLabel8.setBounds(90, 90, 80, 30);
 
         jLabel13.setText("Sexo:");
         jPanel2.add(jLabel13);
-        jLabel13.setBounds(70, 210, 50, 30);
+        jLabel13.setBounds(90, 220, 50, 30);
 
         jcbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Ativo", "Inativo" }));
         jcbStatus.setToolTipText("Selecione o Sexo");
@@ -135,7 +137,7 @@ public class jifCadAnimal extends javax.swing.JInternalFrame  {
             }
         });
         jPanel2.add(jcbStatus);
-        jcbStatus.setBounds(250, 130, 110, 30);
+        jcbStatus.setBounds(270, 130, 110, 30);
 
         jbtInserir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/inserir.png.png"))); // NOI18N
         jbtInserir.setMnemonic('i');
@@ -146,7 +148,7 @@ public class jifCadAnimal extends javax.swing.JInternalFrame  {
             }
         });
         jPanel2.add(jbtInserir);
-        jbtInserir.setBounds(460, 20, 110, 40);
+        jbtInserir.setBounds(690, 30, 110, 40);
 
         jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/voltar.png.jpg"))); // NOI18N
         jbtVoltar.setText("Voltar");
@@ -156,7 +158,7 @@ public class jifCadAnimal extends javax.swing.JInternalFrame  {
             }
         });
         jPanel2.add(jbtVoltar);
-        jbtVoltar.setBounds(460, 70, 110, 40);
+        jbtVoltar.setBounds(690, 80, 110, 40);
 
         jtfPeso.setNextFocusableComponent(jtfNome);
         jtfPeso.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -165,34 +167,34 @@ public class jifCadAnimal extends javax.swing.JInternalFrame  {
             }
         });
         jPanel2.add(jtfPeso);
-        jtfPeso.setBounds(120, 130, 70, 30);
+        jtfPeso.setBounds(140, 130, 70, 30);
 
         jcbSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione...", "Masculino", "Feminino" }));
         jcbSexo.setToolTipText("Selecione o Sexo");
         jPanel2.add(jcbSexo);
-        jcbSexo.setBounds(120, 210, 160, 30);
+        jcbSexo.setBounds(140, 220, 160, 30);
 
         jLabel15.setText("Peso:");
         jPanel2.add(jLabel15);
-        jLabel15.setBounds(70, 130, 80, 30);
+        jLabel15.setBounds(90, 130, 80, 30);
 
         jtfNCliente.setEditable(false);
         jtfNCliente.setToolTipText("Informe o Nome do Cliente");
         jtfNCliente.setNextFocusableComponent(jdcNasc);
         jPanel2.add(jtfNCliente);
-        jtfNCliente.setBounds(120, 50, 240, 30);
+        jtfNCliente.setBounds(140, 50, 280, 30);
 
         jLabel17.setText("Proprietário:");
         jPanel2.add(jLabel17);
-        jLabel17.setBounds(40, 50, 80, 30);
+        jLabel17.setBounds(60, 50, 80, 30);
 
         jtfObs1.setNextFocusableComponent(jbtInserir);
         jPanel2.add(jtfObs1);
-        jtfObs1.setBounds(120, 330, 320, 30);
+        jtfObs1.setBounds(140, 350, 320, 30);
 
         jLabel18.setText("Observações:");
         jPanel2.add(jLabel18);
-        jLabel18.setBounds(40, 330, 80, 30);
+        jLabel18.setBounds(60, 350, 80, 30);
 
         jbtPesEnd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/lupa_16x16.png"))); // NOI18N
         jbtPesEnd1.addActionListener(new java.awt.event.ActionListener() {
@@ -201,11 +203,11 @@ public class jifCadAnimal extends javax.swing.JInternalFrame  {
             }
         });
         jPanel2.add(jbtPesEnd1);
-        jbtPesEnd1.setBounds(370, 50, 30, 30);
+        jbtPesEnd1.setBounds(440, 50, 30, 30);
 
         jLabel19.setText("Espécie:");
         jPanel2.add(jLabel19);
-        jLabel19.setBounds(70, 250, 50, 30);
+        jLabel19.setBounds(90, 260, 50, 30);
 
         jcbEspecie.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..." }));
         jcbEspecie.setToolTipText("Selecione o Sexo");
@@ -225,28 +227,36 @@ public class jifCadAnimal extends javax.swing.JInternalFrame  {
             }
         });
         jPanel2.add(jcbEspecie);
-        jcbEspecie.setBounds(120, 250, 160, 30);
+        jcbEspecie.setBounds(140, 260, 160, 30);
 
         jcbRaca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..." }));
         jcbRaca.setToolTipText("Selecione o Sexo");
         jPanel2.add(jcbRaca);
-        jcbRaca.setBounds(120, 290, 160, 30);
+        jcbRaca.setBounds(140, 300, 160, 30);
 
         jLabel20.setText("Raça:");
         jPanel2.add(jLabel20);
-        jLabel20.setBounds(70, 290, 50, 30);
+        jLabel20.setBounds(90, 300, 50, 30);
         jPanel2.add(jblCpf);
         jblCpf.setBounds(120, 24, 150, 20);
         jPanel2.add(jdcNasc);
-        jdcNasc.setBounds(120, 170, 160, 30);
+        jdcNasc.setBounds(140, 170, 160, 30);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Img_Dados.png"))); // NOI18N
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(640, 160, 180, 230);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 10, 580, 480);
+        jPanel2.setBounds(40, 30, 850, 450);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 650, 510);
+        jPanel1.setBounds(0, 0, 940, 530);
 
-        setBounds(0, 0, 610, 526);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Rodape_Padrao.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 500, 940, 190);
+
+        setBounds(0, 0, 939, 713);
     }// </editor-fold>//GEN-END:initComponents
     
 
@@ -368,7 +378,9 @@ public class jifCadAnimal extends javax.swing.JInternalFrame  {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;

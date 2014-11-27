@@ -45,17 +45,22 @@ public class jifCadCategoria extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbCategoria = new javax.swing.JTable();
         jbtAlterar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setTitle("Registro de Categoria");
+        setOpaque(true);
         getContentPane().setLayout(null);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de Categorias de Produtos"));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registro de Categorias de Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
         jPanel2.setLayout(null);
 
         jLabel1.setText("Categoria:");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(30, 80, 80, 20);
+        jLabel1.setBounds(40, 80, 80, 30);
 
         jtfCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,8 +73,9 @@ public class jifCadCategoria extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jtfCategoria);
-        jtfCategoria.setBounds(120, 70, 230, 30);
+        jtfCategoria.setBounds(100, 80, 270, 30);
 
+        jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/voltar.png.jpg"))); // NOI18N
         jbtVoltar.setText("Voltar");
         jbtVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,8 +83,9 @@ public class jifCadCategoria extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jbtVoltar);
-        jbtVoltar.setBounds(400, 90, 100, 40);
+        jbtVoltar.setBounds(560, 90, 100, 40);
 
+        jbtGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/Save.png"))); // NOI18N
         jbtGravar.setText("Gravar");
         jbtGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,9 +93,9 @@ public class jifCadCategoria extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jbtGravar);
-        jbtGravar.setBounds(400, 40, 100, 40);
+        jbtGravar.setBounds(560, 40, 100, 40);
         jPanel2.add(jSeparator1);
-        jSeparator1.setBounds(20, 160, 500, 10);
+        jSeparator1.setBounds(20, 180, 660, 10);
 
         jtbCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,6 +108,7 @@ public class jifCadCategoria extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtbCategoria.setOpaque(false);
         jtbCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtbCategoriaMouseClicked(evt);
@@ -109,8 +117,9 @@ public class jifCadCategoria extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jtbCategoria);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 190, 500, 140);
+        jScrollPane1.setBounds(70, 210, 570, 90);
 
+        jbtAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/altera.png"))); // NOI18N
         jbtAlterar.setText("Alterar");
         jbtAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,12 +127,20 @@ public class jifCadCategoria extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jbtAlterar);
-        jbtAlterar.setBounds(400, 40, 100, 40);
+        jbtAlterar.setBounds(560, 40, 100, 40);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(10, 0, 550, 350);
+        jPanel2.setBounds(80, 50, 710, 400);
 
-        setBounds(0, 0, 575, 404);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Img_Coelho.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(10, 480, 180, 140);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Rodape_Padrao.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 520, 940, 180);
+
+        setBounds(0, 0, 941, 725);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
@@ -185,6 +202,8 @@ public class jifCadCategoria extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

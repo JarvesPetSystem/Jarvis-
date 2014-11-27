@@ -51,7 +51,6 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jmiCadAnimal = new javax.swing.JMenuItem();
         jmiCategoria = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jmiSair = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jmiCadProd = new javax.swing.JMenuItem();
@@ -90,6 +89,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jmnCadastro.add(jmiCadCliente);
 
         jmiCadAnimal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
+        jmiCadAnimal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/Cli_Ani.png"))); // NOI18N
         jmiCadAnimal.setText("Cliente / Animal");
         jmiCadAnimal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +99,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jmnCadastro.add(jmiCadAnimal);
 
         jmiCategoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK));
+        jmiCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/categoria.png"))); // NOI18N
         jmiCategoria.setText("Categoria");
         jmiCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,12 +118,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         });
         jmnCadastro.add(jMenuItem4);
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/prod.png.png"))); // NOI18N
-        jMenuItem5.setText("Produtos");
-        jmnCadastro.add(jMenuItem5);
-
-        jmiSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        jmiSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jmiSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/f.png.png"))); // NOI18N
         jmiSair.setText("Sair");
         jmiSair.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +128,8 @@ public class jfrPrincipal extends javax.swing.JFrame {
         });
         jmnCadastro.add(jmiSair);
 
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/servi.png.jpg"))); // NOI18N
         jMenuItem7.setText("Servicos");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,6 +138,8 @@ public class jfrPrincipal extends javax.swing.JFrame {
         });
         jmnCadastro.add(jMenuItem7);
 
+        jmiCadProd.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
+        jmiCadProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/prod.png.png"))); // NOI18N
         jmiCadProd.setText("Produtos");
         jmiCadProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +163,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         });
         jmnConsulta.add(jMenuItem1);
 
+        jmiConAnimal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/Cli_Ani.png"))); // NOI18N
         jmiConAnimal.setText("Clientes / Animais");
         jmiConAnimal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +182,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         });
         jmnConsulta.add(jmiConsCli);
 
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/forn.png.png"))); // NOI18N
         jMenuItem6.setText("Fornecedores");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,7 +379,6 @@ public class jfrPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JDesktopPane jdpPrincipal;

@@ -41,6 +41,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         bgpPesquisar = new javax.swing.ButtonGroup();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jlbNome = new javax.swing.JLabel();
         jtfNome = new javax.swing.JTextField();
@@ -53,12 +54,19 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
         jftCpf = new javax.swing.JFormattedTextField();
         jrbNome = new javax.swing.JRadioButton();
         jrbCpf = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setTitle("Consulta de Clientes");
         getContentPane().setLayout(null);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clientes / Animais"));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Img_drdog.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(-10, 410, 160, 260);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta de Clientes / Animais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
         jPanel2.setLayout(null);
 
         jlbNome.setText("RGA:");
@@ -79,9 +87,9 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jtfNome);
-        jtfNome.setBounds(100, 40, 120, 30);
+        jtfNome.setBounds(70, 40, 120, 30);
         jPanel2.add(jSeparator1);
-        jSeparator1.setBounds(10, 130, 760, 20);
+        jSeparator1.setBounds(10, 150, 760, 20);
 
         jbtVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/voltar.png.jpg"))); // NOI18N
         jbtVoltar.setText("Voltar");
@@ -120,7 +128,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
         jTabbedPane1.addTab("Informações", jpnDados);
 
         jPanel2.add(jTabbedPane1);
-        jTabbedPane1.setBounds(10, 140, 760, 190);
+        jTabbedPane1.setBounds(20, 170, 760, 190);
         jTabbedPane1.getAccessibleContext().setAccessibleName("Informações");
 
         try {
@@ -139,7 +147,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jftCpf);
-        jftCpf.setBounds(100, 40, 120, 30);
+        jftCpf.setBounds(70, 40, 120, 30);
 
         bgpPesquisar.add(jrbNome);
         jrbNome.setSelected(true);
@@ -150,7 +158,7 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jrbNome);
-        jrbNome.setBounds(40, 90, 93, 23);
+        jrbNome.setBounds(40, 110, 93, 23);
 
         bgpPesquisar.add(jrbCpf);
         jrbCpf.setText("CPF Proprietário");
@@ -160,14 +168,18 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(jrbCpf);
-        jrbCpf.setBounds(130, 90, 140, 23);
+        jrbCpf.setBounds(130, 110, 140, 23);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 0, 780, 340);
+        jPanel2.setBounds(50, 20, 830, 390);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/imagens/Rodape_Padrao.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 520, 940, 180);
 
         getAccessibleContext().setAccessibleName("Consulta de Animais");
 
-        setBounds(0, 0, 791, 377);
+        setBounds(0, 0, 941, 725);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtVoltarActionPerformed
@@ -242,6 +254,8 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgpPesquisar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
