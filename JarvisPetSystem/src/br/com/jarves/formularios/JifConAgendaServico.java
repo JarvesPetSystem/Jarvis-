@@ -268,6 +268,9 @@ public class JifConAgendaServico extends javax.swing.JInternalFrame {
                 flag =0;
                 this.dispose();
             }
+                
+            
+          
         }
     }//GEN-LAST:event_jtbAgendaMouseClicked
 

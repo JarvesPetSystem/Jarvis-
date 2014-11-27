@@ -236,6 +236,15 @@ public class JifConAnimal extends javax.swing.JInternalFrame {
                 Global.jtfCliente.grabFocus();
                 flag =0;
                 this.dispose();
+            }else if(flag==2){
+                int indiceLinha = jtbCliente.getSelectedRow();
+                Object rga = jtbCliente.getValueAt(indiceLinha, 0);
+                Object animal = jtbCliente.getValueAt(indiceLinha, 1);
+                Object prop = jtbCliente.getValueAt(indiceLinha, 6);
+                Global.jtfRga.setText(rga.toString());
+                Global.jtfProprietario.setText("Cliente: "+animal+"    Proprietário: "+ prop.toString());
+                flag = 0;
+                this.dispose();
             }
         }
     }//GEN-LAST:event_jtbClienteMouseClicked

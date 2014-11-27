@@ -100,7 +100,7 @@ public class jifAgendaServico extends javax.swing.JInternalFrame {
         jPanel2.add(jbtGravar);
         jbtGravar.setBounds(520, 50, 100, 40);
         jPanel2.add(jSeparator1);
-        jSeparator1.setBounds(20, 240, 600, 10);
+        jSeparator1.setBounds(20, 260, 600, 10);
 
         jtbAgenServico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -181,11 +181,9 @@ public class jifAgendaServico extends javax.swing.JInternalFrame {
 
         lblProprietario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jPanel2.add(lblProprietario);
-        lblProprietario.setBounds(460, 180, 130, 30);
-
-        jLabel6.setText("Proprietario:");
+        lblProprietario.setBounds(30, 220, 570, 30);
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(360, 190, 60, 14);
+        jLabel6.setBounds(340, 180, 280, 30);
 
         jbtAlterar.setText("Alterar");
         jbtAlterar.addActionListener(new java.awt.event.ActionListener() {
