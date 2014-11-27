@@ -55,6 +55,8 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jmiSair = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jmiCadProd = new javax.swing.JMenuItem();
+        jmiEstoque = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jmnConsulta = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jmiConAnimal = new javax.swing.JMenuItem();
@@ -63,6 +65,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jmnProdutos = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -152,6 +155,22 @@ public class jfrPrincipal extends javax.swing.JFrame {
         });
         jmnCadastro.add(jmiCadProd);
 
+        jmiEstoque.setText("Estoque");
+        jmiEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiEstoqueActionPerformed(evt);
+            }
+        });
+        jmnCadastro.add(jmiEstoque);
+
+        jMenuItem12.setText("Agendamento de Serviço");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jmnCadastro.add(jMenuItem12);
+
         jMenuBar1.add(jmnCadastro);
 
         jmnConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/jarves/icones/cons.png.gif"))); // NOI18N
@@ -212,6 +231,14 @@ public class jfrPrincipal extends javax.swing.JFrame {
         jmnProdutos.add(jMenuItem9);
 
         jmnConsulta.add(jmnProdutos);
+
+        jMenuItem11.setText("Agendamento de Serviço");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jmnConsulta.add(jMenuItem11);
 
         jMenuBar1.add(jmnConsulta);
 
@@ -404,6 +431,36 @@ public class jfrPrincipal extends javax.swing.JFrame {
        jis.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void jmiEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEstoqueActionPerformed
+        jifEstoque jis = new jifEstoque();
+       jdpPrincipal.add(jis);
+       
+       ((BasicInternalFrameUI)jis.getUI()).setNorthPane(null);
+       //jic.setBorder(null); insere bordas no formulário
+       jis.setPosicao();
+       jis.setVisible(true);
+    }//GEN-LAST:event_jmiEstoqueActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        JifConAgendaServico jis = new JifConAgendaServico();
+       jdpPrincipal.add(jis);
+       
+       ((BasicInternalFrameUI)jis.getUI()).setNorthPane(null);
+       //jic.setBorder(null); insere bordas no formulário
+       jis.setPosicao();
+       jis.setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+          jifAgendaServico jis = new jifAgendaServico();
+       jdpPrincipal.add(jis);
+       
+       ((BasicInternalFrameUI)jis.getUI()).setNorthPane(null);
+       //jic.setBorder(null); insere bordas no formulário
+       jis.setPosicao();
+       jis.setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -447,6 +504,8 @@ public class jfrPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -462,6 +521,7 @@ public class jfrPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiCategoria;
     private javax.swing.JMenuItem jmiConAnimal;
     private javax.swing.JMenuItem jmiConsCli;
+    private javax.swing.JMenuItem jmiEstoque;
     private javax.swing.JMenuItem jmiSair;
     private javax.swing.JMenu jmnCadastro;
     private javax.swing.JMenu jmnConsulta;
